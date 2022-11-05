@@ -49,6 +49,22 @@ public class AufloesungsKuemmerer : MonoBehaviour
 
     public GameObject mWerGegenWenButtonbuttonEmpty;
 
+    public GameObject mMasseButton;
+    public GameObject mSonnenentfernungButton;
+    public GameObject mAnzahlMondeButton;
+    public GameObject mDichteButton;
+    public GameObject mDurchmesserButton;
+    public GameObject mMaxTemperatur;
+    public GameObject mMinTemperatur;
+    public GameObject mTMPMasseButton;
+    public GameObject mTMPSonnenentfernungButton;
+    public GameObject mTMPAnzahlMondeButton;
+    public GameObject mTMPDichteButton;
+    public GameObject mTMPDurchmesserButton;
+    public GameObject mTMPMaxTemperatur;
+    public GameObject mTMPMinTemperatur;
+
+
     public Vector3 K_WER_GEGEN_WEN_NORMAL;
 
     public Vector3 K_WER_GEGEN_WEN_SCHWARZE_LOCH;
@@ -133,6 +149,29 @@ public class AufloesungsKuemmerer : MonoBehaviour
             mWerGegenWenButtonbuttonEmpty.transform.localPosition = K_WER_GEGEN_WEN_NORMAL;
             mWerGegenWenButtonbuttonEmpty.transform.localScale = new Vector3(0.57f, 0.6f, 0.5f);
             mAufloesungInt = 3; // 2048*1536  2224*1668
+
+            mMasseButton.transform.localPosition = new Vector3(-4.75f, -7f, -7.5f);
+            mMasseButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mSonnenentfernungButton.transform.localPosition = new Vector3(-4.75f, -8.4f, -7.5f);
+            mSonnenentfernungButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mAnzahlMondeButton.transform.localPosition = new Vector3(-4.75f, -9.8f, -7.5f);
+            mAnzahlMondeButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mDichteButton.transform.localPosition = new Vector3(-4.75f, -11.2f, -7.5f);
+            mDichteButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mDurchmesserButton.transform.localPosition = new Vector3(-4.75f, -12.6f, -7.5f);
+            mDurchmesserButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mMaxTemperatur.transform.localPosition = new Vector3(-4.75f, -14f, -7.5f);
+            mMaxTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mMinTemperatur.transform.localPosition = new Vector3(-4.75f, -15.4f, -7.5f);
+            mMinTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+
+            mTMPMasseButton.transform.localScale = new Vector3(1f, 1f, 0.5f);
+            mTMPSonnenentfernungButton.transform.localScale = new Vector3(1f, 1f, 0.5f);
+            mTMPAnzahlMondeButton.transform.localScale = new Vector3(1f, 1f, 0.5f);
+            mTMPDichteButton.transform.localScale = new Vector3(1f, 1f, 0.5f);
+            mTMPDurchmesserButton.transform.localScale = new Vector3(1f, 1f, 0.5f);
+            mTMPMaxTemperatur.transform.localScale = new Vector3(1f, 1f, 0.5f);
+            mTMPMinTemperatur.transform.localScale = new Vector3(1f, 1f, 0.5f);
         }
         else if(lVerhaetnis < 1.8 )
         {
@@ -183,6 +222,29 @@ public class AufloesungsKuemmerer : MonoBehaviour
             mWerGegenWenButtonbuttonEmpty.transform.localScale = new Vector3(0.7f, 0.6f, 0.5f);
 
             mAufloesungInt = 1;
+
+            mMasseButton.transform.localPosition = new Vector3(-4.75f, -7f, -7.5f);
+            mMasseButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mSonnenentfernungButton.transform.localPosition = new Vector3(-4.75f, -8.4f, -7.5f);
+            mSonnenentfernungButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mAnzahlMondeButton.transform.localPosition = new Vector3(-4.75f, -9.8f, -7.5f);
+            mAnzahlMondeButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mDichteButton.transform.localPosition = new Vector3(-4.75f, -11.2f, -7.5f);
+            mDichteButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mDurchmesserButton.transform.localPosition = new Vector3(-4.75f, -12.6f, -7.5f);
+            mDurchmesserButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mMaxTemperatur.transform.localPosition = new Vector3(-4.75f, -14f, -7.5f);
+            mMaxTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mMinTemperatur.transform.localPosition = new Vector3(-4.75f, -15.4f, -7.5f);
+            mMinTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+
+            mTMPMasseButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPSonnenentfernungButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPAnzahlMondeButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPDichteButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPDurchmesserButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPMaxTemperatur.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPMinTemperatur.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
         }
         else
         {
@@ -241,6 +303,29 @@ public class AufloesungsKuemmerer : MonoBehaviour
             mWerGegenWenButtonbuttonEmpty.transform.localPosition = K_WER_GEGEN_WEN_NORMAL;
             mWerGegenWenButtonbuttonEmpty.transform.localScale = new Vector3(0.6f, 0.51f, 0.5f);
             mAufloesungInt = 2; // 22436*1125
+
+            mMasseButton.transform.localPosition = new Vector3(-2.7f, -7f, -7.5f);
+            mMasseButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mSonnenentfernungButton.transform.localPosition = new Vector3(-2.7f, -8.4f, -7.5f);
+            mSonnenentfernungButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mAnzahlMondeButton.transform.localPosition = new Vector3(-2.7f, -9.8f, -7.5f);
+            mAnzahlMondeButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mDichteButton.transform.localPosition = new Vector3(-2.7f, -11.2f, -7.5f);
+            mDichteButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mDurchmesserButton.transform.localPosition = new Vector3(-2.7f, -12.6f, -7.5f);
+            mDurchmesserButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mMaxTemperatur.transform.localPosition = new Vector3(-2.7f, -14f, -7.5f);
+            mMaxTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mMinTemperatur.transform.localPosition = new Vector3(-2.7f, -15.4f, -7.5f);
+            mMinTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+
+            mTMPMasseButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPSonnenentfernungButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPAnzahlMondeButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPDichteButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPDurchmesserButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPMaxTemperatur.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPMinTemperatur.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
         }
     }
 
