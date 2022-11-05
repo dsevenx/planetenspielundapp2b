@@ -1,0 +1,321 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
+  m_Name: Emojiastro
+  m_EditorClassIdentifier: 
+  hashCode: 1127043583
+  material: {fileID: 4712178268388935406}
+  materialHashCode: 0
+  m_Version: 1.1.0
+  m_FaceInfo:
+    m_FaceIndex: 0
+    m_FamilyName: 
+    m_StyleName: 
+    m_PointSize: 0
+    m_Scale: 0
+    m_LineHeight: 0
+    m_AscentLine: 0
+    m_CapLine: 0
+    m_MeanLine: 0
+    m_Baseline: 0
+    m_DescentLine: 0
+    m_SuperscriptOffset: 0
+    m_SuperscriptSize: 0
+    m_SubscriptOffset: 0
+    m_SubscriptSize: 0
+    m_UnderlineOffset: 0
+    m_UnderlineThickness: 0
+    m_StrikethroughOffset: 0
+    m_StrikethroughThickness: 0
+    m_TabWidth: 0
+  spriteSheet: {fileID: 2800000, guid: da068490c181d47b1880255438dc1488, type: 3}
+  m_SpriteCharacterTable:
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 0
+    m_Scale: 1
+    m_Name: Emojiastro3
+    m_HashCode: -1462267412
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 1
+    m_Scale: 1
+    m_Name: Emojiastro1
+    m_HashCode: -1462267410
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 2
+    m_Scale: 1
+    m_Name: Emojiastro2
+    m_HashCode: -1462267411
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 3
+    m_Scale: 1
+    m_Name: Emojiastro4
+    m_HashCode: -1462267413
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 4
+    m_Scale: 1
+    m_Name: Emojiastro6
+    m_HashCode: -1462267415
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 5
+    m_Scale: 1
+    m_Name: Emojiastro5
+    m_HashCode: -1462267414
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 6
+    m_Scale: 1
+    m_Name: Emojiastro7
+    m_HashCode: -1462267416
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 7
+    m_Scale: 1
+    m_Name: Emojiastro8
+    m_HashCode: -1462267417
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 8
+    m_Scale: 1
+    m_Name: Emojiastro10
+    m_HashCode: -1010184290
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 9
+    m_Scale: 1
+    m_Name: Emojiastro11
+    m_HashCode: -1010184289
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 10
+    m_Scale: 1
+    m_Name: Emojiastro9
+    m_HashCode: -1462267418
+  m_SpriteGlyphTable:
+  - m_Index: 0
+    m_Metrics:
+      m_Width: 39
+      m_Height: 35
+      m_HorizontalBearingX: -11.8
+      m_HorizontalBearingY: 31.9
+      m_HorizontalAdvance: 29.3
+    m_GlyphRect:
+      m_X: 357
+      m_Y: 482
+      m_Width: 39
+      m_Height: 35
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: -5653180133969911916, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 1
+    m_Metrics:
+      m_Width: 46
+      m_Height: 47
+      m_HorizontalBearingX: -9.4
+      m_HorizontalBearingY: 45.9
+      m_HorizontalAdvance: 36
+    m_GlyphRect:
+      m_X: 73
+      m_Y: 468
+      m_Width: 46
+      m_Height: 47
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 4575621649344059725, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 2
+    m_Metrics:
+      m_Width: 45
+      m_Height: 48
+      m_HorizontalBearingX: -13.1
+      m_HorizontalBearingY: 45.9
+      m_HorizontalAdvance: 31.1
+    m_GlyphRect:
+      m_X: 215
+      m_Y: 468
+      m_Width: 45
+      m_Height: 48
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 8865067713483007719, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 44
+      m_Height: 21
+      m_HorizontalBearingX: -7.01
+      m_HorizontalBearingY: 21.1
+      m_HorizontalAdvance: 37.48
+    m_GlyphRect:
+      m_X: 79
+      m_Y: 387
+      m_Width: 44
+      m_Height: 21
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 6207741764713219252, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 4
+    m_Metrics:
+      m_Width: 49
+      m_Height: 39
+      m_HorizontalBearingX: -13.1
+      m_HorizontalBearingY: 38.3
+      m_HorizontalAdvance: 37.45
+    m_GlyphRect:
+      m_X: 362
+      m_Y: 377
+      m_Width: 49
+      m_Height: 39
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: -6039355902026786511, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 5
+    m_Metrics:
+      m_Width: 28
+      m_Height: 48
+      m_HorizontalBearingX: -14
+      m_HorizontalBearingY: 48.1
+      m_HorizontalAdvance: 12.3
+    m_GlyphRect:
+      m_X: 209
+      m_Y: 373
+      m_Width: 28
+      m_Height: 48
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: -6327977724374757585, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 6
+    m_Metrics:
+      m_Width: 48
+      m_Height: 48
+      m_HorizontalBearingX: -14.6
+      m_HorizontalBearingY: 43.9
+      m_HorizontalAdvance: 33.2
+    m_GlyphRect:
+      m_X: 360
+      m_Y: 273
+      m_Width: 48
+      m_Height: 48
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: -1060632723753373816, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 7
+    m_Metrics:
+      m_Width: 45
+      m_Height: 22
+      m_HorizontalBearingX: -7.4
+      m_HorizontalBearingY: 21.3
+      m_HorizontalAdvance: 37.36
+    m_GlyphRect:
+      m_X: 482
+      m_Y: 198
+      m_Width: 45
+      m_Height: 22
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 7086212900897730648, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 8
+    m_Metrics:
+      m_Width: 38
+      m_Height: 35
+      m_HorizontalBearingX: -11.1
+      m_HorizontalBearingY: 33.7
+      m_HorizontalAdvance: 26
+    m_GlyphRect:
+      m_X: 202
+      m_Y: 97
+      m_Width: 38
+      m_Height: 35
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 8248714892597998212, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 9
+    m_Metrics:
+      m_Width: 48
+      m_Height: 46
+      m_HorizontalBearingX: -14.2
+      m_HorizontalBearingY: 41
+      m_HorizontalAdvance: 33.1
+    m_GlyphRect:
+      m_X: 476
+      m_Y: 84
+      m_Width: 48
+      m_Height: 46
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 1166337437285498473, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  - m_Index: 10
+    m_Metrics:
+      m_Width: 45
+      m_Height: 48
+      m_HorizontalBearingX: -15.1
+      m_HorizontalBearingY: 43.4
+      m_HorizontalAdvance: 29
+    m_GlyphRect:
+      m_X: 338
+      m_Y: 83
+      m_Width: 45
+      m_Height: 48
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: -3811458933622988095, guid: da068490c181d47b1880255438dc1488,
+      type: 3}
+  spriteInfoList: []
+  fallbackSpriteAssets: []
+--- !u!21 &4712178268388935406
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TextMeshPro/Sprite
+  m_Shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: da068490c181d47b1880255438dc1488, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
