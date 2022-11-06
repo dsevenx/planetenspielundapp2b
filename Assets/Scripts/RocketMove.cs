@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class RocketMove : MonoBehaviour
 {
-    public float speed;
+    public float mGrundspeed;
+    public float mZusaetzlicheSpeedForDirection;
+    public float mEntfernungZumZiel;
 
     public PruefungGUISteuerung mPruefungGUISteuerung;
 
@@ -22,16 +24,21 @@ public class RocketMove : MonoBehaviour
 
     public float mWinkel;
 
-    public bool mZumAlternativeZiel;
-
     public Vector3 mDirection;
 
     private const string K_ALTERNATIVE = "ALTERNATIVE";
+    private const int K_STATUS_ZIELE_BESTIMMT = 1;
+    private int mStatus = 0;
+
+    private Vector3 mZiel1;
+    private Vector3 mZiel2;
 
     void Start()
     {
-        mZumAlternativeZiel = false;
         mZeitBeiRotieren = 0.03f;
+        mGrundspeed = 0.8f;
+        mZiel1 = Vector3.zero;
+        mZiel2 = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -40,7 +47,12 @@ public class RocketMove : MonoBehaviour
         if (mPruefungGUISteuerung != null && mPruefungGUISteuerung.getRichtigeAntwort() != null
             && !mPruefungGUISteuerung.getRichtigeAntwort().Equals(""))
         {
-             Chase(mPruefungGUISteuerung.getRichtigeAntwort());
+            if (mStatus == 0)
+            {
+                bestimmeZiel(mPruefungGUISteuerung.getRichtigeAntwort());
+            }
+
+            Chase();
         } else
         {
             transform.position = mGameObjectCubePosAlternative.transform.position;
@@ -48,94 +60,114 @@ public class RocketMove : MonoBehaviour
         
     }
 
-    public void Chase(String pRichtigeAntwort)
+    private void bestimmeZiel(string pRichtigeAntwort)
     {
-        if (mZumAlternativeZiel)
-        {
-            bewegenUndDrehen(K_ALTERNATIVE);
-        }
-        else
-        {
-            bewegenUndDrehen(pRichtigeAntwort);
-        }
-    }
-
-    private void bewegenUndDrehen(String pRichtigeAntwort)
-    {
-        Vector3 lZiel = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-
         if (pRichtigeAntwort.Contains("AntwortA"))
         {
-             lZiel = mGameObjectCubeA.transform.position;
+            mZiel1 = lieferXPlusMinus(mGameObjectCubeA.transform.position);
         }
         else if (pRichtigeAntwort.Contains("AntwortB"))
         {
-            lZiel = mGameObjectCubeB.transform.position;
+            mZiel1 = lieferXPlusMinus(mGameObjectCubeB.transform.position);
         }
         else if (pRichtigeAntwort.Contains("AntwortC"))
         {
-            lZiel = mGameObjectCubeC.transform.position;
-        } else if (pRichtigeAntwort.Contains("AntwortD"))
+            mZiel1 = lieferXPlusMinus(mGameObjectCubeC.transform.position);
+        }
+        else if (pRichtigeAntwort.Contains("AntwortD"))
         {
-            lZiel = mGameObjectCubeD.transform.position;
+            mZiel1 = lieferXPlusMinus(mGameObjectCubeD.transform.position);
+        }
+
+        mZiel2 = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position);
+
+        mStatus = K_STATUS_ZIELE_BESTIMMT;
+    }
+
+    public void Chase()
+    {
+        if (mZiel1 != Vector3.zero)
+        {
+            mZiel1 = bewegenUndDrehen(mZiel1);
+        }
+        else if(mZiel2 != Vector3.zero)
+        {
+            mZiel2 = bewegenUndDrehen(mZiel2);
         } else
         {
-            lZiel = mGameObjectCubePosAlternative.transform.position;
-         }
-     
-        mDirection = (lZiel - transform.position).normalized;
+            mStatus = 0;
+        }
+    }
+
+    private Vector3 bewegenUndDrehen(Vector3 pZiel)
+    {
+           
+        mDirection = (pZiel - transform.position).normalized;
 
         Quaternion rotationVonDirection = Quaternion.LookRotation(mDirection);
 
-        if (Vector3.Distance(transform.position, lZiel) > 0.02)
+        float lAktuelleEntfernungZumZiel = Vector3.Distance(transform.position, pZiel);
+
+        if (lAktuelleEntfernungZumZiel > 0.02)
         {
             mWinkel = Quaternion.Angle(transform.rotation, rotationVonDirection);
 
-            if (mWinkel > 10)
+            if (mWinkel > 15)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotationVonDirection, mZeitBeiRotieren); ;
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotationVonDirection, mZeitBeiRotieren);
+
+                mZusaetzlicheSpeedForDirection = 0;
+                mEntfernungZumZiel = 0;
+
+                // transform.position = Vector3.MoveTowards(transform.position, pZiel, mGrundspeed / 2 * Time.deltaTime);
+
             } else
             {
-                transform.position = Vector3.MoveTowards(transform.position, lZiel, speed * Time.deltaTime);
+                if (mZusaetzlicheSpeedForDirection == 0)
+                {
+                    mZusaetzlicheSpeedForDirection = 0.1f;
+                    mEntfernungZumZiel = lAktuelleEntfernungZumZiel;
+                } else
+                {
+                    if (mEntfernungZumZiel /3 < lAktuelleEntfernungZumZiel)
+                    {
+                        mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection + 0.05f;
+                    } else
+                    {
+                        mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection - 0.07f;
+                        if (mZusaetzlicheSpeedForDirection < 0)
+                        {
+                            mZusaetzlicheSpeedForDirection = 0;
+                        }
+                    }
+                }
+                transform.position = Vector3.MoveTowards(transform.position, pZiel, (mGrundspeed+ mZusaetzlicheSpeedForDirection) * Time.deltaTime);
             }
+
+            return pZiel;
         }
         else
         {
-            if (mZumAlternativeZiel)
-            {
-                mZumAlternativeZiel = false;
-            }
-            else
-            {
-                mZumAlternativeZiel = true;
-            }
+            return Vector3.zero;
         }
-
-        /*
-        Vector3 lZiel = new Vector3(pTransformZielPostion.x, pTransformZielPostion.y,transform.position.z);
-
-        mGameObjectCubeTest.transform.position = lZiel;
-
-        if (Vector3.Distance(transform.position, lZiel) < 0.3)
-        {
-            if (mZumAlternativeZiel)
-            {
-                mZumAlternativeZiel = false;
-            } else
-            {
-                mZumAlternativeZiel = true;
-                mTransformZielNaeheRichtigeAntwort = new Vector3(lZiel.x + lieferZuefaellige(),
-                    lZiel.y + lieferZuefaellige(),
-                    lZiel.z);
-            }
-        }
-        */
     }
 
-    private float lieferZuefaellige()
+    private Vector3 lieferXPlusMinus(Vector3 position)
     {
-        float lErg = 0; // (UnityEngine.Random.Range(0, 2000) - 1000) / 1000f;
+        return new Vector3(position.x
+            + lieferZuefaellige(4)
+            , position.y, position.z);
+    }
 
-        return lErg;
+    private Vector3 lieferXYZPlusMinus(Vector3 position)
+    {
+        return new Vector3(position.x
+            + lieferZuefaellige(6)
+            , position.y + lieferZuefaellige(6), position.z);
+    }
+
+    private float lieferZuefaellige(float pAmplitude)
+    {
+       return UnityEngine.Random.Range(0, pAmplitude) - pAmplitude/2;
     }
 }

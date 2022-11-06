@@ -357,7 +357,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196529307}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1553,7 +1553,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760734596}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2008,7 +2008,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863180359}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2402,7 +2402,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076816761}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3634,7 +3634,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486100357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -5087,7 +5087,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d509990974274999ad7e33057f06e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.8
+  mGrundspeed: 0
+  mZusaetzlicheSpeedForDirection: 0
+  mEntfernungZumZiel: 0
   mPruefungGUISteuerung: {fileID: 932544165}
   mTransformZielNaeheRichtigeAntwort: {x: 0, y: 0, z: 0}
   mGameObjectCubeA: {fileID: 760734596}
@@ -5096,7 +5098,8 @@ MonoBehaviour:
   mGameObjectCubeD: {fileID: 863180359}
   mGameObjectCubePosAlternative: {fileID: 1486100357}
   mZeitBeiRotieren: 0
-  mZumAlternativeZiel: 0
+  mWinkel: 0
+  mDirection: {x: 0, y: 0, z: 0}
 --- !u!33 &920970097897679719
 MeshFilter:
   m_ObjectHideFlags: 0
