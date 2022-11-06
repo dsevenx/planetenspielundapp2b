@@ -11,51 +11,111 @@ public class RocketMove : MonoBehaviour
 
     public Vector3 mTransformZielNaeheRichtigeAntwort;
 
-    public GameObject mGameObjectCubeTest;
+    public GameObject mGameObjectCubeA;
+    public GameObject mGameObjectCubeB;
+    public GameObject mGameObjectCubeC;
+    public GameObject mGameObjectCubeD;
 
+    public GameObject mGameObjectCubePosAlternative;
+
+    public float mZeitBeiRotieren;
+
+    public float mWinkel;
 
     public bool mZumAlternativeZiel;
+
+    public Vector3 mDirection;
+
+    private const string K_ALTERNATIVE = "ALTERNATIVE";
 
     void Start()
     {
         mZumAlternativeZiel = false;
+        mZeitBeiRotieren = 0.03f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (mPruefungGUISteuerung != null && mPruefungGUISteuerung.getGameObjectRichtigeAntwort() != null)
+        if (mPruefungGUISteuerung != null && mPruefungGUISteuerung.getRichtigeAntwort() != null
+            && !mPruefungGUISteuerung.getRichtigeAntwort().Equals(""))
         {
-             Chase(mPruefungGUISteuerung.getGameObjectRichtigeAntwort().transform);
+             Chase(mPruefungGUISteuerung.getRichtigeAntwort());
+        } else
+        {
+            transform.position = mGameObjectCubePosAlternative.transform.position;
         }
         
     }
 
-    public void Chase(Transform pTransformRichtigeAntwort)
+    public void Chase(String pRichtigeAntwort)
     {
         if (mZumAlternativeZiel)
         {
-            bewegenUndDrehen(mTransformZielNaeheRichtigeAntwort);
+            bewegenUndDrehen(K_ALTERNATIVE);
         }
         else
         {
-            bewegenUndDrehen(pTransformRichtigeAntwort.position);
+            bewegenUndDrehen(pRichtigeAntwort);
         }
     }
 
-    private void bewegenUndDrehen(Vector3 pTransformZielPostion)
+    private void bewegenUndDrehen(String pRichtigeAntwort)
     {
+        Vector3 lZiel = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+
+        if (pRichtigeAntwort.Contains("AntwortA"))
+        {
+             lZiel = mGameObjectCubeA.transform.position;
+        }
+        else if (pRichtigeAntwort.Contains("AntwortB"))
+        {
+            lZiel = mGameObjectCubeB.transform.position;
+        }
+        else if (pRichtigeAntwort.Contains("AntwortC"))
+        {
+            lZiel = mGameObjectCubeC.transform.position;
+        } else if (pRichtigeAntwort.Contains("AntwortD"))
+        {
+            lZiel = mGameObjectCubeD.transform.position;
+        } else
+        {
+            lZiel = mGameObjectCubePosAlternative.transform.position;
+         }
+     
+        mDirection = (lZiel - transform.position).normalized;
+
+        Quaternion rotationVonDirection = Quaternion.LookRotation(mDirection);
+
+        if (Vector3.Distance(transform.position, lZiel) > 0.02)
+        {
+            mWinkel = Quaternion.Angle(transform.rotation, rotationVonDirection);
+
+            if (mWinkel > 10)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotationVonDirection, mZeitBeiRotieren); ;
+            } else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, lZiel, speed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            if (mZumAlternativeZiel)
+            {
+                mZumAlternativeZiel = false;
+            }
+            else
+            {
+                mZumAlternativeZiel = true;
+            }
+        }
+
+        /*
         Vector3 lZiel = new Vector3(pTransformZielPostion.x, pTransformZielPostion.y,transform.position.z);
 
         mGameObjectCubeTest.transform.position = lZiel;
-        /*
-        Vector3 lDirection = lZiel - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(lDirection);
-        transform.rotation = rotation;
-        */
-        transform.position = Vector3.MoveTowards(transform.position, lZiel, speed * Time.deltaTime);
 
-        /*
         if (Vector3.Distance(transform.position, lZiel) < 0.3)
         {
             if (mZumAlternativeZiel)

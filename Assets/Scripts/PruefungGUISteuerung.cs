@@ -59,7 +59,7 @@ public class PruefungGUISteuerung : MonoBehaviour
     public const string K_PRUEFUNG_MUENZENANZAHL = "PRUEFUNGSPIEL_MUENZENANZAHL";
 
     private string mAntwortGegegeben = "";
-    public GameObject mGameObjectRichtigeAntwort = null;
+    public String mRichtigeAntwort = "";
     public GameObject mGameObjectRocket;
 
     private string[] mAntwortErgebnisABCD = new string[] { "", "", "", "" };
@@ -278,7 +278,7 @@ public class PruefungGUISteuerung : MonoBehaviour
     private void initRichtigeAntwortUndRocket()
     {
         mAntwortGegegeben = "";
-        mGameObjectRichtigeAntwort = null;
+        mRichtigeAntwort = "";
         mGameObjectRocket.SetActive(false);
     }
 
@@ -336,7 +336,7 @@ public class PruefungGUISteuerung : MonoBehaviour
 
     private void verarbeiteAntwort(Pruefungdatum lPruefungdatum, GameObject pGameObjectAntwortButton)
     {
-        mGameObjectRichtigeAntwort = null;
+        mRichtigeAntwort = "";
 
         setzeTextNachBeantwortung(mAntwortGegegeben, lPruefungdatum.mAntwortA
            , lPruefungdatum.mAntwortA_Erklaerung
@@ -378,7 +378,7 @@ public class PruefungGUISteuerung : MonoBehaviour
                 mRichtigeAntworten++;
                 mAntwortErgebnisABCD[pABCD] = VirtualLookSteuerung.K_GREEN_SCHRIFT + "<b>" + pAntwort + ergaenzeSprite(mRichtigeInReihe);
                 mAntwortErgebnisABCD_Erklaerung[pABCD] = VirtualLookSteuerung.K_GREEN_SCHRIFT + pAntwort_Erklaerung;
-                mGameObjectRichtigeAntwort = pGameObjectAntwortButton;
+                mRichtigeAntwort = pGameObjectAntwortButton.name;
                 mGameObjectRocket.SetActive(true);
             }
             else
@@ -540,9 +540,9 @@ public class PruefungGUISteuerung : MonoBehaviour
         return PlayerPrefs.GetInt(K_ID_PRUEFUNGSPIEL_THEMA);
     }
 
-    public GameObject getGameObjectRichtigeAntwort()
+    public String getRichtigeAntwort()
     {
-        return mGameObjectRichtigeAntwort; 
+        return mRichtigeAntwort; 
     }
 
     private void nextPruefungSpielThema()
