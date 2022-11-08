@@ -30,15 +30,14 @@ public class RocketMove : MonoBehaviour
     private const int K_STATUS_ZIELE_BESTIMMT = 1;
     private int mStatus = 0;
 
-    private Vector3 mZiel1;
-    private Vector3 mZiel2;
+    private List<Vector3> mZiel;
+    // private Vector3 mZiel2;
 
     void Start()
     {
         mZeitBeiRotieren = 0.03f;
         mGrundspeed = 0.8f;
-        mZiel1 = Vector3.zero;
-        mZiel2 = Vector3.zero;
+        mZiel = new List<Vector3>();
     }
 
     // Update is called once per frame
@@ -62,41 +61,61 @@ public class RocketMove : MonoBehaviour
 
     private void bestimmeZiel(string pRichtigeAntwort)
     {
+        mZiel = new List<Vector3>();
         if (pRichtigeAntwort.Contains("AntwortA"))
         {
-            mZiel1 = lieferXPlusMinus(mGameObjectCubeA.transform.position);
+            mZiel.Add(lieferXPlusMinus(mGameObjectCubeA.transform.position));
         }
         else if (pRichtigeAntwort.Contains("AntwortB"))
         {
-            mZiel1 = lieferXPlusMinus(mGameObjectCubeB.transform.position);
+            mZiel.Add(lieferXPlusMinus(mGameObjectCubeB.transform.position));
         }
         else if (pRichtigeAntwort.Contains("AntwortC"))
         {
-            mZiel1 = lieferXPlusMinus(mGameObjectCubeC.transform.position);
+            mZiel.Add(lieferXPlusMinus(mGameObjectCubeC.transform.position));
         }
         else if (pRichtigeAntwort.Contains("AntwortD"))
         {
-            mZiel1 = lieferXPlusMinus(mGameObjectCubeD.transform.position);
+            mZiel.Add(lieferXPlusMinus(mGameObjectCubeD.transform.position));
         }
 
-        mZiel2 = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position);
+        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
+        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
+        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
+        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
+        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
 
         mStatus = K_STATUS_ZIELE_BESTIMMT;
     }
 
     public void Chase()
     {
-        if (mZiel1 != Vector3.zero)
+        Vector3 lAktuelleZiel = lieferAktuelleZiel();
+
+        if (lAktuelleZiel != Vector3.zero)
         {
-            mZiel1 = bewegenUndDrehen(mZiel1);
-        }
-        else if(mZiel2 != Vector3.zero)
-        {
-            mZiel2 = bewegenUndDrehen(mZiel2);
-        } else
-        {
+            Vector3 lNeueZiel = bewegenUndDrehen(lAktuelleZiel);
+
+            if (lNeueZiel == Vector3.zero)
+            {
+                mZiel.Remove(lAktuelleZiel);
+            }
+        } else {
             mStatus = 0;
         }
+    }
+
+    private Vector3 lieferAktuelleZiel()
+    {
+        foreach (Vector3 lVector in mZiel)
+        {
+            if (lVector != Vector3.zero)
+            {
+                return lVector;
+            }
+        }
+
+        return Vector3.zero;
     }
 
     private Vector3 bewegenUndDrehen(Vector3 pZiel)
