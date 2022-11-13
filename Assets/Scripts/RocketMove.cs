@@ -18,17 +18,29 @@ public class RocketMove : MonoBehaviour
     public GameObject mGameObjectCubeC;
     public GameObject mGameObjectCubeD;
 
+    public GameObject mGameObjectRichtungsduesen;
+    public GameObject mGameObjectSchubduesen1;
+    public GameObject mGameObjectSchubduesen2;
+
     public GameObject mGameObjectCubePosAlternative;
 
     public float mZeitBeiRotieren;
 
     public float mWinkel;
+    public float mWinkelLast;
+    
 
     public Vector3 mDirection;
 
     private const string K_ALTERNATIVE = "ALTERNATIVE";
     private const int K_STATUS_ZIELE_BESTIMMT = 1;
     private int mStatus = 0;
+    private int mPhase = 0;
+
+    private const int K_NEUES_ZIEL = 10;
+    private const int K_AUF_DEM_WEG_ZUM_ZIEL = 20;
+    private const int K_AUF_DEM_WEG_ZUM_ZIEL_TEIL_GEDREHT = 30;
+
 
     private List<Vector3> mZiel;
     // private Vector3 mZiel2;
@@ -36,8 +48,14 @@ public class RocketMove : MonoBehaviour
     void Start()
     {
         mZeitBeiRotieren = 0.03f;
-        mGrundspeed = 0.8f;
+        mGrundspeed = 0.3f;
         mZiel = new List<Vector3>();
+        transform.position = mGameObjectCubePosAlternative.transform.position;
+        mWinkel = 0;
+        mWinkelLast = 0;
+        mGameObjectRichtungsduesen.SetActive(false);
+        mGameObjectSchubduesen1.SetActive(false);
+        mGameObjectSchubduesen2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,42 +68,55 @@ public class RocketMove : MonoBehaviour
             {
                 bestimmeZiel(mPruefungGUISteuerung.getRichtigeAntwort());
             }
-
-            Chase();
-        } else
+       } else
         {
-            transform.position = mGameObjectCubePosAlternative.transform.position;
+            if (mStatus == 0)
+            {
+                bestimmeZiel("");
+            }
         }
-        
+
+        Chase();
     }
 
     private void bestimmeZiel(string pRichtigeAntwort)
     {
         mZiel = new List<Vector3>();
+
+        Vector3 lNextZiel = mGameObjectCubePosAlternative.transform.position;
+
         if (pRichtigeAntwort.Contains("AntwortA"))
         {
-            mZiel.Add(lieferXPlusMinus(mGameObjectCubeA.transform.position));
+            lNextZiel = lieferXPlusMinus(mGameObjectCubeA.transform.position);
         }
         else if (pRichtigeAntwort.Contains("AntwortB"))
         {
-            mZiel.Add(lieferXPlusMinus(mGameObjectCubeB.transform.position));
+            lNextZiel = lieferXPlusMinus(mGameObjectCubeB.transform.position);
         }
         else if (pRichtigeAntwort.Contains("AntwortC"))
         {
-            mZiel.Add(lieferXPlusMinus(mGameObjectCubeC.transform.position));
+            lNextZiel = lieferXPlusMinus(mGameObjectCubeC.transform.position);
         }
         else if (pRichtigeAntwort.Contains("AntwortD"))
         {
-            mZiel.Add(lieferXPlusMinus(mGameObjectCubeD.transform.position));
+            lNextZiel = lieferXPlusMinus(mGameObjectCubeD.transform.position);
         }
+        mZiel.Add(lNextZiel);
 
-        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
-        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
-        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
-        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
-        mZiel.Add(lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position));
+        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
+        mZiel.Add(lNextZiel);
+        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
+        mZiel.Add(lNextZiel);
+        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
+        mZiel.Add(lNextZiel);
+        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
+        mZiel.Add(lNextZiel);
+        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
+        mZiel.Add(lNextZiel);
 
         mStatus = K_STATUS_ZIELE_BESTIMMT;
+        mPhase = K_NEUES_ZIEL;
+        mWinkelLast = 0;
     }
 
     public void Chase()
@@ -99,6 +130,7 @@ public class RocketMove : MonoBehaviour
             if (lNeueZiel == Vector3.zero)
             {
                 mZiel.Remove(lAktuelleZiel);
+                mPhase = K_NEUES_ZIEL;
             }
         } else {
             mStatus = 0;
@@ -131,32 +163,74 @@ public class RocketMove : MonoBehaviour
         {
             mWinkel = Quaternion.Angle(transform.rotation, rotationVonDirection);
 
-            if (mWinkel > 15)
+            if (mWinkel > 15 && mPhase == K_NEUES_ZIEL)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotationVonDirection, mZeitBeiRotieren);
 
                 mZusaetzlicheSpeedForDirection = 0;
                 mEntfernungZumZiel = 0;
 
-                // transform.position = Vector3.MoveTowards(transform.position, pZiel, mGrundspeed / 2 * Time.deltaTime);
+                if (mWinkelLast == mWinkel)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, pZiel, (mGrundspeed + mZusaetzlicheSpeedForDirection) * Time.deltaTime);
+                    einstellenSchubDuesen(true);
+                } else
+                {
+                    einstellenSchubDuesen(false);
+                }
 
+                einstellenRichtungsduesen(true);
+                mWinkelLast = mWinkel;
             } else
             {
+                einstellenRichtungsduesen(false);
+
+                if (mPhase == K_NEUES_ZIEL)
+                {
+                    mPhase = K_AUF_DEM_WEG_ZUM_ZIEL;
+                }
+           
                 if (mZusaetzlicheSpeedForDirection == 0)
                 {
                     mZusaetzlicheSpeedForDirection = 0.1f;
                     mEntfernungZumZiel = lAktuelleEntfernungZumZiel;
                 } else
                 {
-                    if (mEntfernungZumZiel /3 < lAktuelleEntfernungZumZiel)
+                    if (mEntfernungZumZiel * 0.75f < lAktuelleEntfernungZumZiel)
                     {
-                        mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection + 0.05f;
+                        mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection + 0.03f;
+
+                        einstellenSchubDuesen(true);
                     } else
                     {
-                        mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection - 0.07f;
+                        mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection - 0.02f;
+
                         if (mZusaetzlicheSpeedForDirection < 0)
                         {
                             mZusaetzlicheSpeedForDirection = 0;
+                        }
+
+                        if (mPhase == K_AUF_DEM_WEG_ZUM_ZIEL)
+                        {
+                            Vector3 lGegenDirection = mDirection * -1;
+                            Quaternion rotationVonGegenDirection = Quaternion.LookRotation(lGegenDirection);
+
+                            float lGegenWinkel = Quaternion.Angle(transform.rotation, rotationVonGegenDirection);
+
+                            if (lGegenWinkel > 15)
+                            {
+                                transform.rotation = Quaternion.Slerp(transform.rotation, rotationVonGegenDirection, mZeitBeiRotieren);
+
+                                einstellenRichtungsduesen(true);
+                            }
+                            else
+                            {
+                                mPhase = K_AUF_DEM_WEG_ZUM_ZIEL_TEIL_GEDREHT;
+                            }
+                            einstellenSchubDuesen(false);
+                        } else
+                        {
+                            einstellenSchubDuesen(true);
                         }
                     }
                 }
@@ -171,6 +245,18 @@ public class RocketMove : MonoBehaviour
         }
     }
 
+    private void einstellenSchubDuesen(bool pActive)
+    {
+        mGameObjectSchubduesen1.SetActive(pActive);
+        mGameObjectSchubduesen2.SetActive(pActive);
+    }
+
+    private void einstellenRichtungsduesen(bool pActive)
+    {
+        mGameObjectRichtungsduesen.SetActive(pActive);
+    }
+
+
     private Vector3 lieferXPlusMinus(Vector3 position)
     {
         return new Vector3(position.x
@@ -178,11 +264,26 @@ public class RocketMove : MonoBehaviour
             , position.y, position.z);
     }
 
-    private Vector3 lieferXYZPlusMinus(Vector3 position)
+    private Vector3 lieferXYZPlusMinus(Vector3 position, Vector3 pLastZiel)
     {
-        return new Vector3(position.x
-            + lieferZuefaellige(6)
-            , position.y + lieferZuefaellige(6), position.z);
+        Vector3 lErg = pLastZiel;
+        float lMaxDistanz = 0;
+
+        for (int i = 0; i < 10; i++)
+        {
+            Vector3 lVersuch =  new Vector3(position.x
+             + lieferZuefaellige(6)
+             , position.y + lieferZuefaellige(4), position.z);
+
+            float lVersuchDistanz = Vector3.Distance(lVersuch, pLastZiel);
+
+            if (lVersuchDistanz > lMaxDistanz) {
+                lMaxDistanz = lVersuchDistanz;
+                lErg = lVersuch;
+            }
+        }
+
+        return lErg;
     }
 
     private float lieferZuefaellige(float pAmplitude)
