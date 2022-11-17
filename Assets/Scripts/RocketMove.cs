@@ -28,7 +28,6 @@ public class RocketMove : MonoBehaviour
 
     public float mWinkel;
     public float mWinkelLast;
-    
 
     public Vector3 mDirection;
 
@@ -41,14 +40,17 @@ public class RocketMove : MonoBehaviour
     private const int K_AUF_DEM_WEG_ZUM_ZIEL = 20;
     private const int K_AUF_DEM_WEG_ZUM_ZIEL_TEIL_GEDREHT = 30;
 
-
+    public int mInputPhase = 0;
+    private const int K_INPUT_PHASE_LAEUFT = 10;
+    private const int K_INPUT_PHASE_BEENDET = 20;
+    private const int K_WINKEL_ZUM_ZIEL_PASSEND_GENUG = 7;
     private List<Vector3> mZiel;
     // private Vector3 mZiel2;
 
     void Start()
     {
         mZeitBeiRotieren = 0.03f;
-        mGrundspeed = 0.3f;
+        mGrundspeed = 0.03f;
         mZiel = new List<Vector3>();
         transform.position = mGameObjectCubePosAlternative.transform.position;
         mWinkel = 0;
@@ -103,16 +105,30 @@ public class RocketMove : MonoBehaviour
         }
         mZiel.Add(lNextZiel);
 
-        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
-        mZiel.Add(lNextZiel);
-        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
-        mZiel.Add(lNextZiel);
-        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
-        mZiel.Add(lNextZiel);
-        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
-        mZiel.Add(lNextZiel);
-        lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
-        mZiel.Add(lNextZiel);
+        List<Vector3> lPunkteVonAussen = mPruefungGUISteuerung.getmRaketenPunkte();
+
+        if (lPunkteVonAussen != null && lPunkteVonAussen.Count > 1)
+        {
+            foreach (Vector3 lVector3 in lPunkteVonAussen)
+            {
+                float lVersuchDistanz = Vector3.Distance(lVector3, lNextZiel);
+
+                if (lVersuchDistanz > 4)
+                {
+                    mZiel.Add(lVector3);
+                    lNextZiel = lVector3;
+                }
+            }
+
+            mZiel[mZiel.Count - 1] = lPunkteVonAussen[lPunkteVonAussen.Count - 1];
+        }
+        /*
+        else
+        {
+            lNextZiel = lieferXYZPlusMinus(mGameObjectCubePosAlternative.transform.position, lNextZiel);
+            mZiel.Add(lNextZiel);
+         }
+        */
 
         mStatus = K_STATUS_ZIELE_BESTIMMT;
         mPhase = K_NEUES_ZIEL;
@@ -163,7 +179,7 @@ public class RocketMove : MonoBehaviour
         {
             mWinkel = Quaternion.Angle(transform.rotation, rotationVonDirection);
 
-            if (mWinkel > 15 && mPhase == K_NEUES_ZIEL)
+            if (mWinkel > K_WINKEL_ZUM_ZIEL_PASSEND_GENUG && mPhase == K_NEUES_ZIEL)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotationVonDirection, mZeitBeiRotieren);
 
@@ -181,7 +197,8 @@ public class RocketMove : MonoBehaviour
 
                 einstellenRichtungsduesen(true);
                 mWinkelLast = mWinkel;
-            } else
+            }
+            else
             {
                 einstellenRichtungsduesen(false);
 
@@ -196,20 +213,18 @@ public class RocketMove : MonoBehaviour
                     mEntfernungZumZiel = lAktuelleEntfernungZumZiel;
                 } else
                 {
-                    if (mEntfernungZumZiel * 0.75f < lAktuelleEntfernungZumZiel)
+                    if (mEntfernungZumZiel * 0.6f < lAktuelleEntfernungZumZiel)
                     {
                         mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection + 0.03f;
 
                         einstellenSchubDuesen(true);
                     } else
                     {
-                        mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection - 0.02f;
-
-                        if (mZusaetzlicheSpeedForDirection < 0)
+                        if (mZusaetzlicheSpeedForDirection > 0.03)
                         {
-                            mZusaetzlicheSpeedForDirection = 0;
+                            mZusaetzlicheSpeedForDirection = mZusaetzlicheSpeedForDirection - 0.02f;
                         }
-
+                    
                         if (mPhase == K_AUF_DEM_WEG_ZUM_ZIEL)
                         {
                             Vector3 lGegenDirection = mDirection * -1;
@@ -217,17 +232,26 @@ public class RocketMove : MonoBehaviour
 
                             float lGegenWinkel = Quaternion.Angle(transform.rotation, rotationVonGegenDirection);
 
-                            if (lGegenWinkel > 15)
+                            if (lGegenWinkel > K_WINKEL_ZUM_ZIEL_PASSEND_GENUG)
                             {
                                 transform.rotation = Quaternion.Slerp(transform.rotation, rotationVonGegenDirection, mZeitBeiRotieren);
 
                                 einstellenRichtungsduesen(true);
+
+                                if (lGegenWinkel > K_WINKEL_ZUM_ZIEL_PASSEND_GENUG * 7)
+                                {
+                                    einstellenSchubDuesen(false);
+                                } else
+                                {
+                                    einstellenSchubDuesen(true);
+                                }
                             }
                             else
                             {
                                 mPhase = K_AUF_DEM_WEG_ZUM_ZIEL_TEIL_GEDREHT;
+                                einstellenSchubDuesen(true);
                             }
-                            einstellenSchubDuesen(false);
+                           
                         } else
                         {
                             einstellenSchubDuesen(true);
@@ -269,7 +293,7 @@ public class RocketMove : MonoBehaviour
         Vector3 lErg = pLastZiel;
         float lMaxDistanz = 0;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
             Vector3 lVersuch =  new Vector3(position.x
              + lieferZuefaellige(6)

@@ -15,7 +15,7 @@ public class PruefungGUISteuerung : MonoBehaviour
 
     private const float K_DISTANCE_KLICK = 0.5f;
 
-   
+
     public TextMeshPro mTextMeshProZurueck;
 
     public GameObject mGameObjectStartStopp;
@@ -75,10 +75,29 @@ public class PruefungGUISteuerung : MonoBehaviour
 
     public Sprachenuebersetzer mSprachenuebersetzer;
 
+    public float mTimeMessung;
+
+    private List<Vector3> mRaketenPunkte;
+
+    private LineRenderer mLineRenderer;
+
+    public Material mMaterialVonAussen;
+
     void Start()
     {
         mSpielZustand = K_PRUEFUNG_SPIEL_STOPP;
+
         initRichtigeAntwortUndRocket();
+
+        mLineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
+        //mLineRenderer.startColor = Color.yellow;
+        //mLineRenderer.endColor = Color.yellow;
+        mLineRenderer.startWidth = 0.1f;
+        mLineRenderer.endWidth = 0.1f;
+        mLineRenderer.useWorldSpace = true;
+        mLineRenderer.material = mMaterialVonAussen;
+        mLineRenderer.textureMode = LineTextureMode.RepeatPerSegment;
+
     }
 
     void Update()
@@ -86,88 +105,117 @@ public class PruefungGUISteuerung : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            mTimeMessung = 0;
 
-            Ray lRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            mRaketenPunkte = new List<Vector3>();
+            ergaenzeEinenPunkt(bestimmePosition());
+        }
 
-            RaycastHit lRaycastHit;
+        if (Input.GetMouseButton(0))
+        {
+            mTimeMessung = mTimeMessung + Time.deltaTime;
 
-            if (Physics.Raycast(lRay, out lRaycastHit))
+            if (mTimeMessung < 7)
             {
-                if (lRaycastHit.transform.tag.StartsWith("Zurueck"))
-                {
-                    StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
-                    initRichtigeAntwortUndRocket();
-                    SceneManager.LoadScene("PlanetenSpielSzene1");
-                }
-                else if (lRaycastHit.transform.tag.StartsWith("PruefungEmojiErwerb"))
-                {
-                    StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
-                    initRichtigeAntwortUndRocket();
-                    SceneManager.LoadScene("PruefungEmojierwerb");
-                }
-                else if (lRaycastHit.transform.tag.StartsWith("PruefungStartStopp"))
-                {
-                    StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
-                    initRichtigeAntwortUndRocket();
-                    ermittelNaechstenSpielzustand(true);
+                Vector3 lNeuePosition = bestimmePosition();
 
-                }
-                else
+                if (mRaketenPunkte.Count > 0 && Vector3.Distance(lNeuePosition, mRaketenPunkte[mRaketenPunkte.Count - 1]) > 0.5)
                 {
-                    if (!mAntwortGegegeben.Equals(""))
+                    ergaenzeEinenPunkt(lNeuePosition);
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (mTimeMessung > 0.25)
+            {
+                mLineRenderer.positionCount = 0;
+            }
+            else
+            {
+                Ray lRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                RaycastHit lRaycastHit;
+
+                if (Physics.Raycast(lRay, out lRaycastHit))
+                {
+                    if (lRaycastHit.transform.tag.StartsWith("Zurueck"))
                     {
+                        StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
                         initRichtigeAntwortUndRocket();
+                        SceneManager.LoadScene("PlanetenSpielSzene1");
+                    }
+                    else if (lRaycastHit.transform.tag.StartsWith("PruefungEmojiErwerb"))
+                    {
+                        StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
+                        initRichtigeAntwortUndRocket();
+                        SceneManager.LoadScene("PruefungEmojierwerb");
+                    }
+                    else if (lRaycastHit.transform.tag.StartsWith("PruefungStartStopp"))
+                    {
+                        StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
+                        initRichtigeAntwortUndRocket();
+                        ermittelNaechstenSpielzustand(true);
 
-                        if (mPruefungVerwaltung.mEndeErreicht)
-                        {
-                            mSpielZustand = K_PRUEFUNG_SPIEL_AUSWERTUNG;
-                        }
-                        else
-                        {
-                            mPruefungVerwaltung.ermittelNaechsteFrage();
-                        }
                     }
                     else
                     {
-                        if (lRaycastHit.transform.tag.StartsWith("PruefungThema"))
+                        if (!mAntwortGegegeben.Equals(""))
                         {
-                            StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
                             initRichtigeAntwortUndRocket();
-                            nextPruefungSpielThema();
+
+                            if (mPruefungVerwaltung.mEndeErreicht)
+                            {
+                                mSpielZustand = K_PRUEFUNG_SPIEL_AUSWERTUNG;
+                            }
+                            else
+                            {
+                                mPruefungVerwaltung.ermittelNaechsteFrage();
+                            }
                         }
-                        else if (mSpielZustand == K_PRUEFUNG_SPIEL_AUSWERTUNG)
+                        else
                         {
-                            ermittelNaechstenSpielzustand(false);
-                        }
-                        else if (mSpielZustand == K_PRUEFUNG_SPIEL_LAEUFT)
-                        {
-                            if (lRaycastHit.transform.tag.StartsWith("AntwortA"))
+                            if (lRaycastHit.transform.tag.StartsWith("PruefungThema"))
                             {
                                 StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
-
-                                mAntwortGegegeben = mPruefungVerwaltung.lieferFrage().mAntwortA;
-                                verarbeiteAntwort(mPruefungVerwaltung.lieferFrage(), mGameObjectextMeshProAntwortA);
+                                initRichtigeAntwortUndRocket();
+                                nextPruefungSpielThema();
                             }
-                            else if (lRaycastHit.transform.tag.StartsWith("AntwortB"))
+                            else if (mSpielZustand == K_PRUEFUNG_SPIEL_AUSWERTUNG)
                             {
-                                StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
-
-                                mAntwortGegegeben = mPruefungVerwaltung.lieferFrage().mAntwortB;
-                                verarbeiteAntwort(mPruefungVerwaltung.lieferFrage(), mGameObjectextMeshProAntwortB);
+                                ermittelNaechstenSpielzustand(false);
                             }
-                            else if (lRaycastHit.transform.tag.StartsWith("AntwortC"))
+                            else if (mSpielZustand == K_PRUEFUNG_SPIEL_LAEUFT)
                             {
-                                StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
+                                if (lRaycastHit.transform.tag.StartsWith("AntwortA"))
+                                {
+                                    StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
 
-                                mAntwortGegegeben = mPruefungVerwaltung.lieferFrage().mAntwortC;
-                                verarbeiteAntwort(mPruefungVerwaltung.lieferFrage(), mGameObjectextMeshProAntwortC);
-                            }
-                            else if (lRaycastHit.transform.tag.StartsWith("AntwortD"))
-                            {
-                                StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
+                                    mAntwortGegegeben = mPruefungVerwaltung.lieferFrage().mAntwortA;
+                                    verarbeiteAntwort(mPruefungVerwaltung.lieferFrage(), mGameObjectextMeshProAntwortA);
+                                }
+                                else if (lRaycastHit.transform.tag.StartsWith("AntwortB"))
+                                {
+                                    StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
 
-                                mAntwortGegegeben = mPruefungVerwaltung.lieferFrage().mAntwortD;
-                                verarbeiteAntwort(mPruefungVerwaltung.lieferFrage(), mGameObjectextMeshProAntwortD);
+                                    mAntwortGegegeben = mPruefungVerwaltung.lieferFrage().mAntwortB;
+                                    verarbeiteAntwort(mPruefungVerwaltung.lieferFrage(), mGameObjectextMeshProAntwortB);
+                                }
+                                else if (lRaycastHit.transform.tag.StartsWith("AntwortC"))
+                                {
+                                    StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
+
+                                    mAntwortGegegeben = mPruefungVerwaltung.lieferFrage().mAntwortC;
+                                    verarbeiteAntwort(mPruefungVerwaltung.lieferFrage(), mGameObjectextMeshProAntwortC);
+                                }
+                                else if (lRaycastHit.transform.tag.StartsWith("AntwortD"))
+                                {
+                                    StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
+
+                                    mAntwortGegegeben = mPruefungVerwaltung.lieferFrage().mAntwortD;
+                                    verarbeiteAntwort(mPruefungVerwaltung.lieferFrage(), mGameObjectextMeshProAntwortD);
+                                }
                             }
                         }
                     }
@@ -275,6 +323,28 @@ public class PruefungGUISteuerung : MonoBehaviour
         }
     }
 
+    private void ergaenzeEinenPunkt(Vector3 pNeuePunkt)
+    {
+        if (getRichtigeAntwort() != null && !getRichtigeAntwort().Equals(""))
+        {
+            mRaketenPunkte.Add(pNeuePunkt);
+            mLineRenderer.positionCount = mRaketenPunkte.Count;
+            mLineRenderer.SetPositions(mRaketenPunkte.ToArray());
+        }
+    }
+
+    public List<Vector3> getmRaketenPunkte()
+    {
+        return mRaketenPunkte;
+    }
+
+    private Vector3 bestimmePosition()
+    {
+        Vector3 lVector3 = Input.mousePosition;
+        lVector3.z = 14; // Abstand Kamera und Antowrten
+        return Camera.main.ScreenToWorldPoint(lVector3);
+    }
+
     private void initRichtigeAntwortUndRocket()
     {
         mAntwortGegegeben = "";
@@ -321,7 +391,7 @@ public class PruefungGUISteuerung : MonoBehaviour
     {
         mGameObjectEmojiErwerben.SetActive(true);
         mTextMeshProEmojiErwerben.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_ERWERBEN_1)
-              + VirtualLookSteuerung.K_GOLD +  get2BMuenzenAnzahl() + VirtualLookSteuerung.K_WHITE +
+              + VirtualLookSteuerung.K_GOLD + get2BMuenzenAnzahl() + VirtualLookSteuerung.K_WHITE +
             mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_ERWERBEN_2);
     }
 
@@ -385,7 +455,7 @@ public class PruefungGUISteuerung : MonoBehaviour
             {
                 mAntwortErgebnisABCD[pABCD] = VirtualLookSteuerung.K_RED + pAntwort;
                 mAntwortErgebnisABCD_Erklaerung[pABCD] = VirtualLookSteuerung.K_RED + pAntwort_Erklaerung;
-             }
+            }
         }
         else
         {
@@ -394,7 +464,7 @@ public class PruefungGUISteuerung : MonoBehaviour
                 mAntwortErgebnisABCD[pABCD] = VirtualLookSteuerung.K_GREEN_SCHRIFT + "<b>" + pAntwort;
                 mAntwortErgebnisABCD_Erklaerung[pABCD] = VirtualLookSteuerung.K_GREEN_SCHRIFT + pAntwort_Erklaerung;
                 mRichtigeInReihe = 0;
-             }
+            }
             else
             {
                 mAntwortErgebnisABCD[pABCD] = "<color=#FFFFFF>" + pAntwort;
@@ -476,7 +546,7 @@ public class PruefungGUISteuerung : MonoBehaviour
         return false;
     }
 
-   
+
 
     private void setzeErklaerungstexteLeer()
     {
@@ -493,7 +563,8 @@ public class PruefungGUISteuerung : MonoBehaviour
         {
             mSpielZustand = K_PRUEFUNG_SPIEL_STOPP;
         }
-        else if (!pEchteStartStopp && mSpielZustand == K_PRUEFUNG_SPIEL_AUSWERTUNG) {
+        else if (!pEchteStartStopp && mSpielZustand == K_PRUEFUNG_SPIEL_AUSWERTUNG)
+        {
             mSpielZustand = K_PRUEFUNG_SPIEL_STOPP;
         }
         else if (mSpielZustand == K_PRUEFUNG_SPIEL_STOPP
@@ -542,7 +613,7 @@ public class PruefungGUISteuerung : MonoBehaviour
 
     public String getRichtigeAntwort()
     {
-        return mRichtigeAntwort; 
+        return mRichtigeAntwort;
     }
 
     private void nextPruefungSpielThema()

@@ -6845,6 +6845,8 @@ MonoBehaviour:
   mRichtigeInReihe: 0
   mRichtigeAntworten: 0
   mSprachenuebersetzer: {fileID: 1821050715}
+  mTimeMessung: 0
+  mMaterialVonAussen: {fileID: 2100000, guid: 25056a71184a342cba4c5235c16c92c7, type: 2}
 --- !u!1 &978245477
 GameObject:
   m_ObjectHideFlags: 0
@@ -19236,6 +19238,7 @@ MonoBehaviour:
   mWinkel: 0
   mWinkelLast: 0
   mDirection: {x: 0, y: 0, z: 0}
+  mInputPhase: 0
 --- !u!33 &920970097897679719
 MeshFilter:
   m_ObjectHideFlags: 0
