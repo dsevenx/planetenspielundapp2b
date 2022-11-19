@@ -75,6 +75,10 @@ public class EmojiKaufVerwaltung : MonoBehaviour
 
     public GameObject mEmojiBezahl;
 
+    public GameObject mGameObjectPlaneten;
+    public GameObject mGameObjectSatelitt;
+    public GameObject mGameObjectRocket;
+
     public TextMeshPro mTextMeshProBezahlen1;
     public TextMeshPro mTextMeshProBezahlen2;
 
@@ -96,6 +100,9 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         PlayerPrefs.SetString(K_EMOJI_SATELLIT_NAME, "N");
         PlayerPrefs.SetString(K_EMOJI_HALBMOND_NAME, "N");
         PlayerPrefs.SetString(K_EMOJI_SATURN_NAME, "N");
+        PlayerPrefs.SetString(K_SATURN_AKTIV, "N");
+        PlayerPrefs.SetString(K_SATELLIT_AKTIV, "N");
+        PlayerPrefs.SetString(K_ROCKET_AKTIV, "N");
         PlayerPrefs.SetInt(K_GESPIELTE_INDEX,0);
         */
 
@@ -261,6 +268,18 @@ public class EmojiKaufVerwaltung : MonoBehaviour
             mEmoji1Ring.SetActive(mIndexDesErsteEmojiInSzene == mIndexMitDemGespieltwird);
             mEmoji2Ring.SetActive(mIndexDesErsteEmojiInSzene + 1 == mIndexMitDemGespieltwird);
             mEmoji3Ring.SetActive(mIndexDesErsteEmojiInSzene + 2 == mIndexMitDemGespieltwird);
+
+            if (mIndexDesErsteEmojiInSzene >= 6)
+            {
+                mGameObjectPlaneten.SetActive(true);
+                mGameObjectSatelitt.SetActive(true);
+                mGameObjectRocket.SetActive(true);
+            } else
+            {
+                mGameObjectPlaneten.SetActive(false);
+                mGameObjectSatelitt.SetActive(false);
+                mGameObjectRocket.SetActive(false);
+            }
         }
     }
 
