@@ -60,6 +60,10 @@ public class EmojiKaufVerwaltung : MonoBehaviour
     public const string K_GEPSIELTE_INDEX_EMOJI_1 = "gespielt_emoji_index_1";
     public const string K_GEPSIELTE_INDEX_EMOJI_2 = "gespielt_emoji_index_2";
 
+    private static readonly string K_SATURN_AKTIV = "SATURN_AKTIV";
+    private static readonly string K_SATELLIT_AKTIV = "SATELLIT_AKTIV";
+    private static readonly string K_ROCKET_AKTIV = "ROCKET_AKTIV ";
+
     public GameObject mEmoji1;
     public GameObject mEmoji1Ring;
 
@@ -93,8 +97,8 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         PlayerPrefs.SetString(K_EMOJI_HALBMOND_NAME, "N");
         PlayerPrefs.SetString(K_EMOJI_SATURN_NAME, "N");
         PlayerPrefs.SetInt(K_GESPIELTE_INDEX,0);
-        */ 
-       
+        */
+
         mMyEmojiDict = new Dictionary<int, EmojiData>();
         mIndexDesErsteEmojiInSzene = 1;
         erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_KOMET), K_EMOJI_KOMET_1, K_EMOJI_KOMET_2, 0, PlayerPrefs.GetString(K_EMOJI_KOMET_NAME), K_EMOJI_KOMET_NAME);
@@ -104,7 +108,11 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_SATELLIT), K_EMOJI_SATELLIT_1, K_EMOJI_SATELLIT_1, 20, PlayerPrefs.GetString(K_EMOJI_SATELLIT_NAME), K_EMOJI_SATELLIT_NAME);
         //erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_HALBMOND), K_EMOJI_HALBMOND_1, K_EMOJI_HALBMOND_1, 10, PlayerPrefs.GetString(K_EMOJI_HALBMOND_NAME), K_EMOJI_HALBMOND_NAME);
         erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_SATURN), K_EMOJI_SATURN_1, K_EMOJI_SATURN_1, 25, PlayerPrefs.GetString(K_EMOJI_SATURN_NAME), K_EMOJI_SATURN_NAME);
-      
+
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_SATURN), -1, -1, 40, PlayerPrefs.GetString(K_SATURN_AKTIV), K_SATURN_AKTIV);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_SATELLIT), -1, -1, 42, PlayerPrefs.GetString(K_SATELLIT_AKTIV), K_SATELLIT_AKTIV);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_ROCKET), -1, -1, 44, PlayerPrefs.GetString(K_ROCKET_AKTIV), K_ROCKET_AKTIV);
+
         mIndexDesErsteEmojiInSzene = 1; // beginnen immer vorn
         mIndexMitDemGespieltwird = getGespielteEmojiIndex();
         mIndexZumKaufen = 0;
@@ -112,9 +120,9 @@ public class EmojiKaufVerwaltung : MonoBehaviour
 
     public static int getGespielteEmojiIndex()
     {
-        int lErg =  PlayerPrefs.GetInt(K_GESPIELTE_INDEX);
+        int lErg = PlayerPrefs.GetInt(K_GESPIELTE_INDEX);
 
-        if (lErg ==0)
+        if (lErg == 0)
         {
             setGespielteEmojiIndex(1, K_EMOJI_KOMET_1, K_EMOJI_KOMET_2);
             return 1;
@@ -130,7 +138,7 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         PlayerPrefs.SetInt(K_GEPSIELTE_INDEX_EMOJI_1, pIndex1);
         PlayerPrefs.SetInt(K_GEPSIELTE_INDEX_EMOJI_2, pIndex2);
     }
-   
+
     private void erzeuge(string pNAME, int pEMOJI_NR_1, int pEMOJI_NR_2, int pPreis, string pGekauft, string pGekauftName)
     {
         EmojiData lEmojiData = new EmojiData();
@@ -222,19 +230,20 @@ public class EmojiKaufVerwaltung : MonoBehaviour
             mTextMeshProNaechste.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ART_DES_NEXT);
 
             mTextMeshProEmoji1.text =
-                "<sprite=" + mMyEmojiDict[mIndexDesErsteEmojiInSzene].mEmojiNr1 + "> " +
+                lieferSpriteTextNr1(mIndexDesErsteEmojiInSzene) +
                 mMyEmojiDict[mIndexDesErsteEmojiInSzene].mName +
-                 " <sprite=" + mMyEmojiDict[mIndexDesErsteEmojiInSzene].mEmojiNr2 + ">" + lieferKosten(mMyEmojiDict[mIndexDesErsteEmojiInSzene].mGeKauft, mMyEmojiDict[mIndexDesErsteEmojiInSzene].mKosten)
+                 lieferSpriteTextNr2(mIndexDesErsteEmojiInSzene) +
+                 lieferKosten(mMyEmojiDict[mIndexDesErsteEmojiInSzene].mGeKauft, mMyEmojiDict[mIndexDesErsteEmojiInSzene].mKosten)
                 ;
             mTextMeshProEmoji2.text =
-                 "<sprite=" + mMyEmojiDict[mIndexDesErsteEmojiInSzene + 1].mEmojiNr1 + "> " +
+                lieferSpriteTextNr1(mIndexDesErsteEmojiInSzene + 1) +
                 mMyEmojiDict[mIndexDesErsteEmojiInSzene + 1].mName +
-                 " <sprite=" + mMyEmojiDict[mIndexDesErsteEmojiInSzene + 1].mEmojiNr2 + ">" + lieferKosten(mMyEmojiDict[mIndexDesErsteEmojiInSzene + 1].mGeKauft, mMyEmojiDict[mIndexDesErsteEmojiInSzene + 1].mKosten)
+                lieferSpriteTextNr2(mIndexDesErsteEmojiInSzene + 1) + lieferKosten(mMyEmojiDict[mIndexDesErsteEmojiInSzene + 1].mGeKauft, mMyEmojiDict[mIndexDesErsteEmojiInSzene + 1].mKosten)
                 ;
             mTextMeshProEmoji3.text =
-                 "<sprite=" + mMyEmojiDict[mIndexDesErsteEmojiInSzene + 2].mEmojiNr1 + "> " +
+                lieferSpriteTextNr1(mIndexDesErsteEmojiInSzene + 2) +
                 mMyEmojiDict[mIndexDesErsteEmojiInSzene + 2].mName +
-                 " <sprite=" + mMyEmojiDict[mIndexDesErsteEmojiInSzene + 2].mEmojiNr2 + ">" + lieferKosten(mMyEmojiDict[mIndexDesErsteEmojiInSzene + 2].mGeKauft, mMyEmojiDict[mIndexDesErsteEmojiInSzene + 2].mKosten)
+                 lieferSpriteTextNr2(mIndexDesErsteEmojiInSzene + 2) + lieferKosten(mMyEmojiDict[mIndexDesErsteEmojiInSzene + 2].mGeKauft, mMyEmojiDict[mIndexDesErsteEmojiInSzene + 2].mKosten)
                 ;
 
             mEmojiBezahl.SetActive(false);
@@ -255,14 +264,33 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         }
     }
 
+    private string lieferSpriteTextNr1(int pIndex)
+    {
+        if (mMyEmojiDict[pIndex].mEmojiNr1 == -1)
+        {
+            return "";
+        }
+        return "<sprite=" + mMyEmojiDict[pIndex].mEmojiNr1 + "> ";
+    }
+
+    private string lieferSpriteTextNr2(int pIndex)
+    {
+        if (mMyEmojiDict[pIndex].mEmojiNr2 == -1)
+        {
+            return "";
+        }
+        return " <sprite=" + mMyEmojiDict[pIndex].mEmojiNr2 + ">";
+    }
+
     private void EmojiAuswaehlen(bool pWohin)
     {
         if (pWohin)
         {
-            mIndexDesErsteEmojiInSzene = (mIndexDesErsteEmojiInSzene + 3) % 6;
-        } else
+            mIndexDesErsteEmojiInSzene = ((mIndexDesErsteEmojiInSzene + 9) - 3) % 9;
+        }
+        else
         {
-            mIndexDesErsteEmojiInSzene = ((mIndexDesErsteEmojiInSzene+6)  -3) % 6;
+            mIndexDesErsteEmojiInSzene = (mIndexDesErsteEmojiInSzene + 3) % 9;
         }
     }
 
@@ -287,8 +315,8 @@ public class EmojiKaufVerwaltung : MonoBehaviour
 
     public static bool istErworbeEmoji(int lZufallsemoji)
     {
-        if (lZufallsemoji == EmojiKaufVerwaltung.K_EMOJI_KOMET_1  
-            || lZufallsemoji == EmojiKaufVerwaltung.K_EMOJI_KOMET_2  
+        if (lZufallsemoji == EmojiKaufVerwaltung.K_EMOJI_KOMET_1
+            || lZufallsemoji == EmojiKaufVerwaltung.K_EMOJI_KOMET_2
             )
         {
             return true;
@@ -315,7 +343,7 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         {
             mIndexMitDemGespieltwird = mIndexDesErsteEmojiInSzene + pIndex;
             setGespielteEmojiIndex(mIndexDesErsteEmojiInSzene
-                + pIndex,mMyEmojiDict[mIndexMitDemGespieltwird].mEmojiNr1, mMyEmojiDict[mIndexMitDemGespieltwird].mEmojiNr2);
+                + pIndex, mMyEmojiDict[mIndexMitDemGespieltwird].mEmojiNr1, mMyEmojiDict[mIndexMitDemGespieltwird].mEmojiNr2);
         }
         else
         {
@@ -358,9 +386,25 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         if (p1oder2 > 0)
         {
             return PlayerPrefs.GetInt(K_GEPSIELTE_INDEX_EMOJI_2);
-        } else
+        }
+        else
         {
             return PlayerPrefs.GetInt(K_GEPSIELTE_INDEX_EMOJI_2);
         }
+    }
+
+    internal static bool istRocketAktiv()
+    {
+        return PlayerPrefs.GetInt(K_ROCKET_AKTIV).Equals("J");
+    }
+
+    internal static bool istSatellitAktiv()
+    {
+        return PlayerPrefs.GetString(K_SATELLIT_AKTIV).Equals("J");
+    }
+
+    internal static bool istSaturnAktiv()
+    {
+        return PlayerPrefs.GetInt(K_SATURN_AKTIV).Equals("J");
     }
 }

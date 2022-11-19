@@ -158,6 +158,11 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_EMOJI_HALBMOND = 285;
     public const int K_EMOJI_SATURN = 286;
 
+    public const int K_FLIEGENDE_OBJEKT_SATURN = 287;
+    public const int K_FLIEGENDE_OBJEKT_SATELLIT = 288;
+    public const int K_FLIEGENDE_OBJEKT_ROCKET = 289;
+    
+
 
     public const int K_ERDE = 300;
     public const int K_ERDE_TEXT = 301;
@@ -504,6 +509,10 @@ public class Sprachenuebersetzer : MonoBehaviour
         hinzuInsDic(K_EMOJI_SATELLIT, "satellite", "Satellit", "", "", "");
         hinzuInsDic(K_EMOJI_HALBMOND, "crescent", "Halbmond", "", "", "");
         hinzuInsDic(K_EMOJI_SATURN, "Saturn", "Saturn", "", "", "");
+
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_SATURN, "A small moving planet.", "Ein kleiner sich bewegender Planet.", "", "", "");
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_SATELLIT, "A moving artificial satellite.", "Ein sich bewegender künstliche Satellitt.", "", "", "");
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_ROCKET, "A small jetting rocket.", "Eine kleine herumdüsende Rakete.", "", "", "");
 
         hinzuInsDic(K_JUPITER, "If the gas planet Jupiter were 80 times larger, it could itself become a star. On Jupiter " +
             "a cyclone has been raging for more than 300 years. " +

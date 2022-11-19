@@ -238,7 +238,7 @@ public class RocketMove : MonoBehaviour
 
                                 einstellenRichtungsduesen(true);
 
-                                if (lGegenWinkel > K_WINKEL_ZUM_ZIEL_PASSEND_GENUG * 7)
+                                if (lGegenWinkel > K_WINKEL_ZUM_ZIEL_PASSEND_GENUG * 11)
                                 {
                                     einstellenSchubDuesen(false);
                                 } else

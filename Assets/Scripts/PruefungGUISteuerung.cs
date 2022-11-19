@@ -61,6 +61,8 @@ public class PruefungGUISteuerung : MonoBehaviour
     private string mAntwortGegegeben = "";
     public String mRichtigeAntwort = "";
     public GameObject mGameObjectRocket;
+    public GameObject mGameObjectSaturn;
+    public GameObject mGameObjectSatellit;
 
     private string[] mAntwortErgebnisABCD = new string[] { "", "", "", "" };
     private string[] mAntwortErgebnisABCD_Erklaerung = new string[] { "", "", "", "" };
@@ -350,6 +352,8 @@ public class PruefungGUISteuerung : MonoBehaviour
         mAntwortGegegeben = "";
         mRichtigeAntwort = "";
         mGameObjectRocket.SetActive(false);
+        mGameObjectSatellit.SetActive(false);
+        mGameObjectSaturn.SetActive(false);
     }
 
     private bool istGenugRichtigFuerZweiMuenzen()
@@ -449,7 +453,19 @@ public class PruefungGUISteuerung : MonoBehaviour
                 mAntwortErgebnisABCD[pABCD] = VirtualLookSteuerung.K_GREEN_SCHRIFT + "<b>" + pAntwort + ergaenzeSprite(mRichtigeInReihe);
                 mAntwortErgebnisABCD_Erklaerung[pABCD] = VirtualLookSteuerung.K_GREEN_SCHRIFT + pAntwort_Erklaerung;
                 mRichtigeAntwort = pGameObjectAntwortButton.name;
-                mGameObjectRocket.SetActive(true);
+
+                if (EmojiKaufVerwaltung.istRocketAktiv())
+                {
+                    mGameObjectRocket.SetActive(true);
+                }
+                if (EmojiKaufVerwaltung.istSatellitAktiv())
+                {
+                    mGameObjectSatellit.SetActive(true);
+                }
+                if (EmojiKaufVerwaltung.istSaturnAktiv())
+                {
+                    mGameObjectSaturn.SetActive(true);
+                }
             }
             else
             {
