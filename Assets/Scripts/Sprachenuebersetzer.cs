@@ -65,6 +65,9 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_QUARTETT_SPIEL = 50;
 
     public const int K_EINSTELLUNGEN = 60;
+    public const int K_ERKLAER_GADGET = 61;
+    public const int K_ERKLAER_EMOJI = 62;
+
 
     public const int K_WISCHEN_1 = 70;
     public const int K_WISCHEN_2 = 71;
@@ -161,8 +164,9 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_FLIEGENDE_OBJEKT_SATURN = 287;
     public const int K_FLIEGENDE_OBJEKT_SATELLIT = 288;
     public const int K_FLIEGENDE_OBJEKT_ROCKET = 289;
-    
-
+    public const int K_FLIEGENDE_OBJEKT_SATURN_PAY = 291;
+    public const int K_FLIEGENDE_OBJEKT_SATELLIT_PAY = 292;
+    public const int K_FLIEGENDE_OBJEKT_ROCKET_PAY = 293;
 
     public const int K_ERDE = 300;
     public const int K_ERDE_TEXT = 301;
@@ -341,8 +345,14 @@ public class Sprachenuebersetzer : MonoBehaviour
             "We are happy to receive your comments.",
             "Die astronomischen Fakten sind bestmöglich recherchiert, aber es wird keine Gewähr auf Korrektheit übernommen. Gern nehmen wir Ihre Hinweise entgegegen.", "", "", "");
 
-        hinzuInsDic(K_KAUFINFO, "Here you can exchange your XX 2B-coins for emojis.",
-         "Hier können Sie Ihre XX 2B-Münzen gegen Emojis eintauschen.", "", "", "");
+        hinzuInsDic(K_KAUFINFO, "Here you can exchange your XX 2B-coins.",
+         "Hier können Sie Ihre XX 2B-Münzen eintauschen.", "", "", "");
+
+        hinzuInsDic(K_ERKLAER_GADGET, "The small objects float to the correct answer. You can draw a line with your finger. The small objects also fly off this line. Several objects can be activated.",
+        "Die kleinen Objekte schweben zur richtigen Antwort. Mit dem Finger kann man eine Linie zeichnen. Diese Linie fliegen die kleine Objekte zusätzlich mit ab. Es können mehrere Objekte aktiviert werden.", "", "", "");
+
+        hinzuInsDic(K_ERKLAER_EMOJI, "The emojis appear in the text of the correct answer. Only one emoji can be activated.",
+        "Die Emojis erscheinen im Text der richtigen Antwort. Es kann nur ein Emoji aktiviert werden.", "", "", "");
 
         hinzuInsDic(K_BEZAHLEN_1, "pay",
         "bezahle", "", "", "");
@@ -510,9 +520,12 @@ public class Sprachenuebersetzer : MonoBehaviour
         hinzuInsDic(K_EMOJI_HALBMOND, "crescent", "Halbmond", "", "", "");
         hinzuInsDic(K_EMOJI_SATURN, "Saturn", "Saturn", "", "", "");
 
-        hinzuInsDic(K_FLIEGENDE_OBJEKT_SATURN, "A small moving planet.", "Ein kleiner sich bewegender Planet.", "", "", "");
-        hinzuInsDic(K_FLIEGENDE_OBJEKT_SATELLIT, "A moving artificial satellite.", "Ein sich bewegender künstliche Satellitt.", "", "", "");
-        hinzuInsDic(K_FLIEGENDE_OBJEKT_ROCKET, "A small jetting rocket.", "Eine kleine herumdüsende Rakete.", "", "", "");
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_SATURN, "a small moving planet.", "ein kleiner sich bewegender Planet.", "", "", "");
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_SATURN_PAY, "a small moving planet.", "den kleinen sich bewegenden Planet.", "", "", "");
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_SATELLIT, "a moving artificial satellite.", "ein sich bewegender künstlicher Satellitt.", "", "", "");
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_SATELLIT_PAY, "a moving artificial satellite.", "den sich bewegenden künstlichen Satellitt.", "", "", "");
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_ROCKET, "a small jetting rocket.", "eine kleine herumdüsende Rakete.", "", "", "");
+        hinzuInsDic(K_FLIEGENDE_OBJEKT_ROCKET_PAY, "a small jetting rocket.", "die kleine herumdüsende Rakete.", "", "", "");
 
         hinzuInsDic(K_JUPITER, "If the gas planet Jupiter were 80 times larger, it could itself become a star. On Jupiter " +
             "a cyclone has been raging for more than 300 years. " +

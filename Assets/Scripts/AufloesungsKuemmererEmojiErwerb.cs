@@ -10,6 +10,7 @@ public class AufloesungsKuemmererEmojiErwerb : MonoBehaviour {
 	public int mHoeheDisplay;
 
 	public TextMeshPro mTextMeshProKaufinfo;
+	public TextMeshPro mTextMeshProEmojiGadgetErklaer;
 
 	public GameObject mZurueckButton;
 
@@ -51,6 +52,7 @@ public class AufloesungsKuemmererEmojiErwerb : MonoBehaviour {
 			mNaechsteButton.transform.localScale = new Vector3(1f, 0.8f, 0.5f);
 
 			mTextMeshProKaufinfo.transform.localPosition = new Vector3(6.5f, 2f, 0f);
+			mTextMeshProEmojiGadgetErklaer.transform.localPosition = new Vector3(0.5f, -1.0f, 0f);
 		}
 		else if (lGeraeteIFs.istIPHONE(mBreiteDisplay, mHoeheDisplay))
 		{
@@ -68,6 +70,7 @@ public class AufloesungsKuemmererEmojiErwerb : MonoBehaviour {
 			mNaechsteButton.transform.localScale = new Vector3(1f, 0.8f, 0.5f);
 
 			mTextMeshProKaufinfo.transform.localPosition = new Vector3(6.5f, 2f, 0f);
+			mTextMeshProEmojiGadgetErklaer.transform.localPosition = new Vector3(0.5f, -1.0f, 0f);
 		}
 		else if (lGeraeteIFs.istIPAD(mBreiteDisplay, mHoeheDisplay))
 		{
@@ -94,6 +97,8 @@ public class AufloesungsKuemmererEmojiErwerb : MonoBehaviour {
 			mEmojiFinalKaufEingabe.transform.localScale = new Vector3(0.75f, 0.15f, 1f);
 
 			mTextMeshProKaufinfo.transform.localPosition = new Vector3(6.5f, 2.8f, 0f);
+			mTextMeshProEmojiGadgetErklaer.transform.localPosition = new Vector3(0.5f, -1.0f, 0f);
+
 
 		}
 	}

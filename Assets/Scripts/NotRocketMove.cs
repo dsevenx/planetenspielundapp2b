@@ -19,8 +19,11 @@ public class NotRocketMove : MonoBehaviour
     private const int K_STATUS_ZIELE_BESTIMMT = 1;
     private int mStatus = 0;
 
+   
     private List<Vector3> mZiel;
     public float mXAbweichung;
+    public float myAbweichung1;
+    public float myAbweichung2;
     public float mzAbweichung;
 
     void Start()
@@ -65,19 +68,19 @@ public class NotRocketMove : MonoBehaviour
 
         if (pRichtigeAntwort.Contains("AntwortA"))
         {
-            lNextZiel = lieferXPlusMinus(mGameObjectCubeA.transform.position);
+            lNextZiel = lieferXPlusMinus(mGameObjectCubeA.transform.position, myAbweichung1);
         }
         else if (pRichtigeAntwort.Contains("AntwortB"))
         {
-            lNextZiel = lieferXPlusMinus(mGameObjectCubeB.transform.position);
+            lNextZiel = lieferXPlusMinus(mGameObjectCubeB.transform.position, myAbweichung1);
         }
         else if (pRichtigeAntwort.Contains("AntwortC"))
         {
-            lNextZiel = lieferXPlusMinus(mGameObjectCubeC.transform.position);
+            lNextZiel = lieferXPlusMinus(mGameObjectCubeC.transform.position, myAbweichung2);
         }
         else if (pRichtigeAntwort.Contains("AntwortD"))
         {
-            lNextZiel = lieferXPlusMinus(mGameObjectCubeD.transform.position);
+            lNextZiel = lieferXPlusMinus(mGameObjectCubeD.transform.position,myAbweichung2);
         }
         mZiel.Add(lNextZiel);
 
@@ -151,11 +154,11 @@ public class NotRocketMove : MonoBehaviour
         }
     }
 
-    private Vector3 lieferXPlusMinus(Vector3 position)
+    private Vector3 lieferXPlusMinus(Vector3 position, float myAbweichung)
     {
         return new Vector3(position.x
-            + lieferZuefaellige(4)
-            , position.y, position.z+mzAbweichung);
+            + lieferZuefaellige(2.5f)
+            , position.y+ myAbweichung, position.z+mzAbweichung);
     }
 
     private float lieferZuefaellige(float pAmplitude)

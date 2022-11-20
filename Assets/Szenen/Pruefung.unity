@@ -6693,7 +6693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863180359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.203}
+  m_LocalPosition: {x: -0.42, y: 0, z: -3.203}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 932544164}
@@ -24637,6 +24637,8 @@ MonoBehaviour:
   mGameObjectCubeD: {fileID: 863180359}
   mGameObjectCubePosAlternative: {fileID: 1486100357}
   mXAbweichung: -1.9
+  myAbweichung1: 0.2
+  myAbweichung2: 0.7
   mzAbweichung: -1.4
 --- !u!33 &1107233293412632110
 MeshFilter:
@@ -51443,6 +51445,8 @@ MonoBehaviour:
   mGameObjectCubeD: {fileID: 863180359}
   mGameObjectCubePosAlternative: {fileID: 1486100357}
   mXAbweichung: 1.4
+  myAbweichung1: 0.5
+  myAbweichung2: 1.4
   mzAbweichung: -3
 --- !u!23 &7299545914769663699
 MeshRenderer:

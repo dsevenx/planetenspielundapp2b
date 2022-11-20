@@ -9,6 +9,8 @@ public class EmojiData
 
 	public string mName;
 
+	public string mNamePay;
+
 	public int mEmojiNr1;
 
 	public int mEmojiNr2;
@@ -18,4 +20,5 @@ public class EmojiData
 	public string mGeKauft;
 
 	public string mGeKauftName;
+  
 }

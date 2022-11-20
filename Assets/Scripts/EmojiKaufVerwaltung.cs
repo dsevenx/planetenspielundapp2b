@@ -24,8 +24,8 @@ public class EmojiKaufVerwaltung : MonoBehaviour
     public TextMeshPro mTextMeshProNaechste;
 
     public TextMeshPro mTextMeshProKaufinfo;
-    public TextMeshPro mTextMeshProFinalKaufinfo;
-
+    public TextMeshPro mTextMeshEmojiGadgetErklaerfinfo;
+   
     public TextMeshPro mTextMeshProEmoji1;
     public TextMeshPro mTextMeshProEmoji2;
     public TextMeshPro mTextMeshProEmoji3;
@@ -63,6 +63,9 @@ public class EmojiKaufVerwaltung : MonoBehaviour
     private static readonly string K_SATURN_AKTIV = "SATURN_AKTIV";
     private static readonly string K_SATELLIT_AKTIV = "SATELLIT_AKTIV";
     private static readonly string K_ROCKET_AKTIV = "ROCKET_AKTIV ";
+    private static readonly string K_SATURN_GEKAUFT = "SATURN_GEKAUFT";
+    private static readonly string K_SATELLIT_GEKAUFT = "SATELLIT_GEKAUFT";
+    private static readonly string K_ROCKET_GEKAUFT = "ROCKET_GEKAUFT ";
 
     public GameObject mEmoji1;
     public GameObject mEmoji1Ring;
@@ -104,21 +107,31 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         PlayerPrefs.SetString(K_SATELLIT_AKTIV, "N");
         PlayerPrefs.SetString(K_ROCKET_AKTIV, "N");
         PlayerPrefs.SetInt(K_GESPIELTE_INDEX,0);
+        set2BMuenzenAnzahl(200);
         */
+
 
         mMyEmojiDict = new Dictionary<int, EmojiData>();
         mIndexDesErsteEmojiInSzene = 1;
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_KOMET), K_EMOJI_KOMET_1, K_EMOJI_KOMET_2, 0, PlayerPrefs.GetString(K_EMOJI_KOMET_NAME), K_EMOJI_KOMET_NAME);
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_UFO), K_EMOJI_UFO_1, K_EMOJI_UFO_2, 10, PlayerPrefs.GetString(K_EMOJI_UFO_NAME), K_EMOJI_UFO_NAME);
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_RAKETE), K_EMOJI_RAKETE_1, K_EMOJI_RAKETE_2, 15, PlayerPrefs.GetString(K_EMOJI_RAKETE_NAME), K_EMOJI_RAKETE_NAME);
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_MOND), K_EMOJI_MOND_1, K_EMOJI_MOND_2, 10, PlayerPrefs.GetString(K_EMOJI_MOND_NAME), K_EMOJI_MOND_NAME);
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_SATELLIT), K_EMOJI_SATELLIT_1, K_EMOJI_SATELLIT_1, 20, PlayerPrefs.GetString(K_EMOJI_SATELLIT_NAME), K_EMOJI_SATELLIT_NAME);
-        //erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_HALBMOND), K_EMOJI_HALBMOND_1, K_EMOJI_HALBMOND_1, 10, PlayerPrefs.GetString(K_EMOJI_HALBMOND_NAME), K_EMOJI_HALBMOND_NAME);
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_SATURN), K_EMOJI_SATURN_1, K_EMOJI_SATURN_1, 25, PlayerPrefs.GetString(K_EMOJI_SATURN_NAME), K_EMOJI_SATURN_NAME);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_KOMET), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_KOMET)
+            , K_EMOJI_KOMET_1, K_EMOJI_KOMET_2, 0, PlayerPrefs.GetString(K_EMOJI_KOMET_NAME), K_EMOJI_KOMET_NAME);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_UFO), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_UFO),
+            K_EMOJI_UFO_1, K_EMOJI_UFO_2, 10, PlayerPrefs.GetString(K_EMOJI_UFO_NAME), K_EMOJI_UFO_NAME);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_RAKETE), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_RAKETE),
+            K_EMOJI_RAKETE_1, K_EMOJI_RAKETE_2, 15, PlayerPrefs.GetString(K_EMOJI_RAKETE_NAME), K_EMOJI_RAKETE_NAME);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_MOND), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_MOND),
+            K_EMOJI_MOND_1, K_EMOJI_MOND_2, 10, PlayerPrefs.GetString(K_EMOJI_MOND_NAME), K_EMOJI_MOND_NAME);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_SATELLIT), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_SATELLIT),
+            K_EMOJI_SATELLIT_1, K_EMOJI_SATELLIT_1, 20, PlayerPrefs.GetString(K_EMOJI_SATELLIT_NAME), K_EMOJI_SATELLIT_NAME);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_SATURN), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EMOJI_SATURN),
+            K_EMOJI_SATURN_1, K_EMOJI_SATURN_1, 25, PlayerPrefs.GetString(K_EMOJI_SATURN_NAME), K_EMOJI_SATURN_NAME);
 
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_SATURN), -1, -1, 40, PlayerPrefs.GetString(K_SATURN_AKTIV), K_SATURN_AKTIV);
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_SATELLIT), -1, -1, 42, PlayerPrefs.GetString(K_SATELLIT_AKTIV), K_SATELLIT_AKTIV);
-        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_ROCKET), -1, -1, 44, PlayerPrefs.GetString(K_ROCKET_AKTIV), K_ROCKET_AKTIV);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_SATURN), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_SATURN_PAY),
+            -1, -1, 40, PlayerPrefs.GetString(K_SATURN_GEKAUFT), K_SATURN_GEKAUFT);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_SATELLIT), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_SATELLIT_PAY),
+            -1, -1, 42, PlayerPrefs.GetString(K_SATELLIT_GEKAUFT), K_SATELLIT_GEKAUFT);
+        erzeuge(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_ROCKET), mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_FLIEGENDE_OBJEKT_ROCKET_PAY),
+            -1, -1, 44, PlayerPrefs.GetString(K_ROCKET_GEKAUFT), K_ROCKET_GEKAUFT);
 
         mIndexDesErsteEmojiInSzene = 1; // beginnen immer vorn
         mIndexMitDemGespieltwird = getGespielteEmojiIndex();
@@ -146,12 +159,14 @@ public class EmojiKaufVerwaltung : MonoBehaviour
         PlayerPrefs.SetInt(K_GEPSIELTE_INDEX_EMOJI_2, pIndex2);
     }
 
-    private void erzeuge(string pNAME, int pEMOJI_NR_1, int pEMOJI_NR_2, int pPreis, string pGekauft, string pGekauftName)
+    private void erzeuge(string pNAME, string pNAMEPay, int pEMOJI_NR_1, int pEMOJI_NR_2, int pPreis, string pGekauft, string pGekauftName)
     {
         EmojiData lEmojiData = new EmojiData();
 
         lEmojiData.mIndex = mIndexDesErsteEmojiInSzene;
         lEmojiData.mName = pNAME;
+        lEmojiData.mNamePay = pNAMEPay;
+        
         lEmojiData.mEmojiNr1 = pEMOJI_NR_1;
         lEmojiData.mEmojiNr2 = pEMOJI_NR_2;
         lEmojiData.mKosten = pPreis;
@@ -232,6 +247,7 @@ public class EmojiKaufVerwaltung : MonoBehaviour
             mTextMeshProKaufinfo.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_KAUFINFO).Replace("XX",
                  VirtualLookSteuerung.K_GOLD +
                 get2BMuenzenAnzahl() + VirtualLookSteuerung.K_WHITE);
+        
 
             mTextMeshProVorherige.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ART_DES_VOR);
             mTextMeshProNaechste.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ART_DES_NEXT);
@@ -258,27 +274,51 @@ public class EmojiKaufVerwaltung : MonoBehaviour
             {
                 mEmojiBezahl.SetActive(true);
                 mTextMeshProBezahlen1.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_BEZAHLEN_1)
-                  + "     <sprite=" + mMyEmojiDict[mIndexZumKaufen].mEmojiNr1 + "> " +
-                    mMyEmojiDict[mIndexZumKaufen].mName + " " +
-                    " <sprite=" + mMyEmojiDict[mIndexZumKaufen].mEmojiNr2 + "> ";
+                  + "\n" +
+                  lieferSpriteTextNr1(mIndexZumKaufen) +
+                    mMyEmojiDict[mIndexZumKaufen].mNamePay + " " +
+                   lieferSpriteTextNr2(mIndexZumKaufen);
 
                 mTextMeshProBezahlen2.text = VirtualLookSteuerung.K_GOLD + "<b>" + mMyEmojiDict[mIndexZumKaufen].mKosten + "</b>  " + mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_BEZAHLEN_2);
             }
 
-            mEmoji1Ring.SetActive(mIndexDesErsteEmojiInSzene == mIndexMitDemGespieltwird);
-            mEmoji2Ring.SetActive(mIndexDesErsteEmojiInSzene + 1 == mIndexMitDemGespieltwird);
-            mEmoji3Ring.SetActive(mIndexDesErsteEmojiInSzene + 2 == mIndexMitDemGespieltwird);
-
             if (mIndexDesErsteEmojiInSzene >= 6)
             {
-                mGameObjectPlaneten.SetActive(true);
-                mGameObjectSatelitt.SetActive(true);
-                mGameObjectRocket.SetActive(true);
-            } else
+                mEmoji1Ring.SetActive(istSaturnAktiv());
+                mEmoji2Ring.SetActive(istSatellitAktiv());
+                mEmoji3Ring.SetActive(istRocketAktiv());
+            }
+            else
+            {
+                mEmoji1Ring.SetActive(mIndexDesErsteEmojiInSzene == mIndexMitDemGespieltwird);
+                mEmoji2Ring.SetActive(mIndexDesErsteEmojiInSzene + 1 == mIndexMitDemGespieltwird);
+                mEmoji3Ring.SetActive(mIndexDesErsteEmojiInSzene + 2 == mIndexMitDemGespieltwird);
+            }
+           
+            if (mIndexDesErsteEmojiInSzene >= 6)
+            {
+                if (mIndexZumKaufen > 0)
+                {
+                    mGameObjectPlaneten.SetActive(false);
+                    mGameObjectSatelitt.SetActive(false);
+                    mGameObjectRocket.SetActive(false);
+                } else
+                {
+                    mGameObjectPlaneten.SetActive(true);
+                    mGameObjectSatelitt.SetActive(true);
+                    mGameObjectRocket.SetActive(true);
+                }
+        
+                mTextMeshEmojiGadgetErklaerfinfo.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ERKLAER_GADGET);
+            }
+            else
             {
                 mGameObjectPlaneten.SetActive(false);
                 mGameObjectSatelitt.SetActive(false);
                 mGameObjectRocket.SetActive(false);
+
+                mTextMeshEmojiGadgetErklaerfinfo.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ERKLAER_EMOJI);
+
             }
         }
     }
@@ -360,9 +400,24 @@ public class EmojiKaufVerwaltung : MonoBehaviour
     {
         if (mMyEmojiDict[mIndexDesErsteEmojiInSzene + pIndex].mGeKauft.Equals("J"))
         {
-            mIndexMitDemGespieltwird = mIndexDesErsteEmojiInSzene + pIndex;
-            setGespielteEmojiIndex(mIndexDesErsteEmojiInSzene
-                + pIndex, mMyEmojiDict[mIndexMitDemGespieltwird].mEmojiNr1, mMyEmojiDict[mIndexMitDemGespieltwird].mEmojiNr2);
+            if (mIndexDesErsteEmojiInSzene + pIndex == 7)
+            {
+                setSaturnAktiv(!istSaturnAktiv());
+            }
+            else if (mIndexDesErsteEmojiInSzene + pIndex == 8)
+            {
+                setSatellitAktiv(!istSatellitAktiv());
+            }
+            else if (mIndexDesErsteEmojiInSzene + pIndex == 9)
+            {
+                setRocketAktiv(!istRocketAktiv());
+            }
+            else
+            {
+                mIndexMitDemGespieltwird = mIndexDesErsteEmojiInSzene + pIndex;
+                setGespielteEmojiIndex(mIndexDesErsteEmojiInSzene
+                    + pIndex, mMyEmojiDict[mIndexMitDemGespieltwird].mEmojiNr1, mMyEmojiDict[mIndexMitDemGespieltwird].mEmojiNr2);
+            }
         }
         else
         {
@@ -414,7 +469,7 @@ public class EmojiKaufVerwaltung : MonoBehaviour
 
     internal static bool istRocketAktiv()
     {
-        return PlayerPrefs.GetInt(K_ROCKET_AKTIV).Equals("J");
+        return PlayerPrefs.GetString(K_ROCKET_AKTIV).Equals("J");
     }
 
     internal static bool istSatellitAktiv()
@@ -424,6 +479,39 @@ public class EmojiKaufVerwaltung : MonoBehaviour
 
     internal static bool istSaturnAktiv()
     {
-        return PlayerPrefs.GetInt(K_SATURN_AKTIV).Equals("J");
+        return PlayerPrefs.GetString(K_SATURN_AKTIV).Equals("J");
+    }
+
+    internal static void setRocketAktiv(Boolean pWas)
+    {
+        if (pWas)
+        {
+            PlayerPrefs.SetString(K_ROCKET_AKTIV,"J");
+        } else
+        {
+            PlayerPrefs.SetString(K_ROCKET_AKTIV, "N");
+        }
+    }
+    internal static void setSatellitAktiv(Boolean pWas)
+    {
+        if (pWas)
+        {
+            PlayerPrefs.SetString(K_SATELLIT_AKTIV, "J");
+        }
+        else
+        {
+            PlayerPrefs.SetString(K_SATELLIT_AKTIV, "N");
+        }
+    }
+    internal static void setSaturnAktiv(Boolean pWas)
+    {
+        if (pWas)
+        {
+            PlayerPrefs.SetString(K_SATURN_AKTIV, "J");
+        }
+        else
+        {
+            PlayerPrefs.SetString(K_SATURN_AKTIV, "N");
+        }
     }
 }
