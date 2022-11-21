@@ -29,6 +29,8 @@ public class PruefungGUISteuerung : MonoBehaviour
 
     public TextMeshPro mTextMeshProFrage;
 
+    public GameObject mWeiterButton;
+
     public GameObject mAntwortA;
     public GameObject mAntwortB;
     public GameObject mAntwortC;
@@ -165,6 +167,11 @@ public class PruefungGUISteuerung : MonoBehaviour
                     {
                         if (!mAntwortGegegeben.Equals(""))
                         {
+                            if (lRaycastHit.transform.tag.StartsWith("Weiter"))
+                            {
+                                StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
+                            }
+
                             initRichtigeAntwortUndRocket();
 
                             if (mPruefungVerwaltung.mEndeErreicht)

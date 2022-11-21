@@ -24,6 +24,8 @@ public class AufloesungsKuemmererPruefung : MonoBehaviour {
 	public GameObject mCubePosC;
 	public GameObject mCubePosD;
 
+	public GameObject mWeiterButton;
+
 	public GameObject mZurueckButton;
 
 	public GameObject mThemabutton;
@@ -65,10 +67,14 @@ public class AufloesungsKuemmererPruefung : MonoBehaviour {
 			mCubePosA.transform.localPosition = new Vector3(-6.3f, -0.7f, -3f);
 			mGameObjectButtonAntwort_B.transform.localPosition = new Vector3(2f, -1f, 0f);
 			mCubePosB.transform.localPosition = new Vector3(0.25f, -0.64f, -3.2f);
-			mGameObjectButtonAntwort_C.transform.localPosition = new Vector3(-6.5f, -4.5f, 0f);
-			mCubePosC.transform.localPosition = new Vector3(-6.35f, -3.5f, -3f);
-			mGameObjectButtonAntwort_D.transform.localPosition = new Vector3(2f, -4.5f, 0f);
-			mCubePosD.transform.localPosition = new Vector3(0.3f, -3.5f, -3f);
+
+			mGameObjectButtonAntwort_C.transform.localPosition = new Vector3(-6.5f, -4f, 0f);
+			mCubePosC.transform.localPosition = new Vector3(-6.35f, -3.3f, -3f);
+			mGameObjectButtonAntwort_D.transform.localPosition = new Vector3(2f, -4f, 0f);
+			mCubePosD.transform.localPosition = new Vector3(0.3f, -3.3f, -3f);
+
+			mWeiterButton.transform.localPosition = new Vector3(-2.25f, -7f, 0f);
+			mWeiterButton.transform.localScale = new Vector3(5.3f, 0.4f, 0.5f);
 		}
 		else if (lGeraeteIFs.istIPHONE(mBreiteDisplay, mHoeheDisplay))
 		{
@@ -91,10 +97,14 @@ public class AufloesungsKuemmererPruefung : MonoBehaviour {
 			mCubePosA.transform.localPosition = new Vector3(-6.3f, -0.7f, -3f);
 			mGameObjectButtonAntwort_B.transform.localPosition = new Vector3(2f, -1f, 0f);
 			mCubePosB.transform.localPosition = new Vector3(0.25f, -0.64f, -3.2f);
-			mGameObjectButtonAntwort_C.transform.localPosition = new Vector3(-6.5f, -4.5f, 0f);
-			mCubePosC.transform.localPosition = new Vector3(-6.35f, -3.5f, -3f);
-			mGameObjectButtonAntwort_D.transform.localPosition = new Vector3(2f, -4.5f, 0f);
-			mCubePosD.transform.localPosition = new Vector3(0.3f, -3.5f, -3f);
+
+			mGameObjectButtonAntwort_C.transform.localPosition = new Vector3(-6.5f, -4f, 0f);
+			mCubePosC.transform.localPosition = new Vector3(-6.35f, -3.3f, -3f);
+			mGameObjectButtonAntwort_D.transform.localPosition = new Vector3(2f, -4f, 0f);
+			mCubePosD.transform.localPosition = new Vector3(0.3f, -3.3f, -3f);
+
+			mWeiterButton.transform.localPosition = new Vector3(-2.25f, -7f, 0f);
+			mWeiterButton.transform.localScale = new Vector3(5.3f, 0.4f, 0.5f);
 		}
 		else if (lGeraeteIFs.istIPAD(mBreiteDisplay, mHoeheDisplay))
 		{
@@ -118,10 +128,14 @@ public class AufloesungsKuemmererPruefung : MonoBehaviour {
 			mCubePosA.transform.localPosition = new Vector3(-6.3f, -0.7f, -3f);
 			mGameObjectButtonAntwort_B.transform.localPosition = new Vector3(2f, -1f, 0f);
 			mCubePosB.transform.localPosition = new Vector3(0.25f, -0.64f, -3.2f);
-			mGameObjectButtonAntwort_C.transform.localPosition = new Vector3(-6.5f, -4.5f, 0f);
-			mCubePosC.transform.localPosition = new Vector3(-6.35f, -3.5f, -3f);
-			mGameObjectButtonAntwort_D.transform.localPosition = new Vector3(2f, -4.5f, 0f);
-			mCubePosD.transform.localPosition = new Vector3(0.3f, -3.5f, -3f);
+
+			mGameObjectButtonAntwort_C.transform.localPosition = new Vector3(-6.5f, -4f, 0f);
+			mCubePosC.transform.localPosition = new Vector3(-6.35f, -3.3f, -3f);
+			mGameObjectButtonAntwort_D.transform.localPosition = new Vector3(2f, -4f, 0f);
+			mCubePosD.transform.localPosition = new Vector3(0.3f, -3.3f, -3f);
+
+			mWeiterButton.transform.localPosition = new Vector3(-2.25f, -7f, 0f);
+			mWeiterButton.transform.localScale = new Vector3(5.3f, 0.4f, 0.5f);
 		}
 	}
 }

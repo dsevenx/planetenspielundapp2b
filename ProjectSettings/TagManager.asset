@@ -36,6 +36,7 @@ TagManager:
   - EmojBezahl
   - EmojiVor
   - EmojiZurueck
+  - WeiterButton
   layers:
   - Default
   - TransparentFX
