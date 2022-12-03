@@ -87,6 +87,10 @@ public class PruefungGUISteuerung : MonoBehaviour
 
     public Material mMaterialVonAussen;
 
+    public NotRocketMove mNotRocketMoveSaturn;
+    public NotRocketMove mNotRocketMoveSatelitt;
+
+
     void Start()
     {
         mSpielZustand = K_PRUEFUNG_SPIEL_STOPP;
@@ -172,6 +176,9 @@ public class PruefungGUISteuerung : MonoBehaviour
                                 StartCoroutine(clickEffektSprache(lRaycastHit.transform.gameObject));
                             }
 
+                            mNotRocketMoveSaturn.setStatusZurueck();
+                            mNotRocketMoveSatelitt.setStatusZurueck();
+
                             initRichtigeAntwortUndRocket();
 
                             if (mPruefungVerwaltung.mEndeErreicht)
@@ -235,6 +242,7 @@ public class PruefungGUISteuerung : MonoBehaviour
         if (mSprachenuebersetzer != null)
         {
             mTextMeshProZurueck.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ZURUECK);
+            mWeiterButton.SetActive(false);
 
             if (mSpielZustand == K_PRUEFUNG_SPIEL_STOPP)
             {
@@ -325,6 +333,8 @@ public class PruefungGUISteuerung : MonoBehaviour
                     mTextMeshPro_Antwort_B_Erlaerung.text = mAntwortErgebnisABCD_Erklaerung[1];
                     mTextMeshPro_Antwort_C_Erlaerung.text = mAntwortErgebnisABCD_Erklaerung[2];
                     mTextMeshPro_Antwort_D_Erlaerung.text = mAntwortErgebnisABCD_Erklaerung[3];
+
+                    mWeiterButton.SetActive(true);
                 }
 
                 mGameObjectEmojiErwerben.SetActive(false);

@@ -236,6 +236,11 @@ public class Himmelskoerper : MonoBehaviour
 
     public Texture2D mTexture2D_NebelOrion;
 
+    public const int K_WASP_189_B = 530;
+
+    public Texture2D mTexture2D_Wasp189B;
+    
+
     // allg
     public GameObject mWerGegenWenButtonbuttonEmpty;
 
@@ -282,7 +287,7 @@ public class Himmelskoerper : MonoBehaviour
 
     void Start()
     {
-        K_MAX = K_NEBEL_ORION;
+        K_MAX = K_WASP_189_B;
         K_ERST = K_MERKUR;
 
         mGameObjectSchwarzeLochErhitztGas.SetActive(false);
@@ -615,7 +620,11 @@ public class Himmelskoerper : MonoBehaviour
                     //RenderSettings.fogColor = new Color(189, 15, 123,255);
                     RenderSettings.fogDensity = 0.05f;
                 }
-                  else if (mAktivePlanet == K_LEER_PLANET)
+                else if (mAktivePlanet == K_WASP_189_B)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2D_Wasp189B;
+                }
+                else if (mAktivePlanet == K_LEER_PLANET)
                 {
                     GetComponent<Renderer>().material.mainTexture = mTextureHubbel;
                     lMeshRenderer.enabled = false;

@@ -399,7 +399,21 @@ public class HimmelskoerperverwalterBase : MonoBehaviour
                 "Krebs_bild",
                 K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_NEBEL_KREBS_TEXT)
             }, 0.7f, false, Sprachenuebersetzer.K_NEBEL, Himmelskoerper.K_LEER_PLANET);
-           
+
+            /*
+             * int pIndexPlanet, string pName, float pMasseinErdMasse,
+                                              float pSonneEntfernung, int pAnzahlmonde, float pDichte,
+                                              long mDurchmesser, int pMaxTemperatur, int pMinTemperatur,
+                                              int pEinheitEntfernung, string[] pBildInfos, float pLichtIntensitaet,
+                                              bool pRinge, int pArtHimmelskoerper,
+                                              int pHeimatplanet
+            */
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_WASP_189_B, "WASP-189b",
+                633f, 322f, 0, 0.26f, 223712,
+                7730, 3470, Sprachenuebersetzer.K_LICHTJAHRE, new string[2] {
+                "Wasp_189_bild",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_WASP_189_B_TEXT)
+            }, 0.9f, false, Sprachenuebersetzer.K_PLANET, Himmelskoerper.K_LEER_PLANET);
 
             erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_LEER_PLANET, "", 0.0f, 0f,
                 0, 0f, 2, 0, 0, Sprachenuebersetzer.K_KILOMETER, new string[0] { }, 0.2f, false, Sprachenuebersetzer.K_PLANET, Himmelskoerper.K_LEER_PLANET);
@@ -427,7 +441,8 @@ public class HimmelskoerperverwalterBase : MonoBehaviour
     public void erzeugeInfoZumHimmelskoeper(int pIndexPlanet, string pName, float pMasseinErdMasse,
                                               float pSonneEntfernung, int pAnzahlmonde, float pDichte,
                                               long mDurchmesser, int pMaxTemperatur, int pMinTemperatur,
-                                              int pEinheitEntfernung, string[] pBildInfos, float pLichtIntensitaet, bool pRinge, int pArtHimmelskoerper, int pHeimatplanet)
+                                              int pEinheitEntfernung, string[] pBildInfos, float pLichtIntensitaet, bool pRinge, int pArtHimmelskoerper,
+                                              int pHeimatplanet)
     {
 
         HimmelskoerperData lHimmelskoerperData = new HimmelskoerperData();

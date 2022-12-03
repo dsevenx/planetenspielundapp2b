@@ -305,6 +305,9 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_NEBEL_KREBS = 960;
     public const int K_NEBEL_KREBS_TEXT = 961;
 
+    public const int K_WASP_189_B_TEXT = 962;
+    
+
     public const int K_WER_HAT_AM_PHOBOS_UND_DEIMOS = 970;
     public const int K_PHOBOS_UND_DEIMOS = 971;
     public const int K_HAT_MONDE_ABER_NICHT_DEIMOS_UND_PHOBOS = 972;
@@ -1207,6 +1210,12 @@ public class Sprachenuebersetzer : MonoBehaviour
         "The Crab Nebula emerged from a supernova about 1000 years ago. Inside the Crab Nebula is a very hot neutron star - this pulsar spins very quickly (30 times per second) and has a diameter of 28 to 30 km. This dwarf star generates a super strong magnetic field of about 100 million Tesla. The fog is expanding at about 1500 km per second. Gamma rays shoot out of the nebula again and again.",
         "Der Krebsnebel ist aus einer Supernova vor ca. 1000 Jahren entstanden. Im Innern des Krebsnebel ist ein sehr heisser Neutronenstern - dieser Pulsar dreht sich sehr schnell (30 mal pro Sekunde) und hat einen Durchmesser von 28 bis 30 km. Dieser Zwergstern erzeugt ein super starkes Magnetfeld ca. 100 Mio. Tesla. Der Nebel dehnt sich mit ca. 1500 km pro Sekunde aus. Aus dem Nebel schiessen auch immer wieder Gamma-Strahlen."
         , "", "", "");
+
+        hinzuInsDic(K_WASP_189_B_TEXT,
+        "The ultra-hot exoplanet was discovered in 2018. It orbits its star in 2.7 days and at a very small distance (5% of Earth-Sun). The planet moves in locked rotation. The atmosphere of the day side and that of the night side are in such an exchange that it can even rain gems. The planet was determined in the transit procedure, during which it eclipses its star for a short time in the flyby with a certain intensity.",
+        "Der ultraheise Exoplanet wurde 2018 entdeckt. Er bewegt sich in 2,7 Tagen um seinen Stern und dies in einem sehr kleinem Abstand (5% von Erde-Sonne). Der Planet bewegt sich in gebundener Rotation. Die Athmosphäre der Tageseite und die der Nachtseite sind in einem solchem Austausch, das es sogar Edelsteine regnen kann. Der Planet wurde im Transitverfahren bestimmt, hierbei verdunkelt er seine Stern für kurze Zeit im Vorbeiflug in einer gewissen Stärke."
+        , "", "", "");
+        
 
         hinzuInsDic(K_PRUEFUNG_ALLES_RICHTIG,
               "You can be proud of yourself.",

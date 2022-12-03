@@ -7146,6 +7146,8 @@ MonoBehaviour:
   mSprachenuebersetzer: {fileID: 1821050715}
   mTimeMessung: 0
   mMaterialVonAussen: {fileID: 2100000, guid: 25056a71184a342cba4c5235c16c92c7, type: 2}
+  mNotRocketMoveSaturn: {fileID: 1106190175511919792}
+  mNotRocketMoveSatelitt: {fileID: 7294515675368763879}
 --- !u!1 &978245477
 GameObject:
   m_ObjectHideFlags: 0

@@ -12551,6 +12551,7 @@ MonoBehaviour:
     type: 3}
   mTexture2D_NebelOrion: {fileID: 2800000, guid: f18142f6318374471a2b05dd37462da5,
     type: 3}
+  mTexture2D_Wasp189B: {fileID: 2800000, guid: bbd5d761cc0cc40279cc6bc21e5e4b32, type: 3}
   mWerGegenWenButtonbuttonEmpty: {fileID: 109157144}
   mTextureHubbel: {fileID: 2800000, guid: 05f73311eb05b4954b89673d36ae7044, type: 3}
   K_MAX: 0

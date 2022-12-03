@@ -60,6 +60,11 @@ public class NotRocketMove : MonoBehaviour
         Chase();
     }
 
+    public void setStatusZurueck()
+    {
+        mStatus = 0;
+    }
+
     private void bestimmeZiel(string pRichtigeAntwort)
     {
         mZiel = new List<Vector3>();
