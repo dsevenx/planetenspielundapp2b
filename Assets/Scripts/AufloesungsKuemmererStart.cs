@@ -13,7 +13,12 @@ public class AufloesungsKuemmererStart : MonoBehaviour {
 
 	public GameObject mEnglisch;
 
+	public Material mMaterial;
+
+
 	void Start () {
+
+		mMaterial.SetFloat("_GlossMapScale", 0.9f);
 
 		mBreiteDisplay = Display.main.systemWidth;
 		mHoeheDisplay = Display.main.systemHeight;

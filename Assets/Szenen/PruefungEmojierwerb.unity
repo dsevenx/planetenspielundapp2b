@@ -30916,6 +30916,7 @@ MonoBehaviour:
   mSaturn: {fileID: 651243810}
   mSatellit: {fileID: 205396835}
   mRakete: {fileID: 1686519830}
+  mMaterial: {fileID: 2100000, guid: 1f71d617398202b4da4328d8ca029f24, type: 2}
   mLinkeMenuLeiste: {fileID: 1870683319}
 --- !u!1 &1021880084
 GameObject:
@@ -38864,7 +38865,7 @@ MonoBehaviour:
   m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 3
+  m_fontSizeMin: 3.5
   m_fontSizeMax: 4
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -38896,7 +38897,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 23.41774, y: -1.102752, z: 23.228693, w: -0.18919602}
+  m_margin: {x: 23.41774, y: -1.102752, z: 23.193691, w: -0.18919602}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

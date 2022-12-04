@@ -20,11 +20,13 @@ public class AufloesungsKuemmererInfoConfig : MonoBehaviour {
 
 	public GameObject mTextMeshProGameObjectButton;
 
+	public Material mMaterial;
 
 
 	public GameObject mLinkeMenuLeiste;
 
 	void Start () {
+		mMaterial.SetFloat("_GlossMapScale", 0.9f);
 
 		mBreiteDisplay = Display.main.systemWidth;
 		mHoeheDisplay = Display.main.systemHeight;
@@ -53,9 +55,9 @@ public class AufloesungsKuemmererInfoConfig : MonoBehaviour {
 			mLinkeMenuLeiste.transform.localPosition = new Vector3 (-13.5f, -2.3f, -0.15f);
 			mLinkeMenuLeiste.transform.localScale = new Vector3 (1f, 1f, 1f);
 
-			mTextMeshProVortext.transform.localPosition = new Vector3 (-641f, -291f, 0f);
-			mTextMeshProInputfield.transform.localPosition = new Vector3 (0f, -310f, 0f);
-			mTextMeshProTitel.transform.localPosition = new Vector3 (320f, -291f, 0f);
+			mTextMeshProVortext.transform.localPosition = new Vector3 (-641f, -240f, 0f);
+			mTextMeshProInputfield.transform.localPosition = new Vector3 (0f, -250f, 0f);
+			mTextMeshProTitel.transform.localPosition = new Vector3 (320f, -240f, 0f);
 
 			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, -312f, 0f);
 			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, -331f, 0f);

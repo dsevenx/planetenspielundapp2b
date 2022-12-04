@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41811076, g: 0.4463426, b: 0.46326995, a: 1}
+  m_IndirectSpecularColor: {r: 0.41552743, g: 0.44346914, b: 0.46131414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7119,6 +7119,7 @@ MonoBehaviour:
   mGameObjectEmojiErwerben: {fileID: 1677039609}
   mTextMeshProEmojiErwerben: {fileID: 571181085}
   mTextMeshProFrage: {fileID: 1099926761}
+  mWeiterTextMesPro: {fileID: 41649098}
   mWeiterButton: {fileID: 1746991215}
   mAntwortA: {fileID: 1021939872576251}
   mAntwortB: {fileID: 590863347}
@@ -7364,6 +7365,7 @@ MonoBehaviour:
   mStartstoppbutton: {fileID: 357689196}
   mEmojikaufbutton: {fileID: 1677039609}
   mLinkeMenuLeiste: {fileID: 1870683319}
+  mMaterial: {fileID: 2100000, guid: 1f71d617398202b4da4328d8ca029f24, type: 2}
 --- !u!1 &1076816761
 GameObject:
   m_ObjectHideFlags: 0

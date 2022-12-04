@@ -73,6 +73,9 @@ public class AufloesungsKuemmerer : MonoBehaviour
 
     public int mAufloesungInt;
 
+    public Material mMaterial;
+
+
     void Update()
     {
         if (mAnimator != null && mAufloesungInt > 0)
@@ -91,6 +94,8 @@ public class AufloesungsKuemmerer : MonoBehaviour
 
     void Start()
     {
+        mMaterial.SetFloat("_GlossMapScale", 0.9f);
+
         mBreiteDisplay = Display.main.systemWidth;
         mHoeheDisplay = Display.main.systemHeight;
         GeraeteIFs lGeraeteIFs = new GeraeteIFs();

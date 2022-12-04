@@ -85,6 +85,7 @@ public class Sprachenuebersetzer : MonoBehaviour
 
     public const int K_LEBTE = 95;
     public const int K_FUER = 96;
+    public const int K_WEITER= 97;
 
     public const int K_WINNER_IS_1 = 100;
 
@@ -432,6 +433,10 @@ public class Sprachenuebersetzer : MonoBehaviour
 
         hinzuInsDic(K_LEBTE, "lived", "lebte", "", "", "");
         hinzuInsDic(K_FUER, "for", "für", "", "", "");
+
+        hinzuInsDic(K_WEITER, "next", "weiter", "", "", "");
+
+        
 
         hinzuInsDic(K_WINNER_IS_1, "The Winner is ", "Der Gewinner ist", "", "", "");
         hinzuInsDic(K_WINNER_IS_2, "You are the Winner ! ", "Der Gewinner bist Du ! ", "", "", "");

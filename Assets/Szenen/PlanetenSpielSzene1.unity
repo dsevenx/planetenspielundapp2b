@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41811076, g: 0.4463426, b: 0.46326995, a: 1}
+  m_IndirectSpecularColor: {r: 0.41552743, g: 0.44346914, b: 0.46131414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21547,6 +21547,7 @@ MonoBehaviour:
   K_WER_GEGEN_WEN_SCHWARZE_LOCH: {x: 0, y: 0, z: 0}
   mAnimator: {fileID: 1250258628}
   mAufloesungInt: 0
+  mMaterial: {fileID: 2100000, guid: 1f71d617398202b4da4328d8ca029f24, type: 2}
 --- !u!1001 &1025315134
 PrefabInstance:
   m_ObjectHideFlags: 0

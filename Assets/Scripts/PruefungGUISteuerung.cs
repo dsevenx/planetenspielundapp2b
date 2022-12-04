@@ -29,6 +29,7 @@ public class PruefungGUISteuerung : MonoBehaviour
 
     public TextMeshPro mTextMeshProFrage;
 
+    public TextMeshPro mWeiterTextMesPro;
     public GameObject mWeiterButton;
 
     public GameObject mAntwortA;
@@ -335,6 +336,7 @@ public class PruefungGUISteuerung : MonoBehaviour
                     mTextMeshPro_Antwort_D_Erlaerung.text = mAntwortErgebnisABCD_Erklaerung[3];
 
                     mWeiterButton.SetActive(true);
+                    mWeiterTextMesPro.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_WEITER);
                 }
 
                 mGameObjectEmojiErwerben.SetActive(false);

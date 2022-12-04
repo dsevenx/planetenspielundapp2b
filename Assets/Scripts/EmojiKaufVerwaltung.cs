@@ -65,7 +65,9 @@ public class EmojiKaufVerwaltung : MonoBehaviour
     private static readonly string K_ROCKET_AKTIV = "ROCKET_AKTIV ";
     private static readonly string K_SATURN_GEKAUFT = "SATURN_GEKAUFT";
     private static readonly string K_SATELLIT_GEKAUFT = "SATELLIT_GEKAUFT";
-    private static readonly string K_ROCKET_GEKAUFT = "ROCKET_GEKAUFT ";
+    private static readonly string K_ROCKET_GEKAUFT = "ROCKET_GEKAUFT";
+
+    private static readonly int K_START_MUENZEN = 8;
 
     public GameObject mEmoji1;
     public GameObject mEmoji1Ring;
@@ -450,7 +452,16 @@ public class EmojiKaufVerwaltung : MonoBehaviour
 
     private int get2BMuenzenAnzahl()
     {
-        return PlayerPrefs.GetInt(PruefungGUISteuerung.K_PRUEFUNG_MUENZENANZAHL);
+
+        int lErg = PlayerPrefs.GetInt(PruefungGUISteuerung.K_PRUEFUNG_MUENZENANZAHL);
+
+        if (lErg < K_START_MUENZEN)
+        {
+            lErg = K_START_MUENZEN;
+            set2BMuenzenAnzahl(lErg);
+        }
+
+        return lErg;
     }
     private void set2BMuenzenAnzahl(int pAnzahlNeu)
     {

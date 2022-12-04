@@ -36,11 +36,17 @@ public class AufloesungsKuemmererPruefung : MonoBehaviour {
 
 	public GameObject mLinkeMenuLeiste;
 
+	public Material mMaterial;
+
+
 	void Start () {
 
 		mBreiteDisplay = Display.main.systemWidth;
 		mHoeheDisplay = Display.main.systemHeight;
 		GeraeteIFs lGeraeteIFs = new GeraeteIFs ();
+
+		mMaterial.SetFloat("_GlossMapScale", 0.9f);//0.6
+
 
 		float lBreitefloat = mBreiteDisplay;
 		float lHoehefloat = mHoeheDisplay;
