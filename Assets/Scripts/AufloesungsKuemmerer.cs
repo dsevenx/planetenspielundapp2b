@@ -178,7 +178,7 @@ public class AufloesungsKuemmerer : MonoBehaviour
             mTMPMaxTemperatur.transform.localScale = new Vector3(1f, 1f, 0.5f);
             mTMPMinTemperatur.transform.localScale = new Vector3(1f, 1f, 0.5f);
         }
-        else if(lVerhaetnis < 1.8 )
+        else if (lVerhaetnis < 1.8)
         {
             // i.O.
             mTextMeshProBeschriftungHimmelskoerper.transform.localPosition = new Vector3(-0.00f, 0.6f, 0.23f);
@@ -220,7 +220,7 @@ public class AufloesungsKuemmerer : MonoBehaviour
             mErlaueterungSpielModi.transform.localScale = new Vector3(1f, 1f, 0.5f);
             mErlaueterungSpielModi.transform.localPosition = new Vector3(9f, 2f, 0.5f);
             mErlaueterungSpielModi.GetComponent<RectTransform>().sizeDelta = new Vector2(12, 8.5f);
-     
+
             K_WER_GEGEN_WEN_NORMAL = new Vector3(-0.64f, -5.77f, -7f);
             K_WER_GEGEN_WEN_SCHWARZE_LOCH = new Vector3(-0.37f, -5.7f, -6.49f);
             mWerGegenWenButtonbuttonEmpty.transform.localPosition = K_WER_GEGEN_WEN_NORMAL;
@@ -251,7 +251,7 @@ public class AufloesungsKuemmerer : MonoBehaviour
             mTMPMaxTemperatur.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
             mTMPMinTemperatur.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
         }
-        else
+        else if (lGeraeteIFs.istIPAD(mBreiteDisplay, mHoeheDisplay))
         {
             mTextMeshProBeschriftungHimmelskoerper.transform.localPosition = new Vector3(-0.00f, 0.58f, 0.23f);
             mTextMeshProBeschriftungHimmelskoerper.fontSize = 1.2f;
@@ -322,6 +322,88 @@ public class AufloesungsKuemmerer : MonoBehaviour
             mMaxTemperatur.transform.localPosition = new Vector3(-2.7f, -14f, -7.5f);
             mMaxTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
             mMinTemperatur.transform.localPosition = new Vector3(-2.7f, -15.4f, -7.5f);
+            mMinTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+
+            mTMPMasseButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPSonnenentfernungButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPAnzahlMondeButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPDichteButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPDurchmesserButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPMaxTemperatur.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+            mTMPMinTemperatur.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);
+
+        }
+        else
+        {
+            mTextMeshProBeschriftungHimmelskoerper.transform.localPosition = new Vector3(-0.00f, 0.58f, 0.23f);
+            mTextMeshProBeschriftungHimmelskoerper.fontSize = 1.2f;
+
+            mAngabenZuSpielModi.transform.localPosition = new Vector3(-13.5f, -2.3f, -0.15f);
+            mAngabenZuSpielModi.transform.localScale = new Vector3(1f, 1f, 1f);
+
+            mHimmelskoerperverwalter.transform.localPosition = new Vector3(11.4f, 2.7f, -0.15f);
+            mHimmelskoerperverwalter.transform.localScale = new Vector3(2.6f, 0.5f, 1);
+
+            mKartenbutton.transform.localPosition = new Vector3(2.6f, -4.9f, 0f);
+            mKartenbutton.transform.localScale = new Vector3(3.3f, 2.2f, 0.5f);
+
+            mTextMeshProYou.fontSize = 3.5f;
+            mTextMeshProYou.margin = new Vector4((mTextMeshProYou.margin.x + 0.1f),
+                    mTextMeshProYou.margin.y,
+                    mTextMeshProYou.margin.z, mTextMeshProYou.margin.w);
+            mTextMeshProEinstein.fontSize = 3.5f;
+            mTextMeshProEinstein.margin = new Vector4((mTextMeshProEinstein.margin.x + 0.1f),
+                    mTextMeshProEinstein.margin.y,
+                    mTextMeshProEinstein.margin.z, mTextMeshProEinstein.margin.w);
+            mTextMeshProYouCards.fontSize = 3.5f;
+            mTextMeshProEinsteinCards.fontSize = 3.5f;
+            mTextMeshProKaempfe.fontSize = 2.15f;
+            mTextMeshProKaempfe.margin = new Vector4((mTextMeshProKaempfe.margin.x + 0.1f),
+                mTextMeshProKaempfe.margin.y,
+                mTextMeshProKaempfe.margin.z, mTextMeshProKaempfe.margin.w);
+
+            mTextMeshProKaempfeErg.fontSize = 2.15f;
+
+            mLernenbutton.transform.localPosition = new Vector3(0.9f, 4.5f, 0f);
+            mLernenbutton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+            mQuartettbutton.transform.localPosition = new Vector3(0.9f, 2f, 0f);
+            mQuartettbutton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+            mEinstelungenbutton.transform.localPosition = new Vector3(0.9f, -0.5f, 0f);
+            mEinstelungenbutton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+            mPruefungbutton.transform.localPosition = new Vector3(0.9f, -5.5f, 0f);
+            mPruefungbutton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+
+            mArtDesHimmelskoerperbutton.transform.localPosition = new Vector3(0.9f, -3f, 0f);
+            mArtDesHimmelskoerperbuttonVor.transform.localPosition = new Vector3(0.9f, -5.5f, 0f);
+            mArtDesHimmelskoerperbuttonNext.transform.localPosition = new Vector3(5.55f, -5.5f, 0f);
+
+            mArtDesHimmelskoerperbutton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+            mArtDesHimmelskoerperbuttonVor.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+            mArtDesHimmelskoerperbuttonNext.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+
+            mErlaueterungSpielModi.transform.localScale = new Vector3(1f, 1f, 0.5f);
+            mErlaueterungSpielModi.transform.localPosition = new Vector3(10f, 1.5f, 0.5f);
+            mErlaueterungSpielModi.GetComponent<RectTransform>().sizeDelta = new Vector2(12, 10f);
+
+            K_WER_GEGEN_WEN_NORMAL = new Vector3(0.15f, -6.08f, -7f);
+            K_WER_GEGEN_WEN_SCHWARZE_LOCH = new Vector3(0.35f, -5.9f, -7f);
+            mWerGegenWenButtonbuttonEmpty.transform.localPosition = K_WER_GEGEN_WEN_NORMAL;
+            mWerGegenWenButtonbuttonEmpty.transform.localScale = new Vector3(0.6f, 0.51f, 0.5f);
+            mAufloesungInt = 2; // 22436*1125
+
+            mMasseButton.transform.localPosition = new Vector3(-2.65f, -7f, -7.5f);
+            mMasseButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mSonnenentfernungButton.transform.localPosition = new Vector3(-2.65f, -8.4f, -7.5f);
+            mSonnenentfernungButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mAnzahlMondeButton.transform.localPosition = new Vector3(-2.65f, -9.8f, -7.5f);
+            mAnzahlMondeButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mDichteButton.transform.localPosition = new Vector3(-2.65f, -11.2f, -7.5f);
+            mDichteButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mDurchmesserButton.transform.localPosition = new Vector3(-2.65f, -12.6f, -7.5f);
+            mDurchmesserButton.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mMaxTemperatur.transform.localPosition = new Vector3(-2.65f, -14f, -7.5f);
+            mMaxTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
+            mMinTemperatur.transform.localPosition = new Vector3(-2.65f, -15.4f, -7.5f);
             mMinTemperatur.transform.localScale = new Vector3(0.5f, 0.41f, 0.3f);
 
             mTMPMasseButton.transform.localScale = new Vector3(0.9f, 1.6f, 0.5f);

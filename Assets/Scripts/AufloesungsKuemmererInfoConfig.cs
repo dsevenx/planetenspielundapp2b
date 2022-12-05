@@ -75,6 +75,18 @@ public class AufloesungsKuemmererInfoConfig : MonoBehaviour {
 
 			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, -701f, 0f);
 			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(26f, -720f, 0f);
+		}
+		else 
+		{
+			mLinkeMenuLeiste.transform.localPosition = new Vector3(-12.8f, -2.3f, -0.15f);
+			mLinkeMenuLeiste.transform.localScale = new Vector3(1f, 1f, 1f);
+
+			mTextMeshProVortext.transform.localPosition = new Vector3(-641f, -400f, 0f);
+			mTextMeshProInputfield.transform.localPosition = new Vector3(0f, -410f, 0f);
+			mTextMeshProTitel.transform.localPosition = new Vector3(320f, -400f, 0f);
+
+			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, -502f, 0f);
+			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, -522f, 0f);
 
 
 		}
