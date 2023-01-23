@@ -1047,12 +1047,12 @@ public class Sprachenuebersetzer : MonoBehaviour
         , "Abstand", "", "", "");
 
         hinzuInsDic(K_EINKLAPPEN,
-        " collapse"
-        , " Einklappen", "", "", "");
+        "collapse"
+        , "Einklappen", "", "", "");
 
         hinzuInsDic(K_AUSKLAPPEN,
-        " unfold"
-        , " Ausklappen", "", "", "");
+        "unfold"
+        , "Ausklappen", "", "", "");
 
         hinzuInsDic(K_NO_MASSE,
        "no mass\nmore"

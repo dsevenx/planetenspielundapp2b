@@ -31,7 +31,7 @@ public class EinstellRunterScript : MonoBehaviour, IDragHandler, IPointerUpHandl
         if (mEinstellwert != null)
         {
 
-            if (mAktiv)
+            if (mAktiv && !mEinstellwert.mKlickEinzeln)
             {
                 mLocalCount = (mEinstellwert.mCount - Time.deltaTime * mEinstellwert.mTimeDivisior);
 
@@ -55,6 +55,11 @@ public class EinstellRunterScript : MonoBehaviour, IDragHandler, IPointerUpHandl
     public virtual void OnPointerUp(PointerEventData pPointerEventData)
     {
         mAktiv = false;
+
+        if (mEinstellwert.mKlickEinzeln && mEinstellwert.mCount > mEinstellwert.mUnten)
+        {
+            mEinstellwert.mCount = mEinstellwert.mCount - 1;
+        }
     }
 
     public void SetEinstellwert(Einstellwert pEinstellwert)

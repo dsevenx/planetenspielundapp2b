@@ -13,4 +13,8 @@ public class Einstellwert
     public string mName;
 
     public float mTimeDivisior;
+
+    public bool mKlickEinzeln;
 }
+
+

@@ -25,7 +25,7 @@ public class EinstellHochscript : MonoBehaviour, IDragHandler, IPointerUpHandler
 
 	private void Update()
 	{
-		if (mAktiv && mEinstellwert != null)
+		if (mAktiv && mEinstellwert != null && !mEinstellwert.mKlickEinzeln)
 		{
 			mLocalCount = (mEinstellwert.mCount + Time.deltaTime * mEinstellwert.mTimeDivisior);
 
@@ -46,6 +46,11 @@ public class EinstellHochscript : MonoBehaviour, IDragHandler, IPointerUpHandler
 	public virtual void OnPointerUp(PointerEventData pPointerEventData)
 	{
 		mAktiv = false;
+
+		if (mEinstellwert.mKlickEinzeln && mEinstellwert.mCount < mEinstellwert.mOben)
+        {
+			mEinstellwert.mCount = mEinstellwert.mCount + 1;
+		}
 	}
 
     public void SetEinstellwert(Einstellwert pEinstellwert)

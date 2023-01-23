@@ -41,12 +41,12 @@ public class AufloesungsKuemmererInfoConfig : MonoBehaviour {
 			mLinkeMenuLeiste.transform.localPosition = new Vector3 (-13.5f, -2.3f, -0.15f);
 			mLinkeMenuLeiste.transform.localScale = new Vector3 (1f, 1f, 1f);
 
-			mTextMeshProVortext.transform.localPosition = new Vector3 (-641f, -260f, 0f);
-			mTextMeshProInputfield.transform.localPosition = new Vector3 (0f, -279f, 0f);
-			mTextMeshProTitel.transform.localPosition = new Vector3 (320f, -260f, 0f);
+			mTextMeshProVortext.transform.localPosition = new Vector3 (-641f, lHoehefloat*-0.35f, 0f);
+			mTextMeshProInputfield.transform.localPosition = new Vector3 (0f, lHoehefloat * -0.35f, 0f);
+			mTextMeshProTitel.transform.localPosition = new Vector3 (320f, lHoehefloat * -0.35f, 0f);
 
-			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, -352f, 0f);
-			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, -371f, 0f);
+			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, lHoehefloat * -0.45f, 0f);
+			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, lHoehefloat * -0.45f, 0f);
 
 
 		}

@@ -7,6 +7,8 @@ using System.Linq;
 
 public class AttractElementVerwalter : MonoBehaviour
 {
+    public const int K_URKNALL =  138;
+
     public Camera mMainCamera;
 
     public GameObject mCube;
@@ -80,8 +82,6 @@ public class AttractElementVerwalter : MonoBehaviour
     public const float K_DistanceCameraSonne = 260;
 
     private const string K_GESCHAFFT = "Geschafft";
-
-    public const int K_URKNALL = 138;
 
     public EinstellHochscript mWinkelEinstellHochscript;
 
@@ -581,6 +581,7 @@ public class AttractElementVerwalter : MonoBehaviour
         mEinstellDrehen.mUnten = K_MAX_Camera_From_Dreh_Y_MINUS;
         mEinstellDrehen.mCount = 0;
         mEinstellDrehen.mTimeDivisior = 12;
+        mEinstellDrehen.mKlickEinzeln = false;
         mEinstellDrehen.mName = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_WINKEL);
         mWinkelEinstellHochscript.SetEinstellwert(mEinstellDrehen);
         mWinkelEinstellRunterScript.SetEinstellwert(mEinstellDrehen);
@@ -590,6 +591,7 @@ public class AttractElementVerwalter : MonoBehaviour
         mEinstellMasse.mUnten = K_START_MASSE_EINZEL_ELEMENT;
         mEinstellMasse.mCount = K_START_MASSE_EINZEL_ELEMENT;
         mEinstellMasse.mTimeDivisior = 250;
+        mEinstellMasse.mKlickEinzeln = false;
         mEinstellMasse.mName = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_MASS_3);
         mMasseEinstellHochscript.SetEinstellwert(mEinstellMasse);
         mMasseEinstellRunterScript.SetEinstellwert(mEinstellMasse);
@@ -599,6 +601,7 @@ public class AttractElementVerwalter : MonoBehaviour
         mEinstellSpeedX.mUnten = -50;
         mEinstellSpeedX.mCount = 20;
         mEinstellSpeedX.mTimeDivisior = 5;
+        mEinstellSpeedX.mKlickEinzeln = true;
         mEinstellSpeedX.mName = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_SPEED_X);
         mSpeedXEinstellHochscript.SetEinstellwert(mEinstellSpeedX);
         mSpeedXEinstellRunterScript.SetEinstellwert(mEinstellSpeedX);
@@ -608,6 +611,7 @@ public class AttractElementVerwalter : MonoBehaviour
         mEinstellSpeedY.mUnten = -50;
         mEinstellSpeedY.mCount = 7;
         mEinstellSpeedY.mTimeDivisior = 5;
+        mEinstellSpeedY.mKlickEinzeln = true;
         mEinstellSpeedY.mName = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_SPEED_Y);
         mSpeedYEinstellHochscript.SetEinstellwert(mEinstellSpeedY);
         mSpeedYEinstellRunterScript.SetEinstellwert(mEinstellSpeedY);
@@ -617,6 +621,7 @@ public class AttractElementVerwalter : MonoBehaviour
         mEinstellSpeedZ.mUnten = -50;
         mEinstellSpeedZ.mCount = 19;
         mEinstellSpeedZ.mTimeDivisior = 5;
+        mEinstellSpeedZ.mKlickEinzeln = true;
         mEinstellSpeedZ.mName = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_SPEED_Z);
         mSpeedZEinstellHochscript.SetEinstellwert(mEinstellSpeedZ);
         mSpeedZEinstellRunterScript.SetEinstellwert(mEinstellSpeedZ);
