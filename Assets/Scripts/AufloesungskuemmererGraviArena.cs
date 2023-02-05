@@ -113,6 +113,11 @@ public class AufloesungskuemmererGraviArena : MonoBehaviour
         {
             lAnzahlHoehenTeile = 3.6f;
 
+            if (mBreiteDisplay == 2436 && mHoeheDisplay == 1125)
+            {
+                lAnzahlHoehenTeile = 5.5f;
+            }
+
         }
         else if (lGeraeteIFs.istIPAD(mBreiteDisplay, mHoeheDisplay))
         {
@@ -219,7 +224,7 @@ public class AufloesungskuemmererGraviArena : MonoBehaviour
             lNewY = 0.87f;
             lNewXSteuerungskreis = 0.82f;
             mHoeheCanvas = 190;
-
+        
             lPpaddingTop = -19;
             lYSpacing = 40;
             lCellX = 230;
@@ -230,7 +235,13 @@ public class AufloesungskuemmererGraviArena : MonoBehaviour
             lFontSizeErgebnis = 28;
 
             float lPosYTabelle = mHoeheDisplay + lAnzahlHoehenTeile / 12.5f * mHoeheDisplay;
-            mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile + 1.5f) * mBreiteCanvas) + lCanvas4Datentabellenkorrektur, lTabelleYPos + mHoeheDisplay, 0);
+            if (mHoeheDisplay == 1125 && mBreiteDisplay == 2436)
+            {
+                mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile +0.25f) * mBreiteCanvas) + lCanvas4Datentabellenkorrektur, lTabelleYPos + mHoeheDisplay, 0);
+            } else
+            {
+                mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile + 1.5f) * mBreiteCanvas) + lCanvas4Datentabellenkorrektur, lTabelleYPos + mHoeheDisplay, 0);
+            }
             mCanvasTabelleDaten.GetComponent<RectTransform>().sizeDelta = new Vector2(2 * mBreiteCanvas, 2 * mHoeheCanvas);
 
             mCanvasZeitErgebnis.GetComponent<RectTransform>().position = new Vector3(mBreiteCanvas / 2 + 100, mHoeheDisplay / 2, 0);

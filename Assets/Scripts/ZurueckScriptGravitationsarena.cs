@@ -16,11 +16,14 @@ public class ZurueckScriptGravitationsarena : MonoBehaviour
 
     public float mTimeMessung;
 
+    private void Start()
+    {
+        mTimeMessung = 100;
+    }
 
     void Update()
     {
         mTextMeshProUGUI.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ZURUECK);
-
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -40,5 +43,6 @@ public class ZurueckScriptGravitationsarena : MonoBehaviour
                 SceneManager.LoadScene("PlanetenSpielSzene1");
             }
         }
+
     }
 }
