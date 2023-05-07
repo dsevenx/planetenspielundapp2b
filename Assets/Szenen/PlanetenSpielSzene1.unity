@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41552743, g: 0.44346914, b: 0.46131414, a: 1}
+  m_IndirectSpecularColor: {r: 0.41811076, g: 0.4463426, b: 0.46326995, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12552,6 +12552,8 @@ MonoBehaviour:
   mTexture2D_NebelOrion: {fileID: 2800000, guid: f18142f6318374471a2b05dd37462da5,
     type: 3}
   mTexture2D_Wasp189B: {fileID: 2800000, guid: bbd5d761cc0cc40279cc6bc21e5e4b32, type: 3}
+  mTexture2D_NebelHexenbesen: {fileID: 2800000, guid: b15bc97ab28a34cf386159c4f7646379,
+    type: 3}
   mWerGegenWenButtonbuttonEmpty: {fileID: 109157144}
   mTextureHubbel: {fileID: 2800000, guid: 05f73311eb05b4954b89673d36ae7044, type: 3}
   K_MAX: 0

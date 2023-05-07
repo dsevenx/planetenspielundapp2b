@@ -88,7 +88,7 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
 
     public const string K_RED = "<#FF0000>";
 
-    public const string K_RED_GEGNER = "<#FFB6C1>";
+    public const string K_RED_GEGNER = "<#D36E70>";
 
     public const string K_GREEN = "<#00FF00>";
 

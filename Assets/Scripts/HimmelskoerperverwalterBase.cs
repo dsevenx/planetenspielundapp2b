@@ -379,6 +379,14 @@ public class HimmelskoerperverwalterBase : MonoBehaviour
             //             int pEinheitEntfernung, string[] pBildInfos, float pLichtIntensitaet,
             //             bool pRinge, int pArtHimmelskoerper)
 
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_NEBEL_HEXENBESEN, mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_NEBEL_HEXENBESEN), 8991000f, 1400f,
+             0, 0.00000000000000000002f,
+             331100000000000, 1000, -250, Sprachenuebersetzer.K_LICHTJAHRE, new string[2] {
+                "Hexenbesen_bild",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_NEBEL_HEXENBESEN_TEXT)
+           }, 0.6f, false, Sprachenuebersetzer.K_NEBEL, Himmelskoerper.K_LEER_PLANET);
+
+
             erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_NEBEL_PFERDEKOPF, mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_NEBEL_PFERDEKOPF), 8991000f, 1500f,
            0, 0.00000000000000000003f,
            28500000000000, 1000, 1000, Sprachenuebersetzer.K_LICHTJAHRE, new string[2] {

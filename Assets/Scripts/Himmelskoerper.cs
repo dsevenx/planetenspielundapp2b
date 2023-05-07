@@ -239,8 +239,13 @@ public class Himmelskoerper : MonoBehaviour
     public const int K_WASP_189_B = 530;
 
     public Texture2D mTexture2D_Wasp189B;
-    
 
+    // letzter
+    public const int K_NEBEL_HEXENBESEN = 540;
+
+    public Texture2D mTexture2D_NebelHexenbesen;
+
+    
     // allg
     public GameObject mWerGegenWenButtonbuttonEmpty;
 
@@ -287,7 +292,7 @@ public class Himmelskoerper : MonoBehaviour
 
     void Start()
     {
-        K_MAX = K_WASP_189_B;
+        K_MAX = K_NEBEL_HEXENBESEN; // letzte hinzugekommene Himmelskoerper
         K_ERST = K_MERKUR;
 
         mGameObjectSchwarzeLochErhitztGas.SetActive(false);
@@ -601,6 +606,13 @@ public class Himmelskoerper : MonoBehaviour
                     RenderSettings.fog = true;
                     //RenderSettings.fogColor = new Color(78, 36, 32, 100);
                     RenderSettings.fogDensity = 0.2f;
+                }
+                else if (mAktivePlanet == K_NEBEL_HEXENBESEN)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2D_NebelHexenbesen;
+                    RenderSettings.fog = true;
+                    //RenderSettings.fogColor = new Color(78, 36, 32, 100);
+                    RenderSettings.fogDensity = 0.15f;
                 }
                 else if (mAktivePlanet == K_NEBEL_KREBS)
                 {

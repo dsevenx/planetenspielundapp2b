@@ -300,6 +300,10 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_NEBEL_PFERDEKOPF = 950;
     public const int K_NEBEL_PFERDEKOPF_TEXT = 951;
 
+    public const int K_NEBEL_HEXENBESEN = 952;
+    public const int K_NEBEL_HEXENBESEN_TEXT = 953;
+    
+
     public const int K_NEBEL_ORION = 954;
     public const int K_NEBEL_ORION_TEXT = 955;
 
@@ -1158,7 +1162,7 @@ public class Sprachenuebersetzer : MonoBehaviour
       "but like Nix is further parts of the collision of Charon and Pluto.",
 
       "Der Mond Hydra wurde gemeinsam mit Mond Nix 2005 mit dem Hubbel-Weltraumteleskop entdeckt. " +
-      "Hydra ist der äußerste Mond vn Pluto. Man vermutet, das seine Oberfläche komplett aus Wassereis besteht. Die Bahn des Mondes deutet auch daraufhin, das er kein eingefangener Asteroid ist, " +
+      "Hydra ist der äußerste Mond von Pluto. Man vermutet, das seine Oberfläche komplett aus Wassereis besteht. Die Bahn des Mondes deutet auch daraufhin, das er kein eingefangener Asteroid ist, " +
       "sondern wie Nix weitere Teile der Kollision von Charon und Pluto ist."
       , "", "", "");
 
@@ -1194,6 +1198,16 @@ public class Sprachenuebersetzer : MonoBehaviour
         hinzuInsDic(K_NEBEL_PFERDEKOPF_TEXT,
         "The Horsehead Nebula was discovered by photography in 1887. The nebula itself is a collection of gas and dust that emits very little light and therefore appears dark. The nebula consists largely of hydrogen.",
          "Der Pferdekopfnebel wurde 1887 mittels Photogrphie entdeckt. Der Nebel selbst ist eine Ansammlung von Gas und Staub, die nur sehr wenig Licht abstrahlen und deswegen dunkel erscheinen. Der Nebel besteht zum großen Teil aus Wasserstoff."
+        , "", "", "");
+
+        hinzuInsDic(K_NEBEL_HEXENBESEN,
+       "Witch's Broom Nebula",
+       "Hexenbesennebel"
+        , "", "", "");
+
+        hinzuInsDic(K_NEBEL_HEXENBESEN_TEXT,
+        "The Witch's Broom Nebula is the remnant of a supernova from about 10,000 years ago. On the picture you can see the atomic hydrogen (red) and the atomic oxygen (blue-green) very well. The bright star(52 Cygni) in the background is not part of the nebula.",
+         "Der Hexenbesennebel ist der Überrest einer Supernova von vor ca. 10000 Jahren. Auf dem Bild kann man den Foto kann man den atomaren Wasserstoff (rot) und den atomaren Sauerstoff (blaugrün) sehr gut erkennen. Der helle Stern (52 Cygni) im Hintergrund gehört nicht zum Nebel."
         , "", "", "");
 
         hinzuInsDic(K_NEBEL_ORION,
