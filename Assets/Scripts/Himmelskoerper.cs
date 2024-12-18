@@ -240,12 +240,20 @@ public class Himmelskoerper : MonoBehaviour
 
     public Texture2D mTexture2D_Wasp189B;
 
-    // letzter
     public const int K_NEBEL_HEXENBESEN = 540;
 
     public Texture2D mTexture2D_NebelHexenbesen;
 
-    
+    public const int K_MAKEMAKE = 550;
+
+    public Texture2D mTexture2DMakemake;
+
+    //letzter
+    public const int K_HAUMEA = 560;
+
+    public Texture2D mTexture2DHaumea;
+
+
     // allg
     public GameObject mWerGegenWenButtonbuttonEmpty;
 
@@ -292,7 +300,7 @@ public class Himmelskoerper : MonoBehaviour
 
     void Start()
     {
-        K_MAX = K_NEBEL_HEXENBESEN; // letzte hinzugekommene Himmelskoerper
+        K_MAX = K_HAUMEA; // letzte hinzugekommene Himmelskoerper
         K_ERST = K_MERKUR;
 
         mGameObjectSchwarzeLochErhitztGas.SetActive(false);
@@ -479,6 +487,14 @@ public class Himmelskoerper : MonoBehaviour
                 else if (mAktivePlanet == K_PLUTO)
                 {
                     GetComponent<Renderer>().material.mainTexture = mTexture2DPluto;
+                }
+                else if (mAktivePlanet == K_MAKEMAKE)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2DMakemake;
+                }
+                else if (mAktivePlanet == K_HAUMEA)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2DHaumea;
                 }
                 else if (mAktivePlanet == K_CHARON)
                 {
@@ -730,6 +746,11 @@ public class Himmelskoerper : MonoBehaviour
         }
     }
 
+    internal void setAktivenPlanetZurueck()
+    {
+        mAktivePlanet = 0;
+    }
+
     public void setLeerMaterial()
     {
         GetComponent<Renderer>().material.mainTexture = mTextureHubbel;
@@ -752,6 +773,7 @@ public class Himmelskoerper : MonoBehaviour
         mKometenschweif.SetActive(false);
         RenderSettings.fog = false;
         mCubeAmHimmelskoerper.SetActive(false);
+        mBorealis.SetActive(false);
     }
 
     private void setzeRotateRinge(float pX, float pY, float pZ)

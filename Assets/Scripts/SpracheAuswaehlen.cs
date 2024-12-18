@@ -22,7 +22,7 @@ public class SpracheAuswaehlen : MonoBehaviour {
 	void Start () {
 		mSprachenuebersetzer = GameObject.FindGameObjectWithTag ("Sprachenuebersetzer").GetComponent<Sprachenuebersetzer> ();
 	
-	//	mSprachenuebersetzer.setSprache (0); // nur für Test
+		//mSprachenuebersetzer.setSprache (0); // nur für Test
 	}
 	
 	void Update ()

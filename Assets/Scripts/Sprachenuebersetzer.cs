@@ -119,6 +119,7 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_KOMET = 205;
     // END ARTEN
 
+    public const int K_RESTART = 207;
 
     public const int K_MASS_1 = 210;
     public const int K_MASS_2 = 211;
@@ -217,6 +218,8 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_M87_TEXT = 630;
     public const int K_M87 = 631;
     public const int K_PLUTO = 640;
+    public const int K_MAKEMAKE= 642;
+    public const int K_HAUMEA = 644;
     public const int K_TRITON = 650;
 
     public const int K_KOMET_HALLEY = 660;
@@ -461,6 +464,9 @@ public class Sprachenuebersetzer : MonoBehaviour
         hinzuInsDic(K_SCHWARZES_LOCH, "Black hole", "Schwarzes Loch", "", "", "");
         hinzuInsDic(K_NEBEL, "nebula", "Nebel", "", "", "");
         hinzuInsDic(K_KOMET, "comet", "Komet", "", "", "");
+
+        hinzuInsDic(K_RESTART, "restart", "Neustart", "", "", "");
+        
 
         hinzuInsDic(K_ART_DES_HIMMELSKOERPERS, "type of\nheavenly body\n", "Art des\nHimmels-\nkörper\n", "", "", "");
         hinzuInsDic(K_ART_DES_VOR, "<- previous\n", "<- vorherige\n", "", "", "");
@@ -827,6 +833,27 @@ public class Sprachenuebersetzer : MonoBehaviour
             "Plutos Bahn um die Sonne ist eine Ellipse. Der Lange Abstand ist 7,7 Mrd. Kilometer, der kurze Abstand ist 4,4 Mrd. Kilometer. " +
             "Pluto hat sogar 5 Monde : Charon, Nix, Hydra, Styx, Kerberos. Pluto 'kämpft' mit Eris um den Titel größte Zwergplanet. " +
             "Pluto ist aber in jedem Fall nicht so schwer wie Eris.", "", "", "");
+
+        hinzuInsDic(K_MAKEMAKE, "The dwarf planet Makemake was discovered by the Hubble telescope in 2005. After Hubble Makemake discovered it, " +
+       "Makemake was even spotted in photos from 1954. One orbit around the sun takes 309 years and 1 month. " +
+       "In 2016 they even discover a moon ... nicknamed MK2, which is only 175 km in diameter.",
+
+       "Der Zwergplanet Makemake wurde 2005 durch das Hubbleteleskop entdeckt. Nach dem Hubble Makemake entdeckt hat, " +
+       "entdeckte man Makemake sogar auf Fotos von 1954. Ein Umlauf um die Sonne dauer 309 Jahr und 1 Monat." +
+       " Im Jahr 2016 entdecke man sogar ein Mond ... Spitzname MK2, der nur 175 km Durchmesser hat.", "", "", "");
+
+        hinzuInsDic(K_HAUMEA, "The dwarf planet Haumea was officially discovered by the Hubble telescope in 2005. " +
+      "A Spanish working group (Ortiz group) from the Sierra Nevada Observatory discovered it in 2003 with a telescope that was only 35 cm. " +
+      "But they didn't release their data until they downloaded the published Hubble data." +
+      "The Ortiz group said they only used the Hubble data for verification." +
+      "The discovery controversy ended with the Sierra Nevada Observatory being considered the institutional discoverer, but not Ortiz and his colleagues being the discoverers.",
+
+      "Der Zwergplanet Haumea wurde offiziell 2005 durch das Hubbleteleskop entdeckt. " +
+      "Eine spanische Arbeitsgruppe (Ortiz-Gruppe) vom Sierra Nevada Observatorium hatte Ihn 2003 mit einem nur 35 cm Teleskop entdeckt. " +
+      "Sie gaben Ihre Daten aber erst nach dem Download der veröffentlichten Hubbledaten bekannt. " +
+      "Die Ortizgruppe hatte nach eigenen Angaben, die Hubbledaten nur zur Verifizierung benutzt. " +
+      "Die Kontroverse um die Entdeckung endete damit, das Sierra Nevada Observatorium als institutionller Entdecker gilt, aber nicht Ortiz und seine Kollegen als Entdecker."
+     , "", "", "");
 
 
         hinzuInsDic(K_CHARON, "Charon is a very big moon for Pluto. Charon is half the diameter of Pluto " +

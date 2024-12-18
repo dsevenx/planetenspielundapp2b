@@ -482,17 +482,17 @@ public class EmojiKaufVerwaltung : MonoBehaviour
 
     internal static bool istRocketAktiv()
     {
-        return PlayerPrefs.GetString(K_ROCKET_AKTIV).Equals("J");
+        return PlayerPrefs.GetString(K_ROCKET_AKTIV).Equals("J") && PlayerPrefs.GetString(K_ROCKET_GEKAUFT).Equals("J");
     }
 
     internal static bool istSatellitAktiv()
     {
-        return PlayerPrefs.GetString(K_SATELLIT_AKTIV).Equals("J");
+        return PlayerPrefs.GetString(K_SATELLIT_AKTIV).Equals("J") && PlayerPrefs.GetString(K_SATELLIT_GEKAUFT).Equals("J");
     }
 
     internal static bool istSaturnAktiv()
     {
-        return PlayerPrefs.GetString(K_SATURN_AKTIV).Equals("J");
+        return PlayerPrefs.GetString(K_SATURN_AKTIV).Equals("J") && PlayerPrefs.GetString(K_SATURN_GEKAUFT).Equals("J");
     }
 
     internal static void setRocketAktiv(Boolean pWas)

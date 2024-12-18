@@ -51,20 +51,16 @@ public class AufloesungskuemmererGraviArena : MonoBehaviour
 
     public GameObject mZurueck;
 
-    public GameObject mCanvasTabelleDaten;
+    public GameObject mCanvas4Daten;
 
-    public GameObject mZeittext;
+    public GameObject mText4Jahre;
 
-    public GameObject mErgebnistext;
+    public GameObject mTextMasseUebrig;
 
-    public GameObject mCanvasZeitErgebnis;
+    public GameObject mTextGesamtPunkte;
 
-    public GameObject mCanvasZeitErgebnisList;
-
-    public GameObject mCanvasZeitErgebnisGesamtpunkte;
-     
     public float mBreiteCanvas;
-
+    public float mVerhaeltis;
     public float mHoeheCanvas;
 
     public TextMeshProUGUI mTextMeshProName;
@@ -92,261 +88,117 @@ public class AufloesungskuemmererGraviArena : MonoBehaviour
     public TextMeshProUGUI mTextMeshProListeGeschwindigkeit;
     public TextMeshProUGUI mTextMeshProListeAbstand;
 
+    public TextMeshProUGUI mTextMeshProZeit;
+    public TextMeshProUGUI mTextMeshProMasseUebrig;
+
+    public GameObject mGameObjectListeName;
+    public GameObject mGameObjectListeMasse;
+    public GameObject mGameObjectListeGeschwindigkeit;
+    public GameObject mGameObjectListeAbstand;
+    
+
+    public float mAnzahlHoehenTeile;
+    public float mScaleHochRunterX;
+    public float mScaleHochRunterY;
+
+    public int mFontSize;
+    public int mBreite;
+
+    /*
+    void testy(String pText,float p133, float p211, float p216, float p177)
+    {
+        // Gegebene Vektoren und zugeordnete Werte für e
+        double[,] vectors = {
+            { 1.33, 7.125, 215.6, p133 },
+            { 2.111, 4.5, 240, p211 },
+            { 2.167, 4.383, 294.3, p216 },
+            { 1.778, 5.341, 140.42, p177}
+       };
+
+        // Berechne Durchschnitt der x-, y- und z-Komponenten
+        double avgX = 0, avgY = 0, avgZ = 0;
+        for (int i = 0; i < vectors.GetLength(0); i++)
+        {
+            avgX += vectors[i, 0];
+            avgY += vectors[i, 1];
+            avgZ += vectors[i, 2];
+        }
+        avgX /= vectors.GetLength(0);
+        avgY /= vectors.GetLength(0);
+        avgZ /= vectors.GetLength(0);
+
+        // Berechne Durchschnitt des Wertes "e"
+        double avgE = 0;
+        for (int i = 0; i < vectors.GetLength(0); i++)
+        {
+            avgE += vectors[i, 3];
+        }
+        avgE /= vectors.GetLength(0);
+
+        // Lineare Regression
+        double m = 0, n = 0, p = 0, b = 0;
+        for (int i = 0; i < vectors.GetLength(0); i++)
+        {
+            m += (vectors[i, 0] - avgX) * (vectors[i, 3] - avgE);
+            n += (vectors[i, 1] - avgY) * (vectors[i, 3] - avgE);
+            p += (vectors[i, 2] - avgZ) * (vectors[i, 3] - avgE);
+            b += (vectors[i, 0] - avgX) * (vectors[i, 0] - avgX) +
+                 (vectors[i, 1] - avgY) * (vectors[i, 1] - avgY) +
+                 (vectors[i, 2] - avgZ) * (vectors[i, 2] - avgZ);
+        }
+        m /= b;
+        n /= b;
+        p /= b;
+        b = avgE - m * avgX - n * avgY - p * avgZ;
+
+        // Ausgabe der gefundenen Regressionskoeffizienten
+        Debug.Log(pText + "((float)(("+m+" * mVerhaeltis) + ("+n+" * mAnzahlHoehenTeile) + ("+ p +"* mHoeheCanvas) + " + b+"));");
+      
+        // Berechnung des Wertes "e" für jeden Vektor
+        for (int i = 0; i < vectors.GetLength(0); i++)
+        {
+            double calculatedE = m * vectors[i, 0] + n * vectors[i, 1] + p * vectors[i, 2] + b;
+            Debug.Log("e für Vector (" + vectors[i, 0] + ", " + vectors[i, 1] + ", " + vectors[i, 2] + "): " + calculatedE);
+        }
+    }
+    */
 
     void Start()
     {
+        //testy("testx",240,360, 300,255);
+        //testy("testy", -425,- 200,- 305,- 50);
 
         mBreiteDisplay = Display.main.systemWidth;
         mHoeheDisplay = Display.main.systemHeight;
         GeraeteIFs lGeraeteIFs = new GeraeteIFs();
+        lGeraeteIFs.init(Camera.main);
+        mVerhaeltis = lGeraeteIFs.mVerhaeltnis;
 
-        Debug.Log("X-Breite:" + mBreiteDisplay);
-        Debug.Log("Y-Breite:" + mHoeheDisplay);
+        mAnzahlHoehenTeile = 9.5f / mVerhaeltis;
 
+        mHoeheCanvas = mHoeheDisplay / mAnzahlHoehenTeile;
+        float lPosYCanvas = mHoeheCanvas * (mAnzahlHoehenTeile - 1);
 
-        float lAnzahlHoehenTeile = 7.0f;
-        if (lGeraeteIFs.istIPHONE_small(mBreiteDisplay, mHoeheDisplay))
-        {
-            lAnzahlHoehenTeile = 3.7f;
-        }
-        else if (lGeraeteIFs.istIPHONE(mBreiteDisplay, mHoeheDisplay))
-        {
-            lAnzahlHoehenTeile = 3.6f;
-
-            if (mBreiteDisplay == 2436 && mHoeheDisplay == 1125)
-            {
-                lAnzahlHoehenTeile = 5.5f;
-            }
-
-        }
-        else if (lGeraeteIFs.istIPAD(mBreiteDisplay, mHoeheDisplay))
-        {
-            lAnzahlHoehenTeile = 7;
-        }
-
-        mBreiteCanvas = mBreiteDisplay / 8;
+        mBreiteCanvas = mHoeheCanvas;
         float lBreiteAbstandCanvas = mBreiteCanvas / 8;
+        float lPosYHochRunterCanvas =
+            ((float)((9.08994253409362E-05 * mVerhaeltis) + (-0.000287347559337193 * mAnzahlHoehenTeile) + (0.0112722959982346 * mHoeheCanvas) + 10.4173781566851));
 
-        mHoeheCanvas = mHoeheDisplay / lAnzahlHoehenTeile;
-        float lPosYCanvas = mHoeheCanvas * (lAnzahlHoehenTeile - 1);
+        mScaleHochRunterX = ((float)(0.0000366f * mVerhaeltis - 0.000119f * mAnzahlHoehenTeile + 0.00379 * mHoeheCanvas + 0.0493f));
+        mScaleHochRunterY = 0.88f; // passt generell
 
-        float lNewX = 1.00f;
-        float lNewY = 1.07f;
-        float lNewXSteuerungskreis = 1.00f;
-        int lPpaddingTop = -4;
-        int lYSpacing = -25;
-        int lCanvas4Datentabellenkorrektur = 0;
-        int lCellX = 200;
-        int lCellY = 115;
-        int lPosYHochRunterCanvas = 8;
-        int lPosYHochRunterText= 5;
-        int lFontSize  = 28;
-        int lFontSizeErgebnis = 28;
-        int lTabelleYPos = -250;
-        int lKorrErgebnisListeX = 0;
-        int lKorrErgebnisListeY = 0;
-        float lKorrEregbnisXScale = 0.68f;
-        int lGesamtpunktefontsize = 65;
-        int lKorrErgebnisGesamtPunkte = 0;
+        int lCellX = (int)230;
+        int lCellY = (int)(mHoeheCanvas - 50) / 2;//80;
+        int lPpaddingTop = -12;
+        int lPosYHochRunterText = 5;
+        float lNewXSteuerungskreis = 0.85f;
+        int lYSpacing = 50;
 
+        mFontSize = (int)(6 * mHoeheDisplay * mBreiteDisplay / 1000000 + 15);
+        int lGesamtpunktefontsize = mFontSize * 2;
+        int lFontSizeErgebnis = (int)(mFontSize * 0.95f);
 
-
-        if (lGeraeteIFs.istIPHONE_small(mBreiteDisplay, mHoeheDisplay))
-        {
-            // IPhone Small
-            mHoeheCanvas = 170;
-            if (mHoeheDisplay > 2000)
-            {
-                // India Phone
-                mHoeheCanvas = mHoeheDisplay / 4.8f;
-                lFontSize = 60;
-                lFontSizeErgebnis =40;
-                lPosYCanvas = lPosYCanvas + mHoeheDisplay / 21;
-                lNewX = 0.72f*3;
-                lNewY = 0.52f*3;
-                lNewXSteuerungskreis = 0.72f;
-                lPpaddingTop = -60;
-                lTabelleYPos = -500;
-
-                lPosYHochRunterCanvas = 22;
-                lYSpacing = 150;
-                lCellX = 230;
-                lCellY = 100;
-                lCanvas4Datentabellenkorrektur = 500;
-                lKorrErgebnisListeX = mBreiteDisplay / 2 - 80;
-                lKorrErgebnisListeY = mHoeheDisplay / 4 * (-1) -  140;
-                lKorrEregbnisXScale = 2.3f;
-                lGesamtpunktefontsize = 100;
-                lKorrErgebnisGesamtPunkte = -350;
-            }
-            else  if (mHoeheDisplay > 1200)
-            {
-                mHoeheCanvas = mHoeheDisplay / 4.8f;
-                lFontSize = 38;
-                lFontSizeErgebnis = 38;
-                lNewX = 0.72f;
-                lNewY = 0.52f;
-                lNewXSteuerungskreis = 0.72f;
-                lYSpacing = -15;
-                lCanvas4Datentabellenkorrektur = -98;
-                lKorrEregbnisXScale = 1.6f;
-            }
-            else
-            {
-                lNewX = 0.72f;
-                lNewY = 0.52f;
-                lNewXSteuerungskreis = 0.72f;
-                lYSpacing = -15;
-                lCanvas4Datentabellenkorrektur = -98;
-
-            }
-            lPpaddingTop = -9;
-          
-            float lPosYTabelle = mHoeheDisplay + lAnzahlHoehenTeile / 12.5f * mHoeheDisplay;
-            mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(
-                NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile + 1.5f) * mBreiteCanvas)
-                + lCanvas4Datentabellenkorrektur
-                , lTabelleYPos + mHoeheDisplay, 0);
-            mCanvasTabelleDaten.GetComponent<RectTransform>().sizeDelta = new Vector2(2 * mBreiteCanvas, 2 * mHoeheCanvas);
-
-            mCanvasZeitErgebnis.GetComponent<RectTransform>().position = new Vector3(mBreiteCanvas / 2, mHoeheDisplay / 2, 0);
-            mZeittext.GetComponent<RectTransform>().position = new Vector3(120, -40 + mHoeheDisplay, 0);
-            mErgebnistext.GetComponent<RectTransform>().position = new Vector3(620, -40 + mHoeheDisplay, 0);
-
-            mCanvasZeitErgebnisList.transform.localPosition = new Vector3(920+ lKorrErgebnisListeX, -230- lKorrErgebnisListeY, 0);
-            mCanvasZeitErgebnisList.transform.localScale = new Vector3(lKorrEregbnisXScale, 1.13F, 1F);
-            mCanvasZeitErgebnisGesamtpunkte.transform.localPosition = new Vector3(480+ lKorrErgebnisListeX, -255 + lKorrErgebnisGesamtPunkte, 0);
-        }
-        else if (lGeraeteIFs.istIPHONE(mBreiteDisplay, mHoeheDisplay))
-        {
-            // D7X Iphone
-            lNewX = 0.82f;
-            lNewY = 0.87f;
-            lNewXSteuerungskreis = 0.82f;
-            mHoeheCanvas = 190;
-        
-            lPpaddingTop = -19;
-            lYSpacing = 40;
-            lCellX = 230;
-            lCellY = 80;
-            lPosYHochRunterCanvas = 6;
-            lPosYHochRunterText = 3;
-            lFontSize = 28;
-            lFontSizeErgebnis = 28;
-
-            float lPosYTabelle = mHoeheDisplay + lAnzahlHoehenTeile / 12.5f * mHoeheDisplay;
-            if (mHoeheDisplay == 1125 && mBreiteDisplay == 2436)
-            {
-                mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile +0.25f) * mBreiteCanvas) + lCanvas4Datentabellenkorrektur, lTabelleYPos + mHoeheDisplay, 0);
-            } else
-            {
-                mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile + 1.5f) * mBreiteCanvas) + lCanvas4Datentabellenkorrektur, lTabelleYPos + mHoeheDisplay, 0);
-            }
-            mCanvasTabelleDaten.GetComponent<RectTransform>().sizeDelta = new Vector2(2 * mBreiteCanvas, 2 * mHoeheCanvas);
-
-            mCanvasZeitErgebnis.GetComponent<RectTransform>().position = new Vector3(mBreiteCanvas / 2 + 100, mHoeheDisplay / 2, 0);
-            mZeittext.GetComponent<RectTransform>().position = new Vector3(120, -40 + mHoeheDisplay, 0);
-            mErgebnistext.GetComponent<RectTransform>().position = new Vector3(620, -40 + mHoeheDisplay, 0);
-
-            mCanvasZeitErgebnisList.transform.localPosition = new Vector3(1100, -230, 0);
-            mCanvasZeitErgebnisGesamtpunkte.transform.localPosition = new Vector3(480, -255, 0);
-        }
-        else if (lGeraeteIFs.istIPAD(mBreiteDisplay, mHoeheDisplay))
-        {
-            // IPAD###
-            lNewX = 0.85f;
-            lNewY = 1.07f;
-            lNewXSteuerungskreis = 0.85f;
-            lPpaddingTop = -12;
-            lYSpacing = 50;
-            lCellX = 230;
-            lCellY = 80;
-            lTabelleYPos = -260;
-            lFontSize = 33;
-            lFontSizeErgebnis = 25;
-
-            lCanvas4Datentabellenkorrektur = -100;
-
-            float lPosYTabelle = mHoeheDisplay + lAnzahlHoehenTeile / 11.5f * mHoeheDisplay;
-            mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile - 1.5f) * mBreiteCanvas) + lCanvas4Datentabellenkorrektur, lTabelleYPos + mHoeheDisplay, 0);
-            mCanvasTabelleDaten.GetComponent<RectTransform>().sizeDelta = new Vector2(2 * mBreiteCanvas, 2 * mHoeheCanvas);
-
-            mCanvasZeitErgebnis.GetComponent<RectTransform>().position = new Vector3(mBreiteDisplay / 2, mHoeheDisplay / 2, 0);
-            mZeittext.GetComponent<RectTransform>().position = new Vector3(120, -40 + mHoeheDisplay, 0);
-            mErgebnistext.GetComponent<RectTransform>().position = new Vector3(620, -40 + mHoeheDisplay, 0);
-
-            mCanvasZeitErgebnisList.transform.localPosition = new Vector3(620, 140, 0);
-            mCanvasZeitErgebnisList.transform.localScale = new Vector3(0.8f, 1.13F, 1F);
-            mCanvasZeitErgebnisGesamtpunkte.transform.localPosition = new Vector3(73, -400, 0);
-        }
-        else if (lGeraeteIFs.istSigridPhone(mBreiteDisplay, mHoeheDisplay))
-        {
-            // Sigrid Phone ###
-            lNewX = 0.91f;
-            lNewY = 0.91f;
-            lNewXSteuerungskreis = 0.91f;
-            mHoeheCanvas = 280;
-
-            lPpaddingTop = -58;
-            lYSpacing = 46;
-            lCellX = 300;
-            lCellY = 116;
-            lPosYHochRunterCanvas = -37;
-            lPosYHochRunterText = 3;
-            lPosYCanvas = lPosYCanvas - 155;
-
-            lFontSize = mHoeheDisplay / 30;
-            lFontSizeErgebnis = mHoeheDisplay / 30;
-            lTabelleYPos = -320;
-            lCanvas4Datentabellenkorrektur = -1000;
-
-            float lPosYTabelle = mHoeheDisplay + lAnzahlHoehenTeile / 12.5f * mHoeheDisplay;
-            mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile + 1.5f) * mBreiteCanvas) + lCanvas4Datentabellenkorrektur, lTabelleYPos  + mHoeheDisplay, 0);
-            mCanvasTabelleDaten.GetComponent<RectTransform>().sizeDelta = new Vector2(2 * mBreiteCanvas, 2 * mHoeheCanvas);
-
-            mCanvasZeitErgebnis.GetComponent<RectTransform>().position = new Vector3(mBreiteCanvas / 2 + 600, mHoeheDisplay / 2, 0);
-            mZeittext.GetComponent<RectTransform>().position = new Vector3(120, -40 + mHoeheDisplay, 0);
-            mErgebnistext.GetComponent<RectTransform>().position = new Vector3(1100, -60 + mHoeheDisplay, 0);
-
-            mCanvasZeitErgebnisList.transform.localPosition = new Vector3(mBreiteDisplay / 2 + 160, -70, 0);
-            
-            mCanvasZeitErgebnisList.transform.localScale = new Vector2(1, 1.13f);
-            mCanvasZeitErgebnisGesamtpunkte.transform.localPosition = new Vector3(480, -455, 0);
-        }
-        else 
-        {
-            // M.Altner Phone ###
-            lNewX = 0.91f;
-            lNewY = 0.91f;
-            lNewXSteuerungskreis = 0.91f;
-            mHoeheCanvas = 280;
-
-            lPpaddingTop = -58;
-            lYSpacing = 46;
-            lCellX = 300;
-            lCellY = 116;
-            lPosYHochRunterCanvas = -37;
-            lPosYHochRunterText = 3;
-            lPosYCanvas = lPosYCanvas - 155;
-
-            lFontSize = mHoeheDisplay / 30;
-            lFontSizeErgebnis = mHoeheDisplay / 40;
-            lTabelleYPos = -320;
-            lCanvas4Datentabellenkorrektur = -1000;
-
-            float lPosYTabelle = mHoeheDisplay + lAnzahlHoehenTeile / 12.5f * mHoeheDisplay;
-            mCanvasTabelleDaten.GetComponent<RectTransform>().position = new Vector3(NormiereX(lAnzahlHoehenTeile * lBreiteAbstandCanvas + (lAnzahlHoehenTeile + 1.5f) * mBreiteCanvas) + lCanvas4Datentabellenkorrektur, lTabelleYPos + mHoeheDisplay, 0);
-            mCanvasTabelleDaten.GetComponent<RectTransform>().sizeDelta = new Vector2(2 * mBreiteCanvas, 2 * mHoeheCanvas);
-
-            mCanvasZeitErgebnis.GetComponent<RectTransform>().position = new Vector3(mBreiteCanvas / 2 + 600, mHoeheDisplay / 2, 0);
-            mZeittext.GetComponent<RectTransform>().position = new Vector3(120, -40 + mHoeheDisplay, 0);
-            mErgebnistext.GetComponent<RectTransform>().position = new Vector3(1100, -60 + mHoeheDisplay, 0);
-
-            mCanvasZeitErgebnisList.transform.localPosition = new Vector3(mBreiteDisplay / 2 + 170, -40, 0);
-           
-            mCanvasZeitErgebnisList.transform.localScale = new Vector2(0.95f, 1.13f);
-            mCanvasZeitErgebnisGesamtpunkte.transform.localPosition = new Vector3(480, -455, 0);
-        }
+        setze4Canvas4Daten();
 
         mTextMeshProName.fontSize = lFontSizeErgebnis;
         mTextMeshProMasse.fontSize = lFontSizeErgebnis;
@@ -356,23 +208,26 @@ public class AufloesungskuemmererGraviArena : MonoBehaviour
         mTextMeshProDurchschnittGeschwindigkeitAbweichung.fontSize = lFontSizeErgebnis;
         mTextMeshProPunkte.fontSize = lFontSizeErgebnis;
 
-        mTextMeshProZurueck.fontSize = lFontSize;
-        mTextMeshProStartstopp.fontSize = lFontSize;
-        mTextMeshProEinklappen.fontSize = lFontSize;
+        mTextMeshProZurueck.fontSize = mFontSize;
+        mTextMeshProStartstopp.fontSize = mFontSize;
+        mTextMeshProEinklappen.fontSize = mFontSize;
 
-        mTextMeshProListeName.fontSize = lFontSize *0.75f;
-        mTextMeshProListeMasse.fontSize = lFontSize * 0.75f;
-        mTextMeshProListeGeschwindigkeit.fontSize = lFontSize * 0.75f;
-        mTextMeshProListeAbstand.fontSize = lFontSize * 0.75f;
+        mTextMeshProListeName.fontSize = mFontSize * 0.75f;
+        mTextMeshProListeMasse.fontSize = mFontSize * 0.75f;
+        mTextMeshProListeGeschwindigkeit.fontSize = mFontSize * 0.75f;
+        mTextMeshProListeAbstand.fontSize = mFontSize * 0.75f;
 
         mTextMeshProGesamtPunkte.fontSize = lGesamtpunktefontsize;
 
-        int lFontSizeWinkelUndCo = lFontSize / 2;
+        int lFontSizeWinkelUndCo = mFontSize / 2;
         mTextMeshProEinWinkel.fontSize = lFontSizeWinkelUndCo;
         mTextMeshProEinMasse.fontSize = lFontSizeWinkelUndCo;
         mTextMeshProEinX.fontSize = lFontSizeWinkelUndCo;
         mTextMeshProEinY.fontSize = lFontSizeWinkelUndCo;
         mTextMeshProEinZ.fontSize = lFontSizeWinkelUndCo;
+
+        mTextMeshProZeit.fontSize = mFontSize * 0.85f;
+        mTextMeshProMasseUebrig.fontSize = mFontSize * 0.85f;
 
         mEinAusKlapper.GetComponent<RectTransform>().position = new Vector3(NormiereX(lBreiteAbstandCanvas), NormiereY(lPosYCanvas + mHoeheCanvas - lBreiteAbstandCanvas), 0);
         mEinAusKlapper.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreiteCanvas, mHoeheCanvas / 2);
@@ -389,27 +244,97 @@ public class AufloesungskuemmererGraviArena : MonoBehaviour
         mCanvasSchuss.GetComponent<RectTransform>().position = new Vector3(NormiereX(2 * lBreiteAbstandCanvas + mBreiteCanvas), NormiereY(lPosYCanvas), 0);
         mCanvasSchuss.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreiteCanvas, mHoeheCanvas);
 
-
         mCanvasSteuerungKreis.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreiteCanvas, mHoeheCanvas);
         mCanvasSteuerungKreis.GetComponent<RectTransform>().localScale = new Vector2(lNewXSteuerungskreis, lNewXSteuerungskreis);
 
-        stelleCanvasEin(mCanvasX, mCanvasXHochrunter, mCanvasXHoch, mCanvasXRunter, lBreiteAbstandCanvas, lPosYCanvas, lNewX, lNewY, lPpaddingTop, lYSpacing, 2, 3, mCanvasXHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
+        stelleCanvasEin(mCanvasX, mCanvasXHochrunter, mCanvasXHoch, mCanvasXRunter, lBreiteAbstandCanvas, lPosYCanvas, mScaleHochRunterX, mScaleHochRunterY, lPpaddingTop, lYSpacing, 2, 3, mCanvasXHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
 
-        stelleCanvasEin(mCanvasY, mCanvasYHochrunter, mCanvasYHoch, mCanvasYRunter, lBreiteAbstandCanvas, lPosYCanvas, lNewX, lNewY, lPpaddingTop, lYSpacing, 3, 4, mCanvasYHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
+        stelleCanvasEin(mCanvasY, mCanvasYHochrunter, mCanvasYHoch, mCanvasYRunter, lBreiteAbstandCanvas, lPosYCanvas, mScaleHochRunterX, mScaleHochRunterY, lPpaddingTop, lYSpacing, 3, 4, mCanvasYHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
 
-        stelleCanvasEin(mCanvasZ, mCanvasZHochrunter, mCanvasZHoch, mCanvasZRunter, lBreiteAbstandCanvas, lPosYCanvas, lNewX, lNewY, lPpaddingTop, lYSpacing, 4, 5, mCanvasZHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
+        stelleCanvasEin(mCanvasZ, mCanvasZHochrunter, mCanvasZHoch, mCanvasZRunter, lBreiteAbstandCanvas, lPosYCanvas, mScaleHochRunterX, mScaleHochRunterY, lPpaddingTop, lYSpacing, 4, 5, mCanvasZHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
 
-        stelleCanvasEin(mCanvasMasse,mCanvasMasseHochrunter, mCanvasMasseHoch, mCanvasMasseRunter,lBreiteAbstandCanvas, lPosYCanvas, lNewX, lNewY, lPpaddingTop, lYSpacing, 5,6, mCanvasMasseHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
+        stelleCanvasEin(mCanvasMasse, mCanvasMasseHochrunter, mCanvasMasseHoch, mCanvasMasseRunter, lBreiteAbstandCanvas, lPosYCanvas, mScaleHochRunterX, mScaleHochRunterY, lPpaddingTop, lYSpacing, 5, 6, mCanvasMasseHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
 
-        stelleCanvasEin(mCanvasWinkel, mCanvasWinkelHochrunter, mCanvasWinkelHoch, mCanvasWinkelRunter, lBreiteAbstandCanvas, lPosYCanvas, lNewX, lNewY, lPpaddingTop, lYSpacing, 6,7, mCanvasWinkelHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
+        stelleCanvasEin(mCanvasWinkel, mCanvasWinkelHochrunter, mCanvasWinkelHoch, mCanvasWinkelRunter, lBreiteAbstandCanvas, lPosYCanvas, mScaleHochRunterX, mScaleHochRunterY, lPpaddingTop, lYSpacing, 6, 7, mCanvasWinkelHochRunterText, lCellX, lCellY, lPosYHochRunterCanvas, lPosYHochRunterText);
 
-       
+
     }
 
-  
+    private void setze4Canvas4Daten()
+    {
+        mBreite = mBreiteDisplay / 11 - 30;
+        int lBreiteName = (int)(mBreite * 1.3f);
+        int lBreiteKorr = mBreiteDisplay / 100;
+        int lHoeheKorr = mHoeheDisplay / (mHoeheDisplay/35);
+
+        int lY = -lHoeheKorr + mHoeheDisplay;
+        int lX = 0;
+
+        // Zeit
+        lX = lX + mBreite / 2 + lBreiteKorr;
+        mText4Jahre.GetComponent<RectTransform>().position = new Vector3(lX, lY, 0);
+        mText4Jahre.GetComponent<RectTransform>().sizeDelta = new Vector3(mBreite, 50, 0);
+
+        // Masse
+        lX = lX + 5*mBreite + lBreiteKorr;
+        mTextMasseUebrig.GetComponent<RectTransform>().position = new Vector3(lX, lY, 0);
+        mTextMasseUebrig.GetComponent<RectTransform>().sizeDelta = new Vector3(mBreite, 50, 0);
+
+        // Gesamtpunkte
+        mTextGesamtPunkte.GetComponent<RectTransform>().position = new Vector3(mBreiteDisplay / 3, -lHoeheKorr + 1*mHoeheDisplay/4, 0);
+        mTextGesamtPunkte.GetComponent<RectTransform>().sizeDelta = new Vector3(mBreiteDisplay/2, mHoeheDisplay/5, 0);
+
+        // Planeten Ausgabe
+        lX = mBreiteDisplay - lBreiteName - mBreite - mBreite - 3*lBreiteKorr;
+        mTextMeshProListeName.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProListeName.GetComponent<RectTransform>().sizeDelta = new Vector2(lBreiteName, 60);
+
+        lX = lX + lBreiteName;
+        mTextMeshProListeMasse.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProListeMasse.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 60);
+
+        lX = lX + mBreite;
+        mTextMeshProListeGeschwindigkeit.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProListeGeschwindigkeit.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 60);
+
+        lX = lX + mBreite;
+        mTextMeshProListeAbstand.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProListeAbstand.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 60);
+
+        // Endauswertung
+        lY = lY + 2*lHoeheKorr;
+        lX = mBreiteDisplay/3;
+        mTextMeshProName.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProName.GetComponent<RectTransform>().sizeDelta = new Vector2(lBreiteName, 100);
+
+        lX = lX + lBreiteName;
+        mTextMeshProMasse.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProMasse.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 100);
+
+        lX = lX + lBreiteName;
+        mTextMeshProDurchschnittDistanz.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProDurchschnittDistanz.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 100);
+
+        lX = lX + mBreite;
+        mTextMeshProDurchschnittDistanzAbweichung.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProDurchschnittDistanzAbweichung.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 100);
+
+        lX = lX + mBreite;
+        mTextMeshProDurchschnittGeschwindigkeit.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProDurchschnittGeschwindigkeit.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 100);
+
+        lX = lX + mBreite;
+        mTextMeshProDurchschnittGeschwindigkeitAbweichung.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProDurchschnittGeschwindigkeitAbweichung.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 100);
+
+        lX = lX + mBreite;
+        mTextMeshProPunkte.GetComponent<RectTransform>().position = new Vector2(lX, lY);
+        mTextMeshProPunkte.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreite, 100);
+    }
+
     private void stelleCanvasEin(GameObject pCanvas, GameObject pCanvasHochrunter, GameObject pCanvasHoch, GameObject pCanvasRunter,
         float lBreiteAbstandCanvas, float lPosYCanvas, float lNewX, float lNewY, int lPpaddingTop, int lYSpacing, int pFaktor, int pFaktorVorn,
-        GameObject mCanvasMasseHochRunterText, int pCellX,int pCellY, int pPosYHochRunterCanvas, int pPosYHochRunterText)
+        GameObject mCanvasMasseHochRunterText, int pCellX, int pCellY, float pPosYHochRunterCanvas, int pPosYHochRunterText)
     {
         pCanvas.GetComponent<RectTransform>().position = new Vector3(NormiereX(pFaktorVorn * lBreiteAbstandCanvas + pFaktor * mBreiteCanvas), NormiereY(lPosYCanvas), 0);
         pCanvas.GetComponent<RectTransform>().sizeDelta = new Vector2(mBreiteCanvas, mHoeheCanvas);
@@ -431,6 +356,6 @@ public class AufloesungskuemmererGraviArena : MonoBehaviour
 
     private float NormiereY(float pY)
     {
-        return pY -mHoeheDisplay + 1.65f * mHoeheCanvas;
+        return pY - mHoeheDisplay + 1.65f * mHoeheCanvas;
     }
 }

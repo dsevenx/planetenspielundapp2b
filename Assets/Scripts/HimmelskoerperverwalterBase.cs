@@ -210,6 +210,16 @@ public class HimmelskoerperverwalterBase : MonoBehaviour
                 mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_HARALDLESCH)
             }, 0.01f, false, Sprachenuebersetzer.K_ASTEROID, Himmelskoerper.K_LEER_PLANET);
 
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_MAKEMAKE, "Makemake", 0.0005f, 6770000000f,
+             1, 3.2f, 1430, -229, -241, Sprachenuebersetzer.K_KILOMETER, new string[2] { "makemakemitmond",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_MAKEMAKE)
+            }, 0.2f, false, Sprachenuebersetzer.K_ZWERGPLANET, Himmelskoerper.K_LEER_PLANET);
+
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_HAUMEA, "Haumea", 0.0006f, 6475000000f,
+            2, 2.0f, 1632, -229, -241, Sprachenuebersetzer.K_KILOMETER, new string[2] { "haumeamitmond",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_HAUMEA)
+            }, 0.2f, false, Sprachenuebersetzer.K_ZWERGPLANET, Himmelskoerper.K_LEER_PLANET);
+     
             erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_PLUTO, "Pluto", 0.0022f, 5900000000f,
                 5, 1.88f, 2376, -218, -240, Sprachenuebersetzer.K_KILOMETER, new string[2] { "plutomonde",
                 K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_PLUTO)

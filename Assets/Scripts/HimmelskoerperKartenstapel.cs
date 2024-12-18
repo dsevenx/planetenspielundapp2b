@@ -1,20 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
+[System.Serializable]
+public class IntListWrapper
+{
+	public List<int> integerList;
+}
 
 public class HimmelskoerperKartenstapel  {
 
 	public const int K_LEERER_STAPEL = -1;
 
-	private IList<int> mStapel;
+	private List<int> mStapel;
 
-	public HimmelskoerperKartenstapel()
+	private string mName;
+
+	public const string K_STAPEL = "STAPEL_";
+
+	public HimmelskoerperKartenstapel(string pName)
     {
-		mStapel = null;
+		mName = K_STAPEL+pName;
 	}
 
-	public void initHimmelskoerperKartenstapel() {
+	public void initHimmelskoerperKartenstapel(bool pVonDB) {
 		mStapel = new List<int>();
+
+		if (pVonDB)
+        {
+			string lGesicherteStapel = PlayerPrefs.GetString(mName);
+
+			if (lGesicherteStapel != null && lGesicherteStapel.Length > 10)
+            {
+				string lFromPalyerPref = PlayerPrefs.GetString(mName);
+
+				IntListWrapper lIntListWrapper = JsonUtility.FromJson<IntListWrapper>(lFromPalyerPref);
+
+				mStapel = lIntListWrapper.integerList;
+			}
+		}
 	}
 
 	public int lieferObersteKarte() {
@@ -22,25 +47,40 @@ public class HimmelskoerperKartenstapel  {
 			return K_LEERER_STAPEL;
 		}
 
-		int lErg = mStapel [0];
-
-		int lLetzteIndex = mStapel.Count - 1;
-
-		for (int lIndex = 0; lIndex < lLetzteIndex; lIndex++) {
-			mStapel [lIndex] = mStapel [lIndex + 1];
-		}
-
-		mStapel.RemoveAt (lLetzteIndex);
-
-		return lErg;
+		return mStapel [0];
 	}
 
-	public void legKarteAn(int pHimmelskoerper) {
+	public void loescheObersteKarte()
+    {
+		int lLetzteIndex = mStapel.Count - 1;
+
+		for (int lIndex = 0; lIndex < lLetzteIndex; lIndex++)
+		{
+			mStapel[lIndex] = mStapel[lIndex + 1];
+		}
+
+		mStapel.RemoveAt(lLetzteIndex);
+
+		sichereStapel();
+	}
+   
+    public void legKarteAn(int pHimmelskoerper) {
 
 		mStapel.Add (pHimmelskoerper);
+
+		sichereStapel();
 	}
 
 	public int lieferAnzahl() {
 		return mStapel.Count;
 	}
+
+	private void sichereStapel()
+	{
+		IntListWrapper lIntListWrapper = new IntListWrapper();
+		lIntListWrapper.integerList = mStapel;
+		string lJsonStapel = JsonUtility.ToJson(lIntListWrapper);
+		PlayerPrefs.SetString(mName, lJsonStapel);
+	}
+
 }

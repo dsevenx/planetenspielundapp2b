@@ -7,11 +7,9 @@ using System.Linq;
 
 public class AttractElementVerwalter : MonoBehaviour
 {
-    public const int K_URKNALL =  138;
+    public const int K_URKNALL = 138;
 
     public Camera mMainCamera;
-
-    public GameObject mCube;
 
     public Dictionary<int, Attract4Dictionary> mMyAttractElemtentDict;
 
@@ -128,7 +126,15 @@ public class AttractElementVerwalter : MonoBehaviour
 
 
     public TextMeshProUGUI mTextMeshMasseUebrig;
-    public GameObject mCanvasErgebnis;
+
+    public GameObject mCanvasTextErgebnisName;
+    public GameObject mCanvasTextErgebnisTagestabilerMasse;
+    public GameObject mCanvasTextErgebnisDistanzdurchschnitt;
+    public GameObject mCanvasTextErgebnisDistanzdurchschnittAbweichung;
+    public GameObject mCanvasTextErgebnisGeschwindigkeitDurchschnitt;
+    public GameObject mCanvasTextErgebnisGeschwindigkeitDurchschnittAbweichung;
+    public GameObject mCanvasTextErgebnisPunkte;
+
     public GameObject mTGameobjectMasseUebrig;
 
     // Ergebnis ANF
@@ -154,7 +160,10 @@ public class AttractElementVerwalter : MonoBehaviour
 
     public DarstellungAttractelementInfos mDarstellungAttractelementInfos;
 
-    public GameObject mDarstellungAttractelementInfosGameObject;
+    public GameObject mDarstellungAttractelementNameGameObject;
+    public GameObject mDarstellungAttractelementMasseGameObject;
+    public GameObject mDarstellungAttractelementSpeedGameObject;
+    public GameObject mDarstellungAttractelementAbstandGameObject;
 
     public GameObject mDarstellungAttractelement4JahreInfosGameObject;
 
@@ -438,10 +447,23 @@ public class AttractElementVerwalter : MonoBehaviour
 
     private void einBlendenCanvas(bool pEnable, bool pEnde)
     {
-        mDarstellungAttractelementInfosGameObject.SetActive(pEnable);
+        mDarstellungAttractelementNameGameObject.SetActive(pEnable);
+        mDarstellungAttractelementMasseGameObject.SetActive(pEnable);
+        mDarstellungAttractelementSpeedGameObject.SetActive(pEnable);
+        mDarstellungAttractelementAbstandGameObject.SetActive(pEnable);
+
+
         mDarstellungAttractelement4JahreInfosGameObject.SetActive(pEnable);
         mTGameobjectMasseUebrig.SetActive(pEnable);
-        mCanvasErgebnis.SetActive(pEnde);
+
+        mCanvasTextErgebnisName.SetActive(pEnde);
+        mCanvasTextErgebnisTagestabilerMasse.SetActive(pEnde);
+        mCanvasTextErgebnisDistanzdurchschnitt.SetActive(pEnde);
+        mCanvasTextErgebnisDistanzdurchschnittAbweichung.SetActive(pEnde);
+        mCanvasTextErgebnisGeschwindigkeitDurchschnitt.SetActive(pEnde);
+        mCanvasTextErgebnisGeschwindigkeitDurchschnittAbweichung.SetActive(pEnde);
+        mCanvasTextErgebnisPunkte.SetActive(pEnde);
+
         mDarstellungGesamtpunkteGameObject.SetActive(pEnde);
     }
 

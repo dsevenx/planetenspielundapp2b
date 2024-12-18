@@ -15,6 +15,13 @@ public class AufloesungsKuemmererInfoConfig : MonoBehaviour {
 
 	public TextMeshProUGUI mTextMeshProTitel;
 
+	public GameObject mZurueckButton;
+
+	public GameObject mDeutschButton;
+
+	public GameObject mEnglischButton;
+
+	public GameObject mGraviErgebnisPrefab;
 
 	public TextMeshProUGUI mTextMeshProGraviRecord;
 
@@ -22,75 +29,48 @@ public class AufloesungsKuemmererInfoConfig : MonoBehaviour {
 
 	public Material mMaterial;
 
-
 	public GameObject mLinkeMenuLeiste;
 
+	public float mTeilBreite;
+	public float mTeilHoehe;
+
 	void Start () {
-		mMaterial.SetFloat("_GlossMapScale", 0.9f);
+
+
+		GeraeteIFs lGeraeteIFs = new GeraeteIFs();
+		lGeraeteIFs.init(Camera.main);
+		mTeilBreite = lGeraeteIFs.mWidthTeil;
+		mTeilHoehe = lGeraeteIFs.mHoeheTeil;
+		Vector3 lButtonScaleLinkeMenuleiste = new Vector3(1.5f * mTeilBreite, 1.2f * mTeilHoehe, 0.5f);
+
+		mMaterial.SetFloat("_GlossMapScale", 0.9f);//0.6
 
 		mBreiteDisplay = Display.main.systemWidth;
 		mHoeheDisplay = Display.main.systemHeight;
-		GeraeteIFs lGeraeteIFs = new GeraeteIFs ();
 
-		float lBreitefloat = mBreiteDisplay;
-		float lHoehefloat = mHoeheDisplay;
-		float lVerhaetnis = lBreitefloat / lHoehefloat;
+		mLinkeMenuLeiste.transform.localPosition = new Vector3(lGeraeteIFs.lieferPos(3, 11).x, lGeraeteIFs.lieferPos(3, 11).y, -0.15f);
+		mLinkeMenuLeiste.transform.localScale = new Vector3(1f, 1f, 1f);
 
-		if (lGeraeteIFs.istIPHONE_small (mBreiteDisplay,mHoeheDisplay)) {
+		mZurueckButton.transform.localPosition = new Vector3(0, 4.5f, 0f);
+		mZurueckButton.transform.localScale = lButtonScaleLinkeMenuleiste;
 
-			mLinkeMenuLeiste.transform.localPosition = new Vector3 (-13.5f, -2.3f, -0.15f);
-			mLinkeMenuLeiste.transform.localScale = new Vector3 (1f, 1f, 1f);
+		mDeutschButton.transform.localPosition = new Vector3(0f, 2f, 0f);
+		mDeutschButton.transform.localScale = lButtonScaleLinkeMenuleiste;
 
-			mTextMeshProVortext.transform.localPosition = new Vector3 (-641f, lHoehefloat*-0.35f, 0f);
-			mTextMeshProInputfield.transform.localPosition = new Vector3 (0f, lHoehefloat * -0.35f, 0f);
-			mTextMeshProTitel.transform.localPosition = new Vector3 (320f, lHoehefloat * -0.35f, 0f);
+		mEnglischButton.transform.localPosition = new Vector3(0f, -0.5f, 0f);
+		mEnglischButton.transform.localScale = lButtonScaleLinkeMenuleiste;
 
-			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, lHoehefloat * -0.45f, 0f);
-			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, lHoehefloat * -0.45f, 0f);
+		mTextMeshProVortext.transform.localPosition = new Vector3(-mBreiteDisplay/2.4f, mHoeheDisplay * -0.33f +mHoeheDisplay/100, 0f);
+		mTextMeshProInputfield.transform.localPosition = new Vector3(0f, mHoeheDisplay * -0.33f, 0f);
+		mTextMeshProTitel.transform.localPosition = new Vector3(mBreiteDisplay / 5, mHoeheDisplay * -0.33f + mHoeheDisplay / 100, 0f);
 
+		mTextMeshProGraviRecord.transform.localPosition = new Vector3(-mBreiteDisplay / 2.4f, mHoeheDisplay * -0.44f + mHoeheDisplay / 100, 0f);
+		mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, mHoeheDisplay * -0.44f, 0f);
 
-		}
-		else  if (lGeraeteIFs.istIPHONE (mBreiteDisplay,mHoeheDisplay)) {
+		mGraviErgebnisPrefab.transform.localScale = new Vector3(0.75f, 0.75f, 1f);
 
-			mLinkeMenuLeiste.transform.localPosition = new Vector3 (-13.5f, -2.3f, -0.15f);
-			mLinkeMenuLeiste.transform.localScale = new Vector3 (1f, 1f, 1f);
-
-			mTextMeshProVortext.transform.localPosition = new Vector3 (-641f, -240f, 0f);
-			mTextMeshProInputfield.transform.localPosition = new Vector3 (0f, -250f, 0f);
-			mTextMeshProTitel.transform.localPosition = new Vector3 (320f, -240f, 0f);
-
-			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, -312f, 0f);
-			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, -331f, 0f);
-
-
-		}
-		else if (lGeraeteIFs.istIPAD (mBreiteDisplay,mHoeheDisplay)) {
-
-			mLinkeMenuLeiste.transform.localPosition = new Vector3 (-7.8f, -2.3f, -0.15f);
-			mLinkeMenuLeiste.transform.localScale = new Vector3 (.7f, 1f, 1f);
-
-			mTextMeshProVortext.transform.localPosition = new Vector3 (-641f, -580f, 0f);
-			mTextMeshProInputfield.transform.localPosition = new Vector3 (26f, -595f, 0f);
-			mTextMeshProTitel.transform.localPosition = new Vector3 (320f, -580f, 0f);
-
-			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, -701f, 0f);
-			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(26f, -720f, 0f);
-		}
-		else 
-		{
-			mLinkeMenuLeiste.transform.localPosition = new Vector3(-12.8f, -2.3f, -0.15f);
-			mLinkeMenuLeiste.transform.localScale = new Vector3(1f, 1f, 1f);
-
-			mTextMeshProVortext.transform.localPosition = new Vector3(-641f, -400f, 0f);
-			mTextMeshProInputfield.transform.localPosition = new Vector3(0f, -410f, 0f);
-			mTextMeshProTitel.transform.localPosition = new Vector3(320f, -400f, 0f);
-
-			mTextMeshProGraviRecord.transform.localPosition = new Vector3(-641f, -502f, 0f);
-			mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, -522f, 0f);
-
-
-		}
-
+		mTextMeshProVortext.fontSize = lGeraeteIFs.lieferSizeGUI(mHoeheDisplay);
+		mTextMeshProTitel.fontSize = lGeraeteIFs.lieferSizeGUI(mHoeheDisplay);
+		mTextMeshProGraviRecord.fontSize = lGeraeteIFs.lieferSizeGUI(mHoeheDisplay);
 	}
-
 }

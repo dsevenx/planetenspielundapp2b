@@ -67,7 +67,13 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
 
     public GameObject mGameObjectAngabeQuartett;
 
+    public GameObject mGameObjectAngabeInfoConfig;
+
     public GameObject mGameObjectArtDesHimmelskoerper;
+
+    public GameObject mGameObjectHimmelskoerperVor;
+
+    public GameObject mGameObjectHimmelskoerperNaechste;
 
     public GameObject mGameObjectKartenButton;
 
@@ -89,7 +95,13 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
 
     private Quaternion mGameObjectQuartettRotation;
 
+    private Quaternion mGameObjectInfoConfigRotation;
+
     private Quaternion mGameObjectArtDesHimmelskoerperRotation;
+
+    private Quaternion mGameObjectHimmelskoerperVorRotation;
+
+    private Quaternion mGameObjectHimmelskoerperNaechsteRotation;
 
     private Quaternion mGameObjectKartenButtonRotation;
 
@@ -118,8 +130,8 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
             mTextMeshKampfProtokollGewinner.text = "";
             mGameObjectKampfAktuelleKampf.SetActive(false);
 
-            mStapelEinstein = new HimmelskoerperKartenstapel();
-            mStapelYou = new HimmelskoerperKartenstapel();
+            mStapelEinstein = new HimmelskoerperKartenstapel("Einstein");
+            mStapelYou = new HimmelskoerperKartenstapel("You");
 
         }
     }
@@ -146,11 +158,13 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         mGameObjectAngabeDichte.transform.rotation = mGameObjectAngabeDichteRotation;
         mGameObjectAngabeLernen.transform.rotation = mGameObjectLernenRotation;
         mGameObjectAngabeQuartett.transform.rotation = mGameObjectQuartettRotation;
+        mGameObjectAngabeInfoConfig.transform.rotation = mGameObjectInfoConfigRotation;
         mGameObjectArtDesHimmelskoerper.transform.rotation = mGameObjectArtDesHimmelskoerperRotation;
+        mGameObjectHimmelskoerperVor.transform.rotation =  mGameObjectHimmelskoerperVorRotation;
+        mGameObjectHimmelskoerperNaechste.transform.rotation = mGameObjectHimmelskoerperNaechsteRotation;
         mGameObjectKartenButton.transform.rotation = mGameObjectKartenButtonRotation;
         mGameObjectKampfAktuelleKampf.transform.rotation = mGameObjectAktuelleKampfRotation;
-        mGameObjectKampfAktuelleKampf.transform.position = mAufloesungsKuemmerer.lieferAktuelleKampfPostion(false);
-
+        mGameObjectKampfAktuelleKampf.transform.localPosition = mAufloesungsKuemmerer.lieferAktuelleKampfPostion(false);
 
         if (pSoll)
         {
@@ -164,16 +178,20 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
 
             mGameObjectAngabeLernen.transform.Rotate(new Vector3(0f, -20f, -5f));
             mGameObjectAngabeQuartett.transform.Rotate(new Vector3(0f, -20f, -2f));
+            mGameObjectAngabeInfoConfig.transform.Rotate(new Vector3(0f, -20f, -2f));
             mGameObjectArtDesHimmelskoerper.transform.Rotate(new Vector3(0f, -20f, 2f));
             mGameObjectKartenButton.transform.Rotate(new Vector3(0f, -20f, -2f));
 
+            mGameObjectHimmelskoerperVor.transform.Rotate(new Vector3(0f, -20f, 2f));
+            mGameObjectHimmelskoerperNaechste.transform.Rotate(new Vector3(0f, -20f, 2f));
+
             mGameObjectKampfAktuelleKampf.transform.Rotate(new Vector3(0f, -20f, -2f));
-            mGameObjectKampfAktuelleKampf.transform.position = mAufloesungsKuemmerer.lieferAktuelleKampfPostion(true);
+            mGameObjectKampfAktuelleKampf.transform.localPosition = mAufloesungsKuemmerer.lieferAktuelleKampfPostion(true);
 
         }
     }
 
-    public void mischeZweiStapel()
+    public void mischeZweiStapel(bool pVonDB)
     {
         Dictionary<int, int> lMischstapel = new Dictionary<int, int>();
 
@@ -202,34 +220,39 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
             }
         }
 
-        mStapelEinstein.initHimmelskoerperKartenstapel();
-        mStapelYou.initHimmelskoerperKartenstapel();
+        mStapelEinstein.initHimmelskoerperKartenstapel(pVonDB);
+        mStapelYou.initHimmelskoerperKartenstapel(pVonDB);
 
-        int lKartenWegenLevel = (mHighScoreVerwaltung.getLevel() - 1) * 2;
-
-        bool l4You = true;
-        for (int lIndex = 0; lIndex <= lMaxIndex; lIndex++)
+        if (pVonDB && mStapelEinstein.lieferAnzahl() > 0 && mStapelYou.lieferAnzahl() > 0)
         {
+            // bereits gefüllt
+        } else { 
+            int lKartenWegenLevel = (mHighScoreVerwaltung.getLevel() - 1) * 2;
 
-            if (lMischstapel.ContainsKey(lIndex))
+            bool l4You = true;
+            for (int lIndex = 0; lIndex <= lMaxIndex; lIndex++)
             {
 
-                if (lKartenWegenLevel > 0)
+                if (lMischstapel.ContainsKey(lIndex))
                 {
-                    mStapelEinstein.legKarteAn(lMischstapel[lIndex]);
-                    lKartenWegenLevel--;
-                }
-                else
-                {
-                    if (l4You)
+
+                    if (lKartenWegenLevel > 0)
                     {
-                        mStapelYou.legKarteAn(lMischstapel[lIndex]);
+                        mStapelEinstein.legKarteAn(lMischstapel[lIndex]);
+                        lKartenWegenLevel--;
                     }
                     else
                     {
-                        mStapelEinstein.legKarteAn(lMischstapel[lIndex]);
+                        if (l4You)
+                        {
+                            mStapelYou.legKarteAn(lMischstapel[lIndex]);
+                        }
+                        else
+                        {
+                            mStapelEinstein.legKarteAn(lMischstapel[lIndex]);
+                        }
+                        l4You = !l4You;
                     }
-                    l4You = !l4You;
                 }
             }
         }
@@ -265,16 +288,22 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         {
             mStapelYou.legKarteAn(mIndexYou);
             mStapelYou.legKarteAn(mIndexEinstein);
+            mStapelYou.loescheObersteKarte();
+            mStapelEinstein.loescheObersteKarte();
         }
         else if (mWinner.Equals(K_WIN_EINSTEIN))
         {
             mStapelEinstein.legKarteAn(mIndexEinstein);
             mStapelEinstein.legKarteAn(mIndexYou);
+            mStapelYou.loescheObersteKarte();
+            mStapelEinstein.loescheObersteKarte();
         }
         else
         {
             mStapelYou.legKarteAn(mIndexYou);
             mStapelEinstein.legKarteAn(mIndexEinstein);
+            mStapelYou.loescheObersteKarte();
+            mStapelEinstein.loescheObersteKarte();
         }
 
         if (mStapelYou.lieferAnzahl() == 0)
@@ -382,6 +411,12 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
 
             string lNameYou = lieferNameZu(mIndexYou);
 
+            string lFARBE = "<#FFFFFF>";
+            if (lieferLichtintensitaet(mIndexYou) >= 0.9)
+            {
+                lFARBE = "<#000000>";
+            }
+   
             string lNameEinstein = "";
             mNameEinsteinHimmelskoerper = lieferNameZu(mIndexEinstein);
             if (mHighScoreVerwaltung.getStufe() == HighScoreVerwaltung.K_STUFE_GALILEO)
@@ -419,17 +454,19 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
                 mTextMeshKampfProtokollGewinner.text = "?";
             }
 
+            
             mGameObjectKampfAktuelleKampf.SetActive(true);
             mTextMeshKampfAktuelleKampf.text =
                 VirtualLookSteuerung.K_GREEN_SCHRIFT +
                 mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_DU_MIT) +
                 " " + "<b>" + lNameYou + "</b>" + VirtualLookSteuerung.K_WHITE +
-                " " +
+                " " + lFARBE +
                 mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_GEGEN) +
                 " \n" +
-                VirtualLookSteuerung.K_RED_GEGNER +
+                VirtualLookSteuerung.K_GEGNER_FARBE_IM_WER_GEGEN_KAMPF_BILD +
                 mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EINSTEIN_MIT) + " " +
                 lNameEinstein;
+            
 
             mHimmelskoerper.setNeuenPlanetDirekt(mIndexYou);
             mSpielZug++;
@@ -440,6 +477,11 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
     public string lieferNameZu(int pIndex)
     {
         return getMyHimmelskoerperDict()[pIndex].mName;
+    }
+
+    public float lieferLichtintensitaet(int pIndex)
+    {
+        return getMyHimmelskoerperDict()[pIndex].mLichtIntensitaet;
     }
 
     public string lieferNameZuObereAnzeige(int pIndex)

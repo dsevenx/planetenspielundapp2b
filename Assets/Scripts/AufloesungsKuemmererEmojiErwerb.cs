@@ -32,142 +32,45 @@ public class AufloesungsKuemmererEmojiErwerb : MonoBehaviour {
 
 	public GameObject mLinkeMenuLeiste;
 
+	public float mTeilBreite;
+	public float mTeilHoehe;
+
 	void Start () {
 
-		mBreiteDisplay = Display.main.systemWidth;
-		mHoeheDisplay = Display.main.systemHeight;
-		GeraeteIFs lGeraeteIFs = new GeraeteIFs ();
+		GeraeteIFs lGeraeteIFs = new GeraeteIFs();
+		lGeraeteIFs.init(Camera.main);
+		mTeilBreite = lGeraeteIFs.mWidthTeil;
+		mTeilHoehe = lGeraeteIFs.mHoeheTeil;
+		Vector3 lButtonScaleLinkeMenuleiste = new Vector3(1.5f * mTeilBreite, 1.2f * mTeilHoehe, 0.5f);
 
 		mMaterial.SetFloat("_GlossMapScale", 0.9f);//0.6
-	
-		float lBreitefloat = mBreiteDisplay;
-		float lHoehefloat = mHoeheDisplay;
-		float lVerhaetnis = lBreitefloat / lHoehefloat;
 
-		if (lGeraeteIFs.istIPHONE_small(mBreiteDisplay, mHoeheDisplay))
-		{
+		mLinkeMenuLeiste.transform.localPosition = new Vector3(lGeraeteIFs.lieferPos(3,11).x, lGeraeteIFs.lieferPos(3, 11).y, -0.15f);
+		mLinkeMenuLeiste.transform.localScale = new Vector3(1f, 1f, 1f);
 
-			mLinkeMenuLeiste.transform.localPosition = new Vector3(-12.8f, -2.3f, -0.15f);
-			mLinkeMenuLeiste.transform.localScale = new Vector3(1f, 1f, 1f);
+		mZurueckButton.transform.localPosition = new Vector3(0, 4.5f, 0f);
+        mZurueckButton.transform.localScale = lButtonScaleLinkeMenuleiste;
 
-			mZurueckButton.transform.localPosition = new Vector3(-0.5f, 4.5f, 0f);
-			mZurueckButton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+		mVorButton.transform.localPosition = new Vector3(0, -5.5f, 0f);
+        mVorButton.transform.localScale = lButtonScaleLinkeMenuleiste;
 
-			mVorButton.transform.localPosition = new Vector3(-0.5f, -5.5f, 0f);
-			mVorButton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+		mNaechsteButton.transform.localPosition = new Vector3(4.75f * mTeilBreite, -5.5f, 0f);
+        mNaechsteButton.transform.localScale = lButtonScaleLinkeMenuleiste;
 
-			mNaechsteButton.transform.localPosition = new Vector3(4.25f, -5.5f, 0f);
-			mNaechsteButton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
+		mEmojiKauf1.transform.localPosition = new Vector3(lGeraeteIFs.lieferPos(24, 9).x, lGeraeteIFs.lieferPos(24, 9).y, 0f);
+		mEmojiKauf2.transform.localPosition = new Vector3(lGeraeteIFs.lieferPos(24, 13).x, lGeraeteIFs.lieferPos(24, 13).y, 0f);
+		mEmojiKauf3.transform.localPosition = new Vector3(lGeraeteIFs.lieferPos(24, 17).x, lGeraeteIFs.lieferPos(24, 17).y, 0f);
+		mEmojiKaufEingabe.transform.localPosition = new Vector3(3f, -4.6f, -0.5f);
+		mEmojiKaufEingabe.transform.localScale = new Vector3(3.4f, 3f, 1f);
 
-			mEmojiKauf1.transform.localPosition = new Vector3(4.1f, -1.2f, 0f);
-			mEmojiKauf2.transform.localPosition = new Vector3(4.1f, -3.4f, 0f);
-			mEmojiKauf3.transform.localPosition = new Vector3(4.1f, -5.6f, 0f);
-			mEmojiKaufEingabe.transform.localPosition = new Vector3(3f, -4.6f, -0.5f);
-			mEmojiKaufEingabe.transform.localScale = new Vector3(3.4f, 3f, 1f);
+		mEmojiFinalKaufEingabe.transform.localPosition = new Vector3(-0.05f, -0.2f, -0.7f);
+		mEmojiFinalKaufEingabe.transform.localScale = new Vector3(0.75f, 0.15f, 1f);
 
-			mEmojiFinalKaufEingabe.transform.localPosition = new Vector3(-0.05f, -0.2f, -0.7f);
-			mEmojiFinalKaufEingabe.transform.localScale = new Vector3(0.75f, 0.15f, 1f);
+		mTextMeshProKaufinfo.transform.localPosition = new Vector3(lGeraeteIFs.lieferPos(23, 6).x, lGeraeteIFs.lieferPos(21,6).y, 0f);
+		mTextMeshProEmojiGadgetErklaer.transform.localPosition = new Vector3(2*mTeilBreite, -1.0f, 0f);
 
-			mTextMeshProKaufinfo.transform.localPosition = new Vector3(15.3f, 2f, 0f);
-			mTextMeshProEmojiGadgetErklaer.transform.localPosition = new Vector3(0.6f, -1.0f, 0f);
-
-			mSaturn.transform.localPosition = new Vector3(-2.15f, 0.15f, 0.5f);
-			mSatellit.transform.localPosition = new Vector3(-2.05f, -0.01f, -3.95f);
-			mRakete.transform.localPosition = new Vector3(-1.5f, 0.5f, -2.75f);
-		}
-		else if (lGeraeteIFs.istIPHONE(mBreiteDisplay, mHoeheDisplay))
-		{
-
-			mLinkeMenuLeiste.transform.localPosition = new Vector3(-12.8f, -2.3f, -0.15f);
-			mLinkeMenuLeiste.transform.localScale = new Vector3(1f, 1f, 1f);
-
-			mZurueckButton.transform.localPosition = new Vector3(-0.5f, 4.5f, 0f);
-			mZurueckButton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
-
-			mVorButton.transform.localPosition = new Vector3(-0.5f, -5.5f, 0f);
-			mVorButton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
-
-			mNaechsteButton.transform.localPosition = new Vector3(4.25f, -5.5f, 0f);
-			mNaechsteButton.transform.localScale = new Vector3(1.5f, 0.8f, 0.5f);
-
-			mEmojiKauf1.transform.localPosition = new Vector3(4.1f, -1.2f, 0f);
-			mEmojiKauf2.transform.localPosition = new Vector3(4.1f, -3.4f, 0f);
-			mEmojiKauf3.transform.localPosition = new Vector3(4.1f, -5.6f, 0f);
-			mEmojiKaufEingabe.transform.localPosition = new Vector3(3f, -4.6f, -0.5f);
-			mEmojiKaufEingabe.transform.localScale = new Vector3(3.4f, 3f, 1f);
-
-			mEmojiFinalKaufEingabe.transform.localPosition = new Vector3(-0.05f, -0.2f, -0.7f);
-			mEmojiFinalKaufEingabe.transform.localScale = new Vector3(0.75f, 0.15f, 1f);
-
-			mTextMeshProKaufinfo.transform.localPosition = new Vector3(16.2f, 2f, 0f);
-			mTextMeshProEmojiGadgetErklaer.transform.localPosition = new Vector3(0.6f, -1.0f, 0f);
-
-			mSaturn.transform.localPosition = new Vector3(-2.45f, 0.15f, 0.5f);
-			mSatellit.transform.localPosition = new Vector3(-2.35f, -0.01f, -3.95f);
-			mRakete.transform.localPosition = new Vector3(-1.8f, 0.5f, -2.75f);
-
-		}
-		else if (lGeraeteIFs.istIPAD(mBreiteDisplay, mHoeheDisplay))
-		{
-			// i.O.
-			mLinkeMenuLeiste.transform.localPosition = new Vector3(-7.3f, -2.3f, -0.15f);
-			mLinkeMenuLeiste.transform.localScale = new Vector3(1f, 1f, 1f);
-
-			mZurueckButton.transform.localPosition = new Vector3(-0.5f, 4.5f, 0f);
-			mZurueckButton.transform.localScale = new Vector3(1f, 0.8f, 0.5f);
-
-			mVorButton.transform.localPosition = new Vector3(-0.5f, -5.5f, 0f);
-			mVorButton.transform.localScale = new Vector3(1f, 0.8f, 0.5f);
-
-			mNaechsteButton.transform.localPosition = new Vector3(2.65f, -5.5f, 0f);
-			mNaechsteButton.transform.localScale = new Vector3(1f, 0.8f, 0.5f);
-
-			mEmojiKauf1.transform.localPosition = new Vector3(3.65f, -1.2f, 0f);
-			mEmojiKauf2.transform.localPosition = new Vector3(3.65f, -3.4f, 0f);
-			mEmojiKauf3.transform.localPosition = new Vector3(3.65f, -5.6f, 0f);
-			mEmojiKaufEingabe.transform.localPosition = new Vector3(3f, -4.6f, -0.5f);
-			mEmojiKaufEingabe.transform.localScale = new Vector3(3.4f, 3f, 1f);
-
-		    mEmojiFinalKaufEingabe.transform.localPosition = new Vector3(-0.05f,-0.2f, -0.7f);
-			mEmojiFinalKaufEingabe.transform.localScale = new Vector3(0.75f, 0.15f, 1f);
-
-			mTextMeshProKaufinfo.transform.localPosition = new Vector3(6.5f, 2.8f, 0f);
-			mTextMeshProEmojiGadgetErklaer.transform.localPosition = new Vector3(0.5f, -1.0f, 0f);
-
-			mSaturn.transform.localPosition = new Vector3(-2.3f, 0.15f, 0.5f);
-			mSatellit.transform.localPosition = new Vector3(-2.05f, -0.01f, -3.95f);
-			mRakete.transform.localPosition = new Vector3(-1.6f, 0.5f, -2.75f);
-		}
-		else 
-		{
-			// i.O.
-			mLinkeMenuLeiste.transform.localPosition = new Vector3(-12.8f, -2.3f, -0.15f);
-			mLinkeMenuLeiste.transform.localScale = new Vector3(1f, 1f, 1f);
-
-			mZurueckButton.transform.localPosition = new Vector3(-0.5f, 4.5f, 0f);
-			mZurueckButton.transform.localScale = new Vector3(1f, 0.8f, 0.5f);
-
-			mVorButton.transform.localPosition = new Vector3(-0.5f, -5.5f, 0f);
-			mVorButton.transform.localScale = new Vector3(1f, 0.8f, 0.5f);
-
-			mNaechsteButton.transform.localPosition = new Vector3(2.65f, -5.5f, 0f);
-			mNaechsteButton.transform.localScale = new Vector3(1f, 0.8f, 0.5f);
-
-			mEmojiKauf1.transform.localPosition = new Vector3(3.65f, -1.2f, 0f);
-			mEmojiKauf2.transform.localPosition = new Vector3(3.65f, -3.4f, 0f);
-			mEmojiKauf3.transform.localPosition = new Vector3(3.65f, -5.6f, 0f);
-			mEmojiKaufEingabe.transform.localPosition = new Vector3(3f, -4.6f, -0.5f);
-			mEmojiKaufEingabe.transform.localScale = new Vector3(3.4f, 3f, 1f);
-
-			mEmojiFinalKaufEingabe.transform.localPosition = new Vector3(-0.05f, -0.2f, -0.7f);
-			mEmojiFinalKaufEingabe.transform.localScale = new Vector3(0.75f, 0.15f, 1f);
-
-			mTextMeshProKaufinfo.transform.localPosition = new Vector3(15.9f, 2.8f, 0f);
-			mTextMeshProEmojiGadgetErklaer.transform.localPosition = new Vector3(0.5f, -1.0f, 0f);
-
-			mSaturn.transform.localPosition = new Vector3(-2.4f, 0.15f, 0.5f);
-			mSatellit.transform.localPosition = new Vector3(-2.15f, -0.01f, -3.95f);
-			mRakete.transform.localPosition = new Vector3(-1.7f, 0.5f, -2.75f);
-		}
+		mSaturn.transform.localPosition = new Vector3(-2.4f, 0.15f, 0.5f);
+		mSatellit.transform.localPosition = new Vector3(-2.3f - mTeilBreite + 0.61f, -0.01f, -3.95f);
+		mRakete.transform.localPosition = new Vector3(-1.8f -mTeilBreite+0.61f, 0.5f, -2.75f);
 	}
 }

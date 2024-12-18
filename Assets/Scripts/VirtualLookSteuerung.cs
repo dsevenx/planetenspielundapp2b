@@ -82,13 +82,15 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
 
     public TextMeshPro mArtDesHimmelskoerperTextmeshProNext;
 
+    public TextMeshPro mTextMeshProConfigInfo;
+
     public const string K_GOLD= "<#ffd700>";
 
     public const string K_WHITE = "<#FFFFFF>";
 
     public const string K_RED = "<#FF0000>";
 
-    public const string K_RED_GEGNER = "<#D36E70>";
+    public const string K_GEGNER_FARBE_IM_WER_GEGEN_KAMPF_BILD = "<#0000FF>";
 
     public const string K_GREEN = "<#00FF00>";
 
@@ -212,7 +214,15 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
                         {
                             StartCoroutine(clickEffektModi(lRaycastHit.transform.gameObject));
 
-                            SceneManager.LoadScene("InfoConfig");
+                            if (mGameMode ==  K_GAME_MODE_QUARTETT  || mGameMode == K_GAME_MODE_QUARTETT_LAEUFT)
+                            {
+                                initGameMode(K_SPIELVARIANTE_MODE_QUARTETT, 0);
+
+                                mHimmelskoerperverwalter.mischeZweiStapel(false);
+                            } else
+                            {
+                                SceneManager.LoadScene("InfoConfig");
+                            }
                         }
                         else
                         {
@@ -239,7 +249,7 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
                                 {
                                     initGameMode(K_SPIELVARIANTE_MODE_QUARTETT, 0);
 
-                                    mHimmelskoerperverwalter.mischeZweiStapel();
+                                    mHimmelskoerperverwalter.mischeZweiStapel(true);
                                 }
                             }
                             else if (lRaycastHit.transform.name.Equals(K_ART_HIMMELSKOERPER_EINSTELLEN))
@@ -558,7 +568,8 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
 
             mKartenButtonAnzeigeTafel.SetActive(true);
             mAlleHimmelskoerpermerkmalButton.SetActive(true);
-            mGameObjectInfoConfig.SetActive(false);
+            mGameObjectInfoConfig.SetActive(true);
+            mTextMeshProConfigInfo.SetText(mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_RESTART));
             mGameObjectPruefung.SetActive(false);
             mGameObjectInfoArtDesHimmelskoerpers.SetActive(false);
             mGameObjectInfoArtDesHimmelskoerpersVor.SetActive(false);
@@ -568,6 +579,8 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
             mQuartettTextmeshPro.text = K_WHITE + lZurueck;// lQuartettModus;
 
             initAstronautenInfoBox(false);
+
+            mHimmelskoerper.setAktivenPlanetZurueck();
         }
         else if (pSpielvariante.Equals(K_SPIELVARIANTE_MODE_LERNEN))
         {

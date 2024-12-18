@@ -67,7 +67,7 @@ public class HighScoreVerwaltung : MonoBehaviour
 	{
 		string lErg = "";
 		if (!istUeberLevel1 ()) {
-			lErg = "Aristoteles";
+			lErg = "Aristoteles - Level 1";
 		} else {
 			if (getStufe () == K_STUFE_GALILEO) {
 				lErg = "Galileo Galilei";

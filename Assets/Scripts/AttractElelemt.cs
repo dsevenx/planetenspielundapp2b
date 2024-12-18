@@ -92,7 +92,7 @@ public class AttractElelemt : MonoBehaviour
 
                 if (mAllEinStayTimeEintrag[rbToAttract.name].istDistanceAllGroesserNull())
                 {
-                
+
                     if (mAllEinStayTimeEintrag[rbToAttract.name].istEintragPassend()
                         && mAllEinStayTimeEintrag[rbToAttract.name].mDistanceDurchschnitt < 25
                         )
@@ -177,51 +177,55 @@ public class AttractElelemt : MonoBehaviour
         if (sollGraviSpueren)
         {
             List<AttractElelemt> lZuDestroy = new List<AttractElelemt>();
-            foreach (var lElement in mAttractElementVerwalter.mMyAttractElemtentDict)
+
+            if (mAttractElementVerwalter != null)
             {
-                if (lElement.Value.mAttractElelemt.sollGraviSpueren && !lElement.Value.mGameobjectAttractElement.name.Equals(this.name))
+                foreach (var lElement in mAttractElementVerwalter.mMyAttractElemtentDict)
                 {
-                    attract(lElement.Value.mAttractElelemt, lZuDestroy);
+                    if (lElement.Value.mAttractElelemt.sollGraviSpueren && !lElement.Value.mGameobjectAttractElement.name.Equals(this.name))
+                    {
+                        attract(lElement.Value.mAttractElelemt, lZuDestroy);
+                    }
                 }
+
+                foreach (var lZuLoeschenElement in lZuDestroy)
+                {
+                    mAttractElementVerwalter.verschlucke(lZuLoeschenElement.mElementNummer);
+                    Destroy(lZuLoeschenElement.mThis);
+                }
+
+                if (mElementNummer == 0)
+                {
+                    float lXMove = mAttractElementVerwalter.lieferXFromMove();
+                    float lZMove = mAttractElementVerwalter.lieferZFromMove();
+
+                    DrehVektor lDrehvektor = mAttractElementVerwalter.lieferYFromDreh(lZMove);
+
+                    mCamera.transform.position = new Vector3(mThis.transform.position.x + lXMove
+                        ,
+
+                        mThis.transform.position.y + lDrehvektor.mX
+
+                        ,
+
+                        mThis.transform.position.z + lDrehvektor.mY
+
+                        );
+
+                    mPosOfCamera = mCamera.transform.position;
+
+                    mAttractElementVerwalter.setzePositionVonCamera(mPosOfCamera);
+
+                    mCamera.transform.eulerAngles = new Vector3(mAttractElementVerwalter.mEinstellDrehen.mCount
+                        , mCamera.transform.rotation.eulerAngles.y,
+                         mCamera.transform.rotation.eulerAngles.z)
+                        ;
+                }
+
+                mReadyForCollisionUntersuchung = true;
+
+                mPlanesVonCamera = GeometryUtility.CalculateFrustumPlanes(mCamera);
             }
-
-            foreach (var lZuLoeschenElement in lZuDestroy)
-            {
-                mAttractElementVerwalter.verschlucke(lZuLoeschenElement.mElementNummer);
-                Destroy(lZuLoeschenElement.mThis);
-            }
-
-            if (mElementNummer == 0)
-            {
-                float lXMove = mAttractElementVerwalter.lieferXFromMove();
-                float lZMove = mAttractElementVerwalter.lieferZFromMove();
-
-                DrehVektor lDrehvektor = mAttractElementVerwalter.lieferYFromDreh(lZMove);
-
-                mCamera.transform.position = new Vector3(mThis.transform.position.x + lXMove
-                    ,
-
-                    mThis.transform.position.y + lDrehvektor.mX
-
-                    ,
-
-                    mThis.transform.position.z + lDrehvektor.mY
-
-                    );
-
-                mPosOfCamera = mCamera.transform.position;
-
-                mAttractElementVerwalter.setzePositionVonCamera(mPosOfCamera);
-
-                mCamera.transform.eulerAngles = new Vector3(mAttractElementVerwalter.mEinstellDrehen.mCount
-                    , mCamera.transform.rotation.eulerAngles.y,
-                     mCamera.transform.rotation.eulerAngles.z)
-                    ;
-            }
-
-            mReadyForCollisionUntersuchung = true;
-
-            mPlanesVonCamera = GeometryUtility.CalculateFrustumPlanes(mCamera);
         }
     }
 

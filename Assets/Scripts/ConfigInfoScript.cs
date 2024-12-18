@@ -189,8 +189,6 @@ public class ConfigInfoScript : MonoBehaviour
         else
         {
             mTextMeshButtontext.text = VirtualLookSteuerung.K_GREEN_SCHRIFT
-                + mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ZURUECK)
-                + " "
                 + PlayerPrefs.GetInt(HighScoreVerwaltung.K_GRAVI_PUNKTE) + " ";
             mGameObjectErklärungHighscore.SetActive(true);
         }
