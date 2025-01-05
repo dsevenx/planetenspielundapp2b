@@ -214,6 +214,10 @@ public class Sprachenuebersetzer : MonoBehaviour
 
     public const int K_PROXIMA_CENTAURI = 610;
     public const int K_PROXIMA_CENTAURI_B = 611;
+    
+    public const int K_CANIS_MAJOPRIS = 612;
+
+    public const int K_R136A1 = 613;
     public const int K_SAGGITARIUS_A = 620;
     public const int K_M87_TEXT = 630;
     public const int K_M87 = 631;
@@ -951,6 +955,16 @@ public class Sprachenuebersetzer : MonoBehaviour
             "Stephenson 2 - 18 ist ein roter Riesenstern. Er befindet sich im Stephenson Sternenhaufen und ist einer der grössten Sterne überhaupt. " +
             "Die Grössenbestimmung eines Sterns ist nicht einfach, da die Helligkeit mit dem Abstand zum Quadrat abnimmt, " +
             "d.h. wenn der Abstand nicht korrekt ist, ist es die Größe auch nicht."
+            , "", "", "");
+        hinzuInsDic(K_R136A1,
+            "R136a1 is one of the heaviest stars known, with an estimated mass of 200-230 solar masses. It is believed to be close to the theoretical mass limit that a star can reach before becoming unstable. Its luminosity is about 8 million times that of the sun. The star is so hot that the hydrogen and helium in its outer layers are completely ionized. Its lifespan is estimated to be only about 1-2 million years.",
+
+            "R136a1 ist eine der schwersten bekannten Sterne, mit einer geschätzten Masse von 200–230 Sonnenmassen. Es wird angenommen, dass er nahe der theoretischen Massegrenze liegt, die ein Stern erreichen kann, bevor er instabil wird. Seine Leuchtkraft beträgt etwa 8 Millionen Mal die der Sonne. Der Stern ist so heiß, dass Wasserstoff und Helium in seinen äußeren Schichten vollständig ionisiert sind. Seine Lebensdauer wird auf nur etwa 1–2 Millionen Jahre geschätzt."
+            , "", "", "");
+        hinzuInsDic(K_CANIS_MAJOPRIS,
+            "VY Canis Majoris is a red supergiant. If it were placed in the place of the sun, it would reach far beyond the orbit of Jupiter. Its density is almost like a vacuum. Its lifetime is estimated to be only 10 million years, and it is about to explode as a supernova. Although VY Canis Majoris is around 270,000 times brighter than the Sun, it appears only as a faint star from Earth because it is at a distance of ~3,900 light-years and much of its light is swallowed up by its own dust.",
+
+            "VY Canis Majoris ist ein roter Überriese. Würde man ihn an die Stelle der Sonne setzen, würde er bis weit über die Umlaufbahn des Jupiter hinausreichen. Seine Dichte gleicht fast Vakuum. Seine Lebenszeit wird auf nur 10 Millionen Jahre geschätzt, und er steht kurz davor, als Supernova zu explodieren. Obwohl VY Canis Majoris rund 270.000 Mal heller als die Sonne ist, erscheint er von der Erde aus nur als ein schwacher Stern, da er sich in einer Entfernung von ~3.900 Lichtjahren befindet und viel Licht von seinem eigenen Staub verschluckt wird."
             , "", "", "");
         hinzuInsDic(K_KEPPLER_160D,
             "Kepler 160 D (KOI-456.04) is almost twice the size of the Earth and " +

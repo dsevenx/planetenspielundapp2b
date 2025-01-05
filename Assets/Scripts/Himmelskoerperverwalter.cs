@@ -111,6 +111,8 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
 
     void Start()
     {
+        Debug.Log("jetzt von MacBookAir");
+
         Init();
     }
 

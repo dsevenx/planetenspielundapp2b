@@ -248,10 +248,18 @@ public class Himmelskoerper : MonoBehaviour
 
     public Texture2D mTexture2DMakemake;
 
-    //letzter
-    public const int K_HAUMEA = 560;
+      public const int K_HAUMEA = 560;
 
     public Texture2D mTexture2DHaumea;
+
+  //letzter
+      public const int K_CANIS_MAJOPRIS= 570;
+
+    public Texture2D mTexture2DCanisMajoris;
+
+    public const int K_R136a1= 580;
+
+    public Texture2D mTexture2DR136a1;
 
 
     // allg
@@ -300,7 +308,7 @@ public class Himmelskoerper : MonoBehaviour
 
     void Start()
     {
-        K_MAX = K_HAUMEA; // letzte hinzugekommene Himmelskoerper
+        K_MAX = K_R136a1; // letzte hinzugekommene Himmelskoerper
         K_ERST = K_MERKUR;
 
         mGameObjectSchwarzeLochErhitztGas.SetActive(false);
@@ -615,6 +623,14 @@ public class Himmelskoerper : MonoBehaviour
                 else if (mAktivePlanet == K_BRAUNER_ZWERG_SDSS_1416_13B)
                 {
                     GetComponent<Renderer>().material.mainTexture = mTexture2D_BRAUNER_ZWERG_SDSS_1416_13B;
+                }
+                else if (mAktivePlanet == K_CANIS_MAJOPRIS)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2DCanisMajoris;
+                }
+                else if (mAktivePlanet == K_R136a1)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2DR136a1;
                 }
                 else if (mAktivePlanet == K_NEBEL_PFERDEKOPF)
                 {

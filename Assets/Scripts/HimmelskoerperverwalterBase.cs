@@ -312,11 +312,25 @@ public class HimmelskoerperverwalterBase : MonoBehaviour
                  }, 0.95f, false, Sprachenuebersetzer.K_STERN, Himmelskoerper.K_LEER_PLANET);
 
             erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_STEVENSON, "Stephenson 2-18", 13323760000f, 20000f,
-                 0, 0.024f,
+                 0, 0.000024f,
              2990650000, 3200, 3200, Sprachenuebersetzer.K_LICHTJAHRE, new string[2] {
                 "Stephenson_2-18_zoom",
                 K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_STEPHENSON)
             }, 1.1f, false, Sprachenuebersetzer.K_STERN, Himmelskoerper.K_LEER_PLANET);
+
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_CANIS_MAJOPRIS, "Canis Majoris",  8325750f, 3900f,
+                 0, 0.000025f,
+            2156000000 , 3500, 3500, Sprachenuebersetzer.K_LICHTJAHRE, new string[2] {
+                "Canis_Majoris_zoom",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_CANIS_MAJOPRIS)
+            }, 1.6f, false, Sprachenuebersetzer.K_STERN, Himmelskoerper.K_LEER_PLANET);
+
+           erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_R136a1, "R136a1", 66606000f,  163000f,
+                 0, 0.008f,
+             55000000, 50000, 46000, Sprachenuebersetzer.K_LICHTJAHRE, new string[2] {
+                "R136a1_zoom",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_R136A1)
+            }, 1.7f, false, Sprachenuebersetzer.K_STERN, Himmelskoerper.K_LEER_PLANET);
 
 
             erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_KEPPLER_160D, "Kepler-160-D", 1.9f, 3140f,
