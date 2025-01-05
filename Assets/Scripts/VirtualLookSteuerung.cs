@@ -63,7 +63,7 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
     private const string K_ART_HIMMELSKOERPER_VOR = "HimmelskoerpersVor";
 
     private const string K_ART_HIMMELSKOERPER_NEXT = "HimmelskoerpersNaechste";
-    
+
     public GameObject mKartenButtonAnzeigeTafel;
 
     public GameObject mAlleHimmelskoerpermerkmalButton;
@@ -84,7 +84,7 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
 
     public TextMeshPro mTextMeshProConfigInfo;
 
-    public const string K_GOLD= "<#ffd700>";
+    public const string K_GOLD = "<#ffd700>";
 
     public const string K_WHITE = "<#FFFFFF>";
 
@@ -114,7 +114,7 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
 
     // 4 Infofeld
     public const int K_STATE_INFO_FELD_NEIN = 0;
-    
+
     public int mStateInfoFeld;
 
     public InfoBilderVerwalter mInfoBilderVerwalter;
@@ -214,12 +214,13 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
                         {
                             StartCoroutine(clickEffektModi(lRaycastHit.transform.gameObject));
 
-                            if (mGameMode ==  K_GAME_MODE_QUARTETT  || mGameMode == K_GAME_MODE_QUARTETT_LAEUFT)
+                            if (mGameMode == K_GAME_MODE_QUARTETT || mGameMode == K_GAME_MODE_QUARTETT_LAEUFT)
                             {
                                 initGameMode(K_SPIELVARIANTE_MODE_QUARTETT, 0);
 
                                 mHimmelskoerperverwalter.mischeZweiStapel(false);
-                            } else
+                            }
+                            else
                             {
                                 SceneManager.LoadScene("InfoConfig");
                             }
@@ -309,6 +310,31 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
                     }
                 }
             }
+        }
+        setzeFarbeLinkenSeite();
+    }
+
+    private void setzeFarbeLinkenSeite()
+    {
+        if ((mGameMode == K_GAME_MODE_LERNEN || mGameMode == K_GAME_MODE_LERNEN_LAEUFT || mGameMode == K_GAME_MODE_QUARTETT_LAEUFT || mGameMode == K_GAME_MODE_QUARTETT)
+            && mHimmelskoerper.lieferAktuellenHimmelskoerper() > 0
+            && mHimmelskoerperverwalter.lieferLichtintensitaet(mHimmelskoerper.lieferAktuellenHimmelskoerper()) >= 1.0f)
+        {
+            mArtDesHimmelskoerperTextmeshPro.color = Color.black;
+            mArtDesHimmelskoerperTextmeshProVor.color = Color.black;
+            mArtDesHimmelskoerperTextmeshProNext.color = Color.black;
+            mLernenTextmeshPro.color = Color.black;
+            mQuartettTextmeshPro.color = Color.black;
+            mTextMeshProConfigInfo.color = Color.black;
+        }
+        else
+        {
+            mArtDesHimmelskoerperTextmeshPro.color = Color.white;
+            mArtDesHimmelskoerperTextmeshProVor.color = Color.white;
+            mArtDesHimmelskoerperTextmeshProNext.color = Color.white;
+            mLernenTextmeshPro.color = Color.white;
+            mQuartettTextmeshPro.color = Color.white;
+            mTextMeshProConfigInfo.color = Color.white;
         }
     }
 
@@ -456,7 +482,7 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
         else
         {
             mArtDesHimmelskoerperTextmeshPro.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ART_DES_HIMMELSKOERPERS)
-        + mSprachenuebersetzer.lieferWort(mArtDesHimmelskoerper);
+                                                      + mSprachenuebersetzer.lieferWort(mArtDesHimmelskoerper);
             mArtDesHimmelskoerperTextmeshProVor.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ART_DES_VOR);
             mArtDesHimmelskoerperTextmeshProNext.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ART_DES_NEXT);
 
@@ -532,11 +558,12 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
         if (mSprachenuebersetzer.getSprache() == Sprachenuebersetzer.K_DEUTSCH)
         {
             mGameObjectAstronautCube4Antippen.GetComponent<MeshRenderer>().material = mMaterialAstronatDeutsch;
-        } else
+        }
+        else
         {
             mGameObjectAstronautCube4Antippen.GetComponent<MeshRenderer>().material = mMaterialAstronatEnglish;
         }
-           
+
 
         initGameMode(pSpielvariante, pGameMode);
 
@@ -554,7 +581,7 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
         string lLernen = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_LERNEN);
         string lQuartettModus = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_QUARTETT_SPIEL);
         string lZurueck = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ZURUECK);
-       
+
         mEinstellungenTextmeshPro.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EINSTELLUNGEN);
         mPruefungTextmeshPro.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_PRUEFUNG);
 
@@ -575,8 +602,8 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
             mGameObjectInfoArtDesHimmelskoerpersVor.SetActive(false);
             mGameObjectInfoArtDesHimmelskoerpersNext.SetActive(false);
 
-            mLernenTextmeshPro.text = K_WHITE + lLernen;
-            mQuartettTextmeshPro.text = K_WHITE + lZurueck;// lQuartettModus;
+            mLernenTextmeshPro.text = lLernen;
+            mQuartettTextmeshPro.text = lZurueck;// lQuartettModus;
 
             initAstronautenInfoBox(false);
 
@@ -604,8 +631,8 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
             mGameObjectInfoArtDesHimmelskoerpersNext.SetActive(true);
             setzeArtKategorieText();
 
-            mLernenTextmeshPro.text = K_WHITE + lZurueck;// lLernen;
-            mQuartettTextmeshPro.text = K_WHITE + lQuartettModus;
+            mLernenTextmeshPro.text = lZurueck;// lLernen;
+            mQuartettTextmeshPro.text = lQuartettModus;
         }
         else
         {
@@ -623,8 +650,8 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
             mHimmelskoerper.setLeerMaterial();
             setzeArtKategorieText();
 
-            mLernenTextmeshPro.text = K_WHITE + lLernen;
-            mQuartettTextmeshPro.text = K_WHITE + lQuartettModus;
+            mLernenTextmeshPro.text = lLernen;
+            mQuartettTextmeshPro.text = lQuartettModus;
 
             initAstronautenInfoBox(false);
         }
