@@ -15,7 +15,7 @@ public class ConfigInfoScript : MonoBehaviour
 
     public const int K_BUTTON_ANZAHL_MAX = 99;
 
-    public const int K_BUTTON_ANZAHL_EINFACH = 20;
+    public const int K_BUTTON_ANZAHL_EINFACH = 32;
 
     private const int K_BUTTON_INIT = 0;
 
