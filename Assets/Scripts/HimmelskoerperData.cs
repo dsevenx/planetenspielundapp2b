@@ -30,6 +30,8 @@ public class HimmelskoerperData
 
 	public int mArtHimmelskoerper;
 
+	public int mKartenanzahlZugehoerig;
+
 	public float mLichtIntensitaet;
 
 	public int mHeimatplanet;

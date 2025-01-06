@@ -162,7 +162,7 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         mGameObjectAngabeQuartett.transform.rotation = mGameObjectQuartettRotation;
         mGameObjectAngabeInfoConfig.transform.rotation = mGameObjectInfoConfigRotation;
         mGameObjectArtDesHimmelskoerper.transform.rotation = mGameObjectArtDesHimmelskoerperRotation;
-        mGameObjectHimmelskoerperVor.transform.rotation =  mGameObjectHimmelskoerperVorRotation;
+        mGameObjectHimmelskoerperVor.transform.rotation = mGameObjectHimmelskoerperVorRotation;
         mGameObjectHimmelskoerperNaechste.transform.rotation = mGameObjectHimmelskoerperNaechsteRotation;
         mGameObjectKartenButton.transform.rotation = mGameObjectKartenButtonRotation;
         mGameObjectKampfAktuelleKampf.transform.rotation = mGameObjectAktuelleKampfRotation;
@@ -193,6 +193,20 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         }
     }
 
+    private bool IstZugehoerigPassend(int pKartenanzahlZugehoerig)
+    {
+        if (pKartenanzahlZugehoerig == ConfigInfoScript.K_BUTTON_ANZAHL_EINFACH)
+        {
+            return true;
+        }
+        if (PlayerPrefs.GetInt(ConfigInfoScript.K_ANZAHL_BUTTON) >= pKartenanzahlZugehoerig)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void mischeZweiStapel(bool pVonDB)
     {
         Dictionary<int, int> lMischstapel = new Dictionary<int, int>();
@@ -202,7 +216,9 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         foreach (int lHimmelskoerper in getMyHimmelskoerperDict().Keys)
         {
 
-            if (lHimmelskoerper.Equals(Himmelskoerper.K_LEER_PLANET))
+            if (lHimmelskoerper.Equals(Himmelskoerper.K_LEER_PLANET)
+                || !IstZugehoerigPassend(getMyHimmelskoerperDict()[lHimmelskoerper].mKartenanzahlZugehoerig)
+            )
             {
                 // nicht in Stapel
             }
@@ -228,7 +244,9 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         if (pVonDB && mStapelEinstein.lieferAnzahl() > 0 && mStapelYou.lieferAnzahl() > 0)
         {
             // bereits gefüllt
-        } else { 
+        }
+        else
+        {
             int lKartenWegenLevel = (mHighScoreVerwaltung.getLevel() - 1) * 2;
 
             bool l4You = true;
@@ -262,6 +280,8 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         mSpielZug = 0;
 
         verarbeiteZiehung("", "");
+
+        PlayerPrefs.SetInt(ConfigInfoScript.K_ANZAHL_BUTTON_LAST, PlayerPrefs.GetInt(ConfigInfoScript.K_ANZAHL_BUTTON));
     }
 
     public string lieferErgebnis(float pYou, float pEinstein)
@@ -418,7 +438,7 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
             {
                 lFARBE = "<#000000>";
             }
-   
+
             string lNameEinstein = "";
             mNameEinsteinHimmelskoerper = lieferNameZu(mIndexEinstein);
             if (mHighScoreVerwaltung.getStufe() == HighScoreVerwaltung.K_STUFE_GALILEO)
@@ -456,7 +476,7 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
                 mTextMeshKampfProtokollGewinner.text = "?";
             }
 
-            
+
             mGameObjectKampfAktuelleKampf.SetActive(true);
             mTextMeshKampfAktuelleKampf.text =
                 VirtualLookSteuerung.K_GREEN_SCHRIFT +
@@ -468,7 +488,7 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
                 VirtualLookSteuerung.K_GEGNER_FARBE_IM_WER_GEGEN_KAMPF_BILD +
                 mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_EINSTEIN_MIT) + " " +
                 lNameEinstein;
-            
+
 
             mHimmelskoerper.setNeuenPlanetDirekt(mIndexYou);
             mSpielZug++;
@@ -528,7 +548,7 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         return getMyHimmelskoerperDict().ContainsKey(pIndex);
     }
 
-  
+
     public bool istSchwarzesLoch(int pIndex)
     {
         return getMyHimmelskoerperDict()[pIndex].mArtHimmelskoerper.Equals(Sprachenuebersetzer.K_SCHWARZES_LOCH);
@@ -571,7 +591,7 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
         return getMyHimmelskoerperDict()[pIndex].mDichte;
     }
 
-  
+
     public bool istStartQuartett()
     {
         return mSpielZug <= 1;

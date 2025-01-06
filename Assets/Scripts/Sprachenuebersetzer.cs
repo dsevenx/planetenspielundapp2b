@@ -72,6 +72,9 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_WISCHEN_1 = 70;
     public const int K_WISCHEN_2 = 71;
 
+    public const int K_HIMMELSKOERPER= 72;
+    public const int K_ALLE_HIMMELSKOERPER= 73;
+
     public const int K_DU_MIT = 75;
     public const int K_GEGEN = 76;
     public const int K_EINSTEIN_MIT = 77;
@@ -354,6 +357,9 @@ public class Sprachenuebersetzer : MonoBehaviour
         mAktuelleSprache = PlayerPrefs.GetInt(K_SPRACHE);
 
         hinzuInsDic(K_ZURUECK, "back", "zurück", "", "", "");
+        hinzuInsDic(K_HIMMELSKOERPER, "Celestial bodies", "Himmelskörper", "", "", "");
+        hinzuInsDic(K_ALLE_HIMMELSKOERPER, "all Celestial bodies", "alle Himmelskörper", "", "", "");
+        
         hinzuInsDic(K_INFO_BILD_1, "Pictures of heavenly bodies: NASA, ESA", "Fotos von Himmelskörpern: NASA, ESA", "", "", "");
         hinzuInsDic(K_INFO_BILD_2, "Pictures of H.Lesch, J. Gassner: 'Urknall,Weltall und das Leben'", "Fotos von H.Lesch, J. Gassner: 'Urknall,Weltall und das Leben'", "", "", "");
         hinzuInsDic(K_INFO_FAKTEN, "The astronomical facts have been calculated as best as possible, but no guarantee is given that they are correct. " +

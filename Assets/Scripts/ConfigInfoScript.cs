@@ -13,9 +13,17 @@ public class ConfigInfoScript : MonoBehaviour
 
     private const float K_DISTANCE_KLICK = 0.5f;
 
+    public const int K_BUTTON_ANZAHL_MAX = 99;
+
+    public const int K_BUTTON_ANZAHL_EINFACH = 20;
+
     private const int K_BUTTON_INIT = 0;
 
     private const int K_BUTTON_DRUCK_LAEUFT = 2;
+
+    public const string K_ANZAHL_BUTTON = "ANZAHL_BUTTON_WERT";
+
+    public const string K_ANZAHL_BUTTON_LAST = "ANZAHL_BUTTON_WERT_LAST";
 
 
     private TextMeshPro mZurueckTextMeshProZurueck;
@@ -44,6 +52,9 @@ public class ConfigInfoScript : MonoBehaviour
 
     public TextMeshProUGUI mTextMeshTitel;
 
+    public TextMeshProUGUI mTextMeshKartenanzahl;
+
+
     private TMP_InputField mTextMeshNameEditfeld;
 
     private HighScoreVerwaltung mHighScoreVerwaltung;
@@ -63,6 +74,8 @@ public class ConfigInfoScript : MonoBehaviour
         mZurueckTextMeshEnglish = GameObject.FindGameObjectWithTag("EnglishTMPro").GetComponent<TextMeshPro>();
 
         mZurueckTextMeshDeutsch = GameObject.FindGameObjectWithTag("DeutschTMPro").GetComponent<TextMeshPro>();
+
+        mTextMeshKartenanzahl = GameObject.FindGameObjectWithTag("KartenanzahlButton").GetComponent<TextMeshProUGUI>();
 
         mTextMeshNameLabel = GameObject.FindGameObjectWithTag("NameTMProLabel").GetComponent<TextMeshProUGUI>();
 
@@ -159,6 +172,14 @@ public class ConfigInfoScript : MonoBehaviour
         mTextMeshSpielergebnisSpeed.text = PlayerPrefs.GetString(HighScoreVerwaltung.K_GRAVI_SPEED);
         mTextMeshSpielergebnisSpeedAbw.text = PlayerPrefs.GetString(HighScoreVerwaltung.K_GRAVI_SPEED_ABW);
         mTextMeshSpielergebnisPunkte.text = PlayerPrefs.GetString(HighScoreVerwaltung.K_GRAVI_PUNKTE_C);
+        if (PlayerPrefs.GetInt(K_ANZAHL_BUTTON) == K_BUTTON_ANZAHL_MAX)
+        {
+            mTextMeshKartenanzahl.text = mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_ALLE_HIMMELSKOERPER);
+        }
+        else
+        {
+            mTextMeshKartenanzahl.text = PlayerPrefs.GetInt(K_ANZAHL_BUTTON) + " " + mSprachenuebersetzer.lieferWort(Sprachenuebersetzer.K_HIMMELSKOERPER);
+        }
     }
 
     public IEnumerator clickEffektSprache(GameObject pGameObject)
@@ -193,5 +214,21 @@ public class ConfigInfoScript : MonoBehaviour
             mGameObjectErklärungHighscore.SetActive(true);
         }
 
+    }
+
+    public void clickKartenAnzahlButton()
+    {
+        int lAnzahlButton = PlayerPrefs.GetInt(K_ANZAHL_BUTTON);
+
+        if (lAnzahlButton == 0 || lAnzahlButton == K_BUTTON_ANZAHL_EINFACH)
+        {
+            lAnzahlButton = K_BUTTON_ANZAHL_MAX;
+        }
+        else
+        {
+            lAnzahlButton = K_BUTTON_ANZAHL_EINFACH;
+        }
+
+        PlayerPrefs.SetInt(K_ANZAHL_BUTTON, lAnzahlButton);
     }
 }

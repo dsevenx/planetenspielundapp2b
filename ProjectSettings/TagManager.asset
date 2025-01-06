@@ -37,6 +37,7 @@ TagManager:
   - EmojiVor
   - EmojiZurueck
   - WeiterButton
+  - KartenanzahlButton
   layers:
   - Default
   - TransparentFX

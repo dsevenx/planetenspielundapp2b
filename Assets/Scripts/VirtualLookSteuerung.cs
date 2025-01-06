@@ -250,7 +250,7 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
                                 {
                                     initGameMode(K_SPIELVARIANTE_MODE_QUARTETT, 0);
 
-                                    mHimmelskoerperverwalter.mischeZweiStapel(true);
+                                    mHimmelskoerperverwalter.mischeZweiStapel(IstRestoreAusDBMoeglich());
                                 }
                             }
                             else if (lRaycastHit.transform.name.Equals(K_ART_HIMMELSKOERPER_EINSTELLEN))
@@ -312,6 +312,11 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
             }
         }
         setzeFarbeLinkenSeite();
+    }
+
+    private bool IstRestoreAusDBMoeglich()
+    {
+       return PlayerPrefs.GetInt(ConfigInfoScript.K_ANZAHL_BUTTON_LAST) == PlayerPrefs.GetInt(ConfigInfoScript.K_ANZAHL_BUTTON);
     }
 
     private void setzeFarbeLinkenSeite()
