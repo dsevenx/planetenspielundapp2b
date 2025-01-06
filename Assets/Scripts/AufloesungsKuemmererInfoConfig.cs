@@ -25,8 +25,12 @@ public class AufloesungsKuemmererInfoConfig : MonoBehaviour {
 
 	public TextMeshProUGUI mTextMeshProGraviRecord;
 
+    public TextMeshProUGUI mTextMeshProKartenanzahl;
+
 	public GameObject mTextMeshProGameObjectButton;
 
+    public GameObject mTextMeshProGameObjectKartenanzahlButton;
+	
 	public Material mMaterial;
 
 	public GameObject mLinkeMenuLeiste;
@@ -62,10 +66,14 @@ public class AufloesungsKuemmererInfoConfig : MonoBehaviour {
 
 		mTextMeshProVortext.transform.localPosition = new Vector3(-mBreiteDisplay/2.4f, mHoeheDisplay * -0.33f +mHoeheDisplay/100, 0f);
 		mTextMeshProInputfield.transform.localPosition = new Vector3(0f, mHoeheDisplay * -0.33f, 0f);
-		mTextMeshProTitel.transform.localPosition = new Vector3(mBreiteDisplay / 5, mHoeheDisplay * -0.33f + mHoeheDisplay / 100, 0f);
+		
+		mTextMeshProTitel.transform.localPosition = new Vector3(mBreiteDisplay / 3.2f, mHoeheDisplay * -0.33f + mHoeheDisplay / 100, 0f);
 
-		mTextMeshProGraviRecord.transform.localPosition = new Vector3(-mBreiteDisplay / 2.4f, mHoeheDisplay * -0.44f + mHoeheDisplay / 100, 0f);
+    	mTextMeshProGraviRecord.transform.localPosition = new Vector3(-mBreiteDisplay / 2.4f, mHoeheDisplay * -0.44f + mHoeheDisplay / 100, 0f);
 		mTextMeshProGameObjectButton.transform.localPosition = new Vector3(0f, mHoeheDisplay * -0.44f, 0f);
+
+		mTextMeshProKartenanzahl.transform.localPosition = new Vector3(0, 0, 0f);
+		mTextMeshProGameObjectKartenanzahlButton.transform.localPosition = new Vector3(mBreiteDisplay / 3.2f, mHoeheDisplay * -0.44f, 0f);
 
 		mGraviErgebnisPrefab.transform.localScale = new Vector3(0.75f, 0.75f, 1f);
 
