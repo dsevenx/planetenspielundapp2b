@@ -12666,7 +12666,7 @@ MonoBehaviour:
     type: 3}
   mTextureStevenson: {fileID: 2800000, guid: e4a3c0d246e764805a776c236c73d5fd, type: 3}
   mTextureKeppler160D: {fileID: 2800000, guid: e88bcb2dd51bc45be9bd6e3537530984, type: 3}
-  mTextureEnceladus: {fileID: 2800000, guid: 8971dd9ee36564151932e479ab78320b, type: 3}
+  mTextureEnceladus: {fileID: 2800000, guid: cd660ef09655a4cfcbd4922ebd61fb32, type: 3}
   mTextureJapetus: {fileID: 2800000, guid: a5597179913f54fa1bf03182871d9c8c, type: 3}
   mTexture2DNEOWISE: {fileID: 2800000, guid: ab1cc2f4fc3b540c98a6c28561c44f59, type: 3}
   mTexture2DTEBBUTT: {fileID: 2800000, guid: f1ab307238cf844a9ba29315759a6df3, type: 3}
@@ -12696,6 +12696,9 @@ MonoBehaviour:
   mTexture2DCanisMajoris: {fileID: 2800000, guid: 5eb7acf46d5034917b3c8ab50f46fd23,
     type: 3}
   mTexture2DR136a1: {fileID: 2800000, guid: b9939637263a54bc5b99bfb7cf76712a, type: 3}
+  mTexture2DSedna: {fileID: 2800000, guid: 5431cc82858ec4ac88ca434fdd92c2c1, type: 3}
+  mTexture2DKepler16b: {fileID: 2800000, guid: 158a5efa2abaf4cd4a60d3e324393bfe, type: 3}
+  mTexture2DMiranda: {fileID: 2800000, guid: 7d0a95237c1c34b01bc4b1c33f0f20a9, type: 3}
   mWerGegenWenButtonbuttonEmpty: {fileID: 109157144}
   mTextureHubbel: {fileID: 2800000, guid: 05f73311eb05b4954b89673d36ae7044, type: 3}
   K_MAX: 0
@@ -34155,6 +34158,7 @@ MonoBehaviour:
   mGameObjectHimmelskoerperNaechste: {fileID: 118275435}
   mGameObjectKartenButton: {fileID: 534383794}
   mAufloesungsKuemmerer: {fileID: 1020744105}
+  mAnzahlMoeglKartenInStapel: 0
 --- !u!1 &1469996094
 GameObject:
   m_ObjectHideFlags: 0

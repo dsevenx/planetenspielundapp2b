@@ -109,6 +109,8 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
 
     public AufloesungsKuemmerer mAufloesungsKuemmerer;
 
+    public int mAnzahlMoeglKartenInStapel;
+
     void Start()
     {
         Debug.Log("jetzt von MacBookAir");
@@ -136,6 +138,8 @@ public class Himmelskoerperverwalter : HimmelskoerperverwalterBase
             mStapelYou = new HimmelskoerperKartenstapel("You");
 
         }
+
+        mAnzahlMoeglKartenInStapel = base.getMyHimmelskoerperDict().Count;
     }
 
     public bool lieferBorealis(int pIndex)

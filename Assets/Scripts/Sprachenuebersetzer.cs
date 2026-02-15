@@ -197,6 +197,12 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_EARTH_MOON_TEXT = 470;
     public const int K_EARTH_MOON = 480;
     public const int K_CERES = 490;
+    public const int K_SEDNA = 495;
+
+    public const int K_KEPLER_16B = 497;
+
+     public const int K_MIRANDA = 498;
+
     public const int K_TITAN = 500;
     public const int K_CHARON = 510;
     public const int K_HARALDLESCH = 520;
@@ -802,6 +808,13 @@ public class Sprachenuebersetzer : MonoBehaviour
 
         hinzuInsDic(K_EARTH_MOON, "earth moon", "Erdmond", "", "", "");
 
+         hinzuInsDic(K_MIRANDA, "Miranda, also known as Frankenstein's moon, has the highest cliff (Verona Rupes) in the solar system (20 km high!). It was discovered by Gerard Kuiper in 1948 and later photographed in detail by the Voyager 2 probe in 1986. Miranda orbits Uranus in just 1.41 Earth days on a slightly inclined path.",
+          "Der Uranusmonnd gilt auch als Franksteinmond - er hat die höchste Klippe (Verona Rupes) im Sonnensystem (20 km hoch!). Er wurde 1948 von Gerard Kuiper entdeckt und später von der Sonde Voyager 2 im Jahr 1986 detailliert fotografiert. Miranda umkreist Uranus in nur 1,41 Erdtagen auf einer leicht geneigten Bahn. ", "", "", "");
+
+         hinzuInsDic(K_KEPLER_16B, 
+         "Kepler-16b is the first confirmed circumbinary planet—it doesn't orbit a single star, but a binary star system, just like the fictional planet Tatooine from Star Wars. The planet itself is uninhabitable, as it lacks a solid surface. However, astronomers speculate whether exomoons could orbit the planet. If such a moon had an atmosphere, the combined radiation from both stars could make it warm enough for liquid water.", 
+         "Kepler-16b ist der erste bestätigte zirkumbinäre Planet – er umkreist nicht einen einzelnen Stern, sondern ein Doppelsternpaar, genau wie der fiktive Planet Tatooine aus Star Wars. Der Planet selbst ist unbewohnbar, da er keine feste Oberfläche besitzt. Astronomen spekulieren jedoch, ob Exomonde den Planeten umkreisen könnten. Falls ein solcher Mond eine Atmosphäre hätte, könnte er durch die kombinierte Strahlung beider Sterne warm genug für flüssiges Wasser sein.", "", "", "");
+
         hinzuInsDic(K_CERES, "Ceres is the largest dwarf planet in the asteroid belt. Ceres consists of a lot of frozen water. " +
             "The ice sometimes also seems to melt and trigger 'landslides'. " +
             "Although Ceres is very small, it has high mountains and deep valleys (up to 15 km).",
@@ -809,6 +822,10 @@ public class Sprachenuebersetzer : MonoBehaviour
             "Ceres ist der größte Zwergplanet im Asteroidengürtel. Ceres besteht aus sehr viel gefrorenen Wasser. " +
             "Das Eis scheint auch manchmal zu schmelzen und löst 'Erdrutsche' aus. Obwohl Ceres sehr klein ist, hat er hohe Berge und tiefe Täler (bis 15 km)." +
             "An den hellen Flecken wie im folgenden Bild scheint Wasser zu verdampfen.", "", "", "");
+
+       hinzuInsDic(K_SEDNA, "Sedna is a dwarf planet in the Kuiper Belt with a mysterious, highly elliptical orbit. Its orbital period is approximately 11,400 years. Sedna was discovered in 2003 by astronomer Mike Brown. Brown initially nicknamed Sedna 'The Flying Dutchman' or 'Dutch,' after a legendary ghost ship, because its slow motion had initially concealed its presence from his team.",
+            "Sedna ist ein Zwergplanet im Kuiper-Gürterl mit einer mysteriösen sehr ellyptischen Umlaufbahn. Die Umlaufzeit beträgt ca. 11.400 Jahre. "
+            +"Sedna wurde 2003 von dem Astronomen Mike Brown entdeckt. Brown gab der Sedna zunächst den Spitznamen „The Flying Dutchman“ oder „Dutch“, nach dem legendären Geisterschiff, weil ihre langsame Bewegung ihre Anwesenheit zunächst vor seinem Team verborgen hatte.", "", "", "");
 
         hinzuInsDic(K_TITAN, "Titan is the largest moon of Saturn. It has a methane-rich atmosphere. Its surface is comparable to Earth - " +
             "10% from the surface are lakes." +

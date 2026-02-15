@@ -252,8 +252,7 @@ public class Himmelskoerper : MonoBehaviour
 
     public Texture2D mTexture2DHaumea;
 
-  //letzter
-      public const int K_CANIS_MAJOPRIS= 570;
+    public const int K_CANIS_MAJOPRIS= 570;
 
     public Texture2D mTexture2DCanisMajoris;
 
@@ -261,6 +260,18 @@ public class Himmelskoerper : MonoBehaviour
 
     public Texture2D mTexture2DR136a1;
 
+      public const int K_SEDNA = 590;
+
+    public Texture2D mTexture2DSedna;
+
+      public const int K_KEPLER_16B = 600;
+
+    public Texture2D mTexture2DKepler16b;
+
+    //letzter
+    public const int K_MIRANDA = 610;
+
+    public Texture2D mTexture2DMiranda;
 
     // allg
     public GameObject mWerGegenWenButtonbuttonEmpty;
@@ -308,7 +319,7 @@ public class Himmelskoerper : MonoBehaviour
 
     void Start()
     {
-        K_MAX = K_R136a1; // letzte hinzugekommene Himmelskoerper
+        K_MAX = K_MIRANDA; // letzte hinzugekommene Himmelskoerper
         K_ERST = K_MERKUR;
 
         mGameObjectSchwarzeLochErhitztGas.SetActive(false);
@@ -487,6 +498,18 @@ public class Himmelskoerper : MonoBehaviour
                 else if (mAktivePlanet == K_CERES)
                 {
                     GetComponent<Renderer>().material.mainTexture = mTexture2DCeres;
+                }
+                else if (mAktivePlanet == K_SEDNA)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2DSedna;
+                }
+                else if (mAktivePlanet == K_KEPLER_16B)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2DKepler16b;
+                }
+                else if (mAktivePlanet == K_MIRANDA)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2DMiranda;
                 }
                 else if (mAktivePlanet == K_TITAN)
                 {

@@ -199,6 +199,24 @@ public class HimmelskoerperverwalterBase : MonoBehaviour
                 K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_CERES)
             }, 0.15f, false, Sprachenuebersetzer.K_ZWERGPLANET, Himmelskoerper.K_LEER_PLANET, ConfigInfoScript.K_BUTTON_ANZAHL_EINFACH);
 
+            // NEU20226
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_SEDNA, "Sedna", 0.000285f, 140200000000f,
+                 0, 2.08f, 995, -240, -240, Sprachenuebersetzer.K_KILOMETER, new string[2] {"Sedna_Bild_2",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_SEDNA)
+            }, 0.15f, false, Sprachenuebersetzer.K_ZWERGPLANET, Himmelskoerper.K_LEER_PLANET, ConfigInfoScript.K_BUTTON_ANZAHL_MAX);
+
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_KEPLER_16B, "Kepler-16b", 106, 200f,
+                 0, 0.96f, 105000, -70, -100, Sprachenuebersetzer.K_LICHTJAHRE, new string[2] {"Kepler_16B_2",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_KEPLER_16B)
+            }, 0.6f, false, Sprachenuebersetzer.K_KEINE_MODNDE_ENTDECKT, Himmelskoerper.K_LEER_PLANET, ConfigInfoScript.K_BUTTON_ANZAHL_MAX);
+ 
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_MIRANDA, "Miranda", 0.000011f, 2884000000f,
+                 0, 1.2f, 471, -187, -187, Sprachenuebersetzer.K_KILOMETER, new string[2] {"Miranda_2",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_MIRANDA)
+            }, 0.25f, false, Sprachenuebersetzer.K_MOON, Himmelskoerper.K_URANUS, ConfigInfoScript.K_BUTTON_ANZAHL_MAX);
+ 
+            // NEU20226
+
             erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_TITAN, "Titan", 0.0225f, 1427000000f,
                 0, 1.88f, 5150, -180, -180, Sprachenuebersetzer.K_KILOMETER, new string[2] {
                 "Titan_sandstuerme",
