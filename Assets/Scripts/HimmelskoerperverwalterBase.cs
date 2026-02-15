@@ -215,6 +215,12 @@ public class HimmelskoerperverwalterBase : MonoBehaviour
                 K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_MIRANDA)
             }, 0.25f, false, Sprachenuebersetzer.K_MOON, Himmelskoerper.K_URANUS, ConfigInfoScript.K_BUTTON_ANZAHL_MAX);
  
+            erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_MAGNETAR, "Magnetar SGR 1806-20", 466242, 50000f,
+                 0, 100000000000000f, 20, 10000000,10000000, Sprachenuebersetzer.K_LICHTJAHRE, new string[2] {"Magnertar_2",
+                K_ZEICHEN_FUER_TEXT + mSprachenuebersetzer.lieferWort (Sprachenuebersetzer.K_MAGNETAR)
+            }, 1.0f, false, Sprachenuebersetzer.K_NEUTRONENSTERN, Himmelskoerper.K_LEER_PLANET, ConfigInfoScript.K_BUTTON_ANZAHL_MAX);
+ 
+   
             // NEU20226
 
             erzeugeInfoZumHimmelskoeper(Himmelskoerper.K_TITAN, "Titan", 0.0225f, 1427000000f,

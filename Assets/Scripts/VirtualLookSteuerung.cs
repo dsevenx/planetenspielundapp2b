@@ -537,6 +537,10 @@ public class VirtualLookSteuerung : MonoBehaviour, IDragHandler, IPointerUpHandl
         }
         else if (mArtDesHimmelskoerper == Sprachenuebersetzer.K_KOMET)
         {
+            mArtDesHimmelskoerper = Sprachenuebersetzer.K_NEUTRONENSTERN;
+        }
+        else if (mArtDesHimmelskoerper == Sprachenuebersetzer.K_NEUTRONENSTERN)
+        {
             mArtDesHimmelskoerper = Sprachenuebersetzer.K_ALL;
         }
 

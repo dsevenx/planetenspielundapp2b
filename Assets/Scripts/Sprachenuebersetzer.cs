@@ -109,6 +109,8 @@ public class Sprachenuebersetzer : MonoBehaviour
 
     public const int K_MOON = 170;
 
+    public const int K_NEUTRONENSTERN = 172;
+
     public const int K_BRAUNER_ZWERG = 175;
 
     public const int K_ASTEROID = 180;
@@ -202,6 +204,8 @@ public class Sprachenuebersetzer : MonoBehaviour
     public const int K_KEPLER_16B = 497;
 
      public const int K_MIRANDA = 498;
+
+    public const int K_MAGNETAR = 499;
 
     public const int K_TITAN = 500;
     public const int K_CHARON = 510;
@@ -474,6 +478,7 @@ public class Sprachenuebersetzer : MonoBehaviour
         hinzuInsDic(K_PLANET, "planet", "Planet", "", "", "");
         hinzuInsDic(K_STERN, "star", "Stern", "", "", "");
         hinzuInsDic(K_MOON, "moon", "Mond", "", "", "");
+        hinzuInsDic(K_NEUTRONENSTERN, "neutron star", "Neutronenstern", "", "", "");
         hinzuInsDic(K_BRAUNER_ZWERG, "brown dwarf", "brauner Zwerg", "", "", "");
         hinzuInsDic(K_ASTEROID, "asteroid", "Asteroid", "", "", "");
         hinzuInsDic(K_ZWERGPLANET, "dwarf planet", "Zwergplanet", "", "", "");
@@ -807,6 +812,9 @@ public class Sprachenuebersetzer : MonoBehaviour
             "Vollmond und vom Vollmond über den abnehmenden Mond wieder zum Anfang.", "", "", "");
 
         hinzuInsDic(K_EARTH_MOON, "earth moon", "Erdmond", "", "", "");
+
+         hinzuInsDic(K_MAGNETAR, "Magnetar SGR 1806-20 is an extremely hot neutron star. During massive eruptions (giant flares), such as the one in December 2004, the temperature can briefly rise to over a billion degrees. Its magnetic field would erase credit cards from a distance of 160,000 km!"
+         , "Magnetar SGR 1806-20 ist ein extrem heißer Neutronenstern. Während der massiven Ausbrüche (Giant Flares), (wie im Dezember 2004), kann die Temperatur während des Ausbruchs kurzzeitig auf über einer Milliarde Grad steigen. Das Magnetfeld würde Kreditkarten aus 160.000 km Entfernung löschen!", "", "", "");
 
          hinzuInsDic(K_MIRANDA, "Miranda, also known as Frankenstein's moon, has the highest cliff (Verona Rupes) in the solar system (20 km high!). It was discovered by Gerard Kuiper in 1948 and later photographed in detail by the Voyager 2 probe in 1986. Miranda orbits Uranus in just 1.41 Earth days on a slightly inclined path.",
           "Der Uranusmonnd gilt auch als Franksteinmond - er hat die höchste Klippe (Verona Rupes) im Sonnensystem (20 km hoch!). Er wurde 1948 von Gerard Kuiper entdeckt und später von der Sonde Voyager 2 im Jahr 1986 detailliert fotografiert. Miranda umkreist Uranus in nur 1,41 Erdtagen auf einer leicht geneigten Bahn. ", "", "", "");

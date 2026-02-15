@@ -273,6 +273,12 @@ public class Himmelskoerper : MonoBehaviour
 
     public Texture2D mTexture2DMiranda;
 
+    //letzter
+    public const int K_MAGNETAR = 620;
+
+    public Texture2D mTexture2DMagnetar;
+    
+
     // allg
     public GameObject mWerGegenWenButtonbuttonEmpty;
 
@@ -319,7 +325,7 @@ public class Himmelskoerper : MonoBehaviour
 
     void Start()
     {
-        K_MAX = K_MIRANDA; // letzte hinzugekommene Himmelskoerper
+        K_MAX = K_MAGNETAR; // letzte hinzugekommene Himmelskoerper
         K_ERST = K_MERKUR;
 
         mGameObjectSchwarzeLochErhitztGas.SetActive(false);
@@ -510,6 +516,10 @@ public class Himmelskoerper : MonoBehaviour
                 else if (mAktivePlanet == K_MIRANDA)
                 {
                     GetComponent<Renderer>().material.mainTexture = mTexture2DMiranda;
+                }
+                else if (mAktivePlanet == K_MAGNETAR)
+                {
+                    GetComponent<Renderer>().material.mainTexture = mTexture2DMagnetar;
                 }
                 else if (mAktivePlanet == K_TITAN)
                 {
