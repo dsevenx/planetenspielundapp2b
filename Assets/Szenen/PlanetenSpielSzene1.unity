@@ -389,7 +389,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12699,6 +12698,7 @@ MonoBehaviour:
   mTexture2DSedna: {fileID: 2800000, guid: 5431cc82858ec4ac88ca434fdd92c2c1, type: 3}
   mTexture2DKepler16b: {fileID: 2800000, guid: 158a5efa2abaf4cd4a60d3e324393bfe, type: 3}
   mTexture2DMiranda: {fileID: 2800000, guid: 7d0a95237c1c34b01bc4b1c33f0f20a9, type: 3}
+  mTexture2DMagnetar: {fileID: 2800000, guid: e8ff14805d601487e857206e8811412d, type: 3}
   mWerGegenWenButtonbuttonEmpty: {fileID: 109157144}
   mTextureHubbel: {fileID: 2800000, guid: 05f73311eb05b4954b89673d36ae7044, type: 3}
   K_MAX: 0
